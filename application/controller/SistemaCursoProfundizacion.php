@@ -16,19 +16,19 @@ class SistemaCursoProfundizacion {
     }
 
 
-    public void iniciarSesion() {
+    public function iniciarSesion($correoElectronico, $tipoUsuario, $contraseña) {
 
 
     }
 
 
-    public void recuperarContraseña() {
+    public function recuperarContraseña() {
 
 
     }
 
 
-    public void cerrarSesion() {
+    public function cerrarSesion() {
 
 
 
