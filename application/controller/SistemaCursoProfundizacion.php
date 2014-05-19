@@ -6,8 +6,9 @@
  * Time: 10:46 AM
  */
 
-namespace application\controller;
+date_default_timezone_set('America/Bogota');
 
+require_once '/../models/Usuario.php';
 
 class SistemaCursoProfundizacion {
 
@@ -18,11 +19,27 @@ class SistemaCursoProfundizacion {
 
     }
 
-    public function iniciarSesion($correoElectronico, $contraseña, $tipoUsuario) {
-        $this->validarDatos($correoElectronico, $contraseña, $tipoUsuario);
+    public function iniciarSesion($correo, $contraseña, $tipoUsuario) {
+       // $this->validarDatos($correo, $contraseña, $tipoUsuario);
 
+        $this->modelo = new Usuario();
+        $this->modelo->obtener($correo);
+
+        if ($correo == $this->modelo->getCorreo() && md5($contraseña) == $this->modelo->getContrasenia()) {
+            session_start ();
+            $_SESSION ['correo'] = $this->modelo->getCorreo();
+            //$this->vista = new vista();
+            //$this->vista->delegar_vista();
+            echo "El señor ".$_SESSION['correo']." ha iniciado sesión";
+        }else {
+            //$this->vista = new vista();
+            //$this->vista->vista();
+            echo "No inició sesión";
+            exit;
+        }
 
     }
+
 
     /**
      * Encargado de validar los datos de entrada.
@@ -32,15 +49,15 @@ class SistemaCursoProfundizacion {
      * contrario imprime la vista pertinente con el mensaje ideal y detiene la
      * aplicación.
      *
-     * @param String $correoElectronico
+     * @param String $correo
      * @param String $tipo_usuario
      * @param String $contraseña
      */
-    private function ValidarDatos($correoElectronico, $contraseña, $tipo_usuario) {
+    private function ValidarDatos($correo, $contraseña, $tipo_usuario) {
 
         $this->vista = new vista();
 
-        if (empty($correoElectronico)) {
+        if (empty($correo)) {
             $this->vista->retornar_vista('crear',
                 array('MENSAJE_CAMPO_VACIO_CODIGO'=>MENSAJE_CAMPO_VACIO_CODIGO,
                     'MENSAJE_CAMPO_VACIO_CONTRASENIA'=>'',
@@ -50,7 +67,7 @@ class SistemaCursoProfundizacion {
             exit;
         }
 
-        if (strpos($correoElectronico, '115') === false && strpos($correoElectronico, '015') === false) {
+        if (strpos($correo, '115') === false && strpos($correo, '015') === false) {
             $this->vista->retornar_vista('crear',
                 array('MENSAJE_CAMPO_VACIO_CODIGO'=>MENSAJE_CODIGO_NO_SISTEMAS,
                     'MENSAJE_CAMPO_VACIO_CONTRASENIA'=>'',
@@ -72,9 +89,78 @@ class SistemaCursoProfundizacion {
 
     }
 
-    public function recuperarContraseña() {
+    public function recuperarContraseña($correo) {
+        //ValidarDatos()
+
+        $this->modelo = new Usuario();
+        $this->modelo->obtener($correo);
+
+        if($correo != $this->modelo->getCorreo()) {
+            echo "Malo el correo no coincide";
+            echo md5('123');
+            exit;
+        }
+
+        $contrasenia = $this->generarContrasenia();
+
+        $this->modelo->setContrasenia(md5($contrasenia));
+
+        $this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia);
+        $contrasenia = null;
+
+    }
 
 
+    public function cambiarContrasenia($contraseniaNueva) {
+        //ValidarDatos()
+        /**
+         *         if(empty($contraseniaNueva) {
+        imprimir view
+        return;
+        }
+        if(strlen($contraseniaNueva)<=6) {
+        imprimir view
+        return;
+        }
+        if(strcmp($nueva_clave, $confirmacion_nueva_clave) !== 0) {
+        imprimir view
+        return;
+        }
+         */
+        //Debe tener la sesión iniciada - Validar
+
+        $this->modelo = new Usuario();
+        $this->modelo->obtener($_SESSION['correo']);
+
+        if($_SESSION['correo'] != $this->modelo->getCorreo()) {
+            echo '<br>El correo no está registrado, Algo ilógico casi nunca se daria porque se supone que inició sesión porque estaba
+            a no ser de que lo borren por base de datos o exista una inconsistencia de información';
+            exit;
+        }
+
+        $this->modelo->setContrasenia(md5($contraseniaNueva));
+        $this->enviarCorreo($this->modelo->getCorreo(), 'Su contraseña ha sido cambiada', 'El dia x-y-z a las hora x:o, se cambió su clave');
+    }
+
+
+    private function generarContrasenia() {
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmno;{}*pqrstuvwxyz123456789.0";
+        $cad = "";
+        for($i=0;$i<12;$i++) {
+            $cad .= substr($str,rand(0,67),1);
+        }
+        return $cad;
+    }
+
+
+
+
+    private function enviarCorreo($correoDestinatario, $asunto, $body) {
+        if(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@noreply.com>\r\n")) {
+            echo "<br>El correo ha sido enviado a ".$correoDestinatario;
+        }else {
+                echo "<br>El correo no ha sido enviado.";
+        }
     }
 
 
@@ -88,8 +174,8 @@ class SistemaCursoProfundizacion {
      * @return boolean
      */
     public function cerrarSesion() {
-        if(isset($_SESSION['correoElectronico'])) {
-            unset($_SESSION['correoElectronico']);
+        if(isset($_SESSION['correo'])) {
+            unset($_SESSION['correo']);
             session_unset();
             session_destroy();
             return true;

@@ -3,7 +3,7 @@
 /**
  *  Requerimos el archivo config.php, que contiene las constantes generales en la aplicación web y otras configuraciones.
  */
-require_once '../config/config.php';
+require_once '/../config/bdDevelopment.php';
 
 /**
  * Clase de abstracción, contiene funciones que acceden a la base de datos.
@@ -96,6 +96,11 @@ abstract class baseDatos {
 		array_pop($this->filas);
 		$this->borrar_conexion();
 	}
+
+    protected function errores() {
+        print_r($this->mensaje);
+        echo $this->codigo_error;
+    }
 	
 	
 }

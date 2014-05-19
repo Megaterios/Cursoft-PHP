@@ -6,10 +6,7 @@
  * Time: 10:16 AM
  */
 
-
-namespace application\models;
-
-require_once '../libs/baseDatos.php';
+require_once '/../libs/baseDatos.php';
 
 class Usuario extends baseDatos {
 
@@ -17,17 +14,21 @@ class Usuario extends baseDatos {
     private $nombre;
     private $apellido;
     private $correo;
-    private $contraseña;
+    private $contrasenia;
     private $fechaNacimiento;
     private $telefonoFijo;
     private $telefonoCelular;
     private $direccion;
 
-    function __construct($apellido, $cedula, $contraseña, $correo, $direccion, $fechaNacimiento, $nombre, $telefonoCelular, $telefonoFijo)
+    function __construct()
+    {
+    }
+
+    function crear($apellido, $cedula, $contrasenia, $correo, $direccion, $fechaNacimiento, $nombre, $telefonoCelular, $telefonoFijo)
     {
         $this->apellido = $apellido;
         $this->cedula = $cedula;
-        $this->contraseña = $contraseña;
+        $this->contrasenia = $contrasenia;
         $this->correo = $correo;
         $this->direccion = $direccion;
         $this->fechaNacimiento = $fechaNacimiento;
@@ -36,12 +37,25 @@ class Usuario extends baseDatos {
         $this->telefonoFijo = $telefonoFijo;
     }
 
+    public function inicializar() {
+        $this->apellido = '';
+        $this->cedula = '';
+        $this->contrasenia = '';
+        $this->correo = '';
+        $this->direccion = '';
+        $this->fechaNacimiento = '';
+        $this->nombre = '';
+        $this->telefonoCelular = '';
+        $this->telefonoFijo = '';
+    }
+
     /**
      * @param mixed $apellido
      */
     public function setApellido($apellido)
     {
         $this->apellido = $apellido;
+        $this->actualizar('apellido', $this->getApellido());
     }
 
     /**
@@ -58,6 +72,7 @@ class Usuario extends baseDatos {
     public function setCedula($cedula)
     {
         $this->cedula = $cedula;
+        $this->actualizar('cedula', $this->getCedula());
     }
 
     /**
@@ -69,19 +84,20 @@ class Usuario extends baseDatos {
     }
 
     /**
-     * @param mixed $contraseña
+     * @param mixed $contrasenia
      */
-    public function setContraseña($contraseña)
+    public function setContrasenia($contrasenia)
     {
-        $this->contraseña = $contraseña;
+        $this->contrasenia = $contrasenia;
+        $this->actualizar('contrasenia', $this->getContrasenia());
     }
 
     /**
      * @return mixed
      */
-    public function getContraseña()
+    public function getContrasenia()
     {
-        return $this->contraseña;
+        return $this->contrasenia;
     }
 
     /**
@@ -90,6 +106,7 @@ class Usuario extends baseDatos {
     public function setCorreo($correo)
     {
         $this->correo = $correo;
+        $this->actualizar('correo', $this->getCorreo());
     }
 
     /**
@@ -106,6 +123,7 @@ class Usuario extends baseDatos {
     public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
+        $this->actualizar('direccion', $this->getDireccion());
     }
 
     /**
@@ -122,6 +140,7 @@ class Usuario extends baseDatos {
     public function setFechaNacimiento($fechaNacimiento)
     {
         $this->fechaNacimiento = $fechaNacimiento;
+        $this->actualizar('fechaNacimiento', $this->getFechaNacimiento());
     }
 
     /**
@@ -138,6 +157,7 @@ class Usuario extends baseDatos {
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        $this->actualizar('nombre', $this->getNombre());
     }
 
     /**
@@ -154,6 +174,7 @@ class Usuario extends baseDatos {
     public function setTelefonoCelular($telefonoCelular)
     {
         $this->telefonoCelular = $telefonoCelular;
+        $this->actualizar('telefonoCelular', $this->getTelefonoCelular());
     }
 
     /**
@@ -170,6 +191,7 @@ class Usuario extends baseDatos {
     public function setTelefonoFijo($telefonoFijo)
     {
         $this->telefonoFijo = $telefonoFijo;
+        $this->actualizar('telefonoFijo', $this->getTelefonoFijo());
     }
 
     /**
@@ -180,6 +202,49 @@ class Usuario extends baseDatos {
         return $this->telefonoFijo;
     }
 
+    /**
+     *
+     * @param string $correo
+     */
+    public function obtener($correo='') {
+
+        if($correo != '') {
+            $this->peticion = "
+						SELECT *
+						FROM Usuario
+						WHERE correo = '$correo'";
+            $this->obtener_resultados_consulta();
+            //Quitar al pasar a Master
+            $this->errores();
+        }
+
+        if(count($this->filas) == 1) {
+            $este = 'this';
+            foreach ($this->filas[0] as $atributo=>$valor) {
+                $$este->$atributo = $valor;
+            }
+        }else {
+            $this->inicializar();
+        }
+
+    }
+
+
+    /**
+     * Método que permite actualizar los datos de un usuario.
+     * @param unknown $nombre_atributo: Indica el atributo que desea modificarse.
+     * @param unknown $valor: Indica el nuevo valor que se dará al atributo especificado.
+     */
+    private function actualizar($nombreAtributo, $valor) {
+        $this->$nombreAtributo = $valor;
+        $this->peticion = "
+					UPDATE Usuario SET " . $nombreAtributo . " = '$valor'
+					WHERE correo = '$this->correo'
+					";
+        $this->ejecutar_peticion_simple();
+        //Quitar al pasar a Master
+        $this->errores();
+    }
 
 
 
