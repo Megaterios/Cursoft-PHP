@@ -4,7 +4,7 @@ require_once '/application/controller/SistemaCursoProfundizacion.php';
 
 $aplicacion = new SistemaCursoProfundizacion();
 
-//$aplicacion->iniciarSesion('yei558@gmail.com', '123', 'estudiante');
+$aplicacion->iniciarSesion('yei558@gmail.com', 'megaterios', 'estudiante');
 
 //$aplicacion->enviarCorreo('yei558@gmail.com', 'Correo Cursoft', 'Hola esta es la prueba de correo de cursoft');
 
@@ -14,7 +14,7 @@ $aplicacion = new SistemaCursoProfundizacion();
 
 //$aplicacion->recuperarContraseña('yei558@gmail.com');
 
-
+$aplicacion->consultarDatos();
 
 
 
