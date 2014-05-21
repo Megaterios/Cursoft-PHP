@@ -6,12 +6,39 @@
  * Time: 10:23 AM
  */
 
-namespace application\models;
+require_once '/../libs/baseDatos.php';
+
+class Estudiante extends Usuario {
+
+private $reciboMatricula;
+private $estado;
 
 
-class Estudiante {
+    function __construct(){
 
+    }
 
+    function crear($reciboMatricula, $estado){
+
+        $this->reciboMatricula = $reciboMatricula;
+        $this->estado = $estado;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setReciboMatricula($reciboMatricula){
+        $this->re = $nombre;
+        $this->actualizar('nombre', $this->getNombre());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
 
 
 

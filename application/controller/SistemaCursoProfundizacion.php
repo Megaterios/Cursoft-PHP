@@ -997,7 +997,18 @@ class SistemaCursoProfundizacion {
 
 
 
+//¡Mi línea!
 
+public function matricularEstudianteCurso(){
+
+    $estudiante = new Estudiante();
+
+    $estudiante->
+
+
+
+
+}
 
 
 
