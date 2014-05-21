@@ -1,0 +1,47 @@
+/* TEAM */
+Team: aquí se especifican todas las personas que han trabajado en el proyecto y su información personal (de forma individual).
+
+Frontend: Abdul Laiseca.
+Site: alnovo.com
+Contact: abdul.laiseca [at] gmail.com.
+Twitter: @YeisonVargasF.
+From: Cúcuta, Norte de Santander, Colombia.
+
+Backend: Yeison Vargas.
+Site: -
+Contact: yei558 [at] gmail.com.
+Twitter: @YeisonVargasF.
+From: Cúcuta, Norte de Santander, Colombia.
+
+Backend: Jhorman Perez.
+Site: -
+Contact: jhorapb [at] gmail.com.
+Twitter: @JhormanPerezB.
+From: Cúcuta, Norte de Santander, Colombia.
+
+Backend: Manuel Saravia.
+Site: -
+Contact: manuel.saravia.bulla [at] gmail.com.
+Twitter: @ManuelSaraviaB.
+From: Cúcuta, Norte de Santander, Colombia.
+
+
+/* THANKS */
+Thanks: en esta parte podemos agradecer a colaboradores y demás su participación.
+
+Name: Albert Orellano.
+Contact: albertorellano1228 [at] gmail.com.
+Twitter: @AlbertOrellano.
+
+Name: Ana Montesinos.
+Contact: anakatemont1150013 [at] gmail.com.
+Twitter: @anniemontesinos.
+
+/* SITE */
+Site: puedes añadir información sobre la web.
+
+Last update: [Fecha de la ultima actualización (YYYY/MM/DD)].
+Language: ES.
+Doctype: [Doctype de la web].
+Standards: [Estándares que usa la web como HTML].
+Software: [Software usado en la elaboración de la web].

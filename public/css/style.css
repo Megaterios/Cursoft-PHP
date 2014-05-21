@@ -1,0 +1,76 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+section {
+    border-bottom: 2px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding-bottom: 2em;
+}
+
+footer {
+    text-align: center;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+
+#formulario {
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 2em;    
+}
+
+#subtitulo {
+    text-align: center;
+    padding: 1em;
+}
+
+#recordar {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+#registro {
+    text-align: center;
+}
+
+#botones {
+    text-align: center;
+}
+
+#recuperar {
+    margin-right: 0.5em;
+}
+
+#cancelar {
+    padding-left: 0.5em;
+}
+
+.registro {
+    display: inline-block;
+    margin: 0.5em;
+    
+}
+
+#formulario row {
+    
+}
+
+fieldset {
+    padding-bottom: 1em;
+}
+
+#menu {
+    margin-top: 2em;
+}
+
+#contenido {
+    margin-top: 2em;
+}
+
+#contenedor {
+    padding: 2em;
+}
