@@ -28,7 +28,7 @@ private $estado;
      * @param mixed $nombre
      */
     public function setReciboMatricula($reciboMatricula){
-        $this->re = $nombre;
+        $this->reciboMatricula = $reciboMatricula;
         $this->actualizar('nombre', $this->getNombre());
     }
 
