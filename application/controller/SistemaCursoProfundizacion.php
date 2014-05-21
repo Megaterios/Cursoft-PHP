@@ -28,6 +28,7 @@ class SistemaCursoProfundizacion {
         if ($correo == $this->modelo->getCorreo() && md5($contraseña) == $this->modelo->getContrasenia()) {
             session_start ();
             $_SESSION ['correo'] = $this->modelo->getCorreo();
+            $_SESSION ['tipo'] = "Aspirante";
             //$this->vista = new vista();
             //$this->vista->delegar_vista();
             echo "El señor ".$_SESSION['correo']." ha iniciado sesión";
@@ -153,9 +154,11 @@ class SistemaCursoProfundizacion {
     }
 
 
-    private function consultarDatos() {
+    public function consultarDatos() {
         $this->modelo = new Usuario();
-
+        $this->modelo->obtenerDatos($_SESSION['correo'], $_SESSION['tipo']);
+       //$this->modelo->obtener($_SESSION['correo']);
+        echo $this->modelo->__toString();
 
     }
 
