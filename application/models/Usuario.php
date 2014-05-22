@@ -248,40 +248,33 @@ class Usuario {
         $this->errores();
     }
 
-    public function __toString()
-    {
+    public function __toString() {
         return  "<br>".$this->cedula."<br>".$this->nombre."<br>".$this->apellido."<br>".$this->correo."<br>".$this->contrasenia."<br>".
                 $this->fechaNacimiento."<br>".$this->direccion;
     }
 
     public function obtenerDatos($correo) {
-
         if($correo != '') {
             $this->peticion = "
-                        SELECT *
+                        SELECT tipo
 						FROM Usuario
-						INNER JOIN $tipo
-						WHERE Usuario.correo = '$correo' AND Usuario.idUsuario = $tipo.idUsuario ";
+						WHERE Usuario.correo = '$correo'";
+
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
             $this->errores();
         }
 
-        echo "<br>";
+        if($this->filas[0]['tipo'] == 1) {
+            echo "Aspirante";
+        }else if($this->filas[0]['tipo'] == 2) {
+            echo "Es Docente";
+        }
+
         print_r( $this->filas);
 
-/*
-        if(count($this->filas) == 1) {
-            $este = 'this';
-            foreach ($this->filas[0] as $atributo=>$valor) {
-                $$este->$atributo = $valor;
-            }
-        }else {
-            $this->inicializar();
-        }
-*/
-    }
-
+     }
 
 
 }
+?>

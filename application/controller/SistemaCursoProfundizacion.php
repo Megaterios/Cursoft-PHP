@@ -9,6 +9,9 @@
 date_default_timezone_set('America/Bogota');
 
 require_once '/../models/Usuario.php';
+require_once '/../libs/Vista.php';
+require_once '/../views/IniciarSesion.php';
+require_once '/../views/RecuperarContrasenia.php';
 
 class SistemaCursoProfundizacion {
 
@@ -19,23 +22,33 @@ class SistemaCursoProfundizacion {
 
     }
 
-    public function iniciarSesion($correo, $contraseña, $tipoUsuario) {
-       // $this->validarDatos($correo, $contraseña, $tipoUsuario);
-
+    /**
+     * Método que activa la variable de sesión para que el usuario pueda
+     * acceder a las funcionalidades del software que se le encuentran permitidas
+     * usar.
+     *
+     * @param $correo: cadena que corresponde al correo electrónico con el que se registró.
+     * @param $contrasenia: cadena que sirve para realizar la autenticación en el sistema.
+     * @param $tipoUsuario: número que indica si es aspirante, estudiante o docente.
+     */
+    public function iniciarSesion($correo, $contrasenia, $tipoUsuario) {
+        $this->validarDatosIniciarSesion($correo, $contrasenia, $tipoUsuario);
         $this->modelo = new Usuario();
         $this->modelo->obtener($correo);
-
-        if ($correo == $this->modelo->getCorreo() && md5($contraseña) == $this->modelo->getContrasenia()) {
+        if ($correo == $this->modelo->getCorreo() && md5($contrasenia) == $this->modelo->getContrasenia()) {
             session_start ();
             $_SESSION ['correo'] = $this->modelo->getCorreo();
-            $_SESSION ['tipo'] = "Aspirante";
+            $_SESSION ['tipo'] = $tipoUsuario;
             //$this->vista = new vista();
             //$this->vista->delegar_vista();
+
+
             echo "El señor ".$_SESSION['correo']." ha iniciado sesión";
         }else {
-            //$this->vista = new vista();
-            //$this->vista->vista();
-            echo "No inició sesión";
+            $this->vista = new IniciarSesion('iniciar_sesion_error', $datos = array(
+                'CLASS_CORREO'=>COLOR_ROJO,
+                'CLASS_CONTRASENIA'=>COLOR_ROJO,
+            ), CU2_ERROR_4, false);
             exit;
         }
 
@@ -54,51 +67,52 @@ class SistemaCursoProfundizacion {
      * @param String $tipo_usuario
      * @param String $contraseña
      */
-    private function ValidarDatos($correo, $contraseña, $tipo_usuario) {
+    private function validarDatosIniciarSesion($correo, $contrasenia, $tipo_usuario) {
 
-        $this->vista = new vista();
+        if (empty($correo) && empty($contrasenia)) {
+            $this->vista = new IniciarSesion('error', $datos = array(
+                'CLASS_CORREO'=>COLOR_ROJO,
+                'CLASS_CONTRASENIA'=>COLOR_ROJO,
+            ), CU2_ERROR_1, false);
+            exit;
+        }
 
         if (empty($correo)) {
-            $this->vista->retornar_vista('crear',
-                array('MENSAJE_CAMPO_VACIO_CODIGO'=>MENSAJE_CAMPO_VACIO_CODIGO,
-                    'MENSAJE_CAMPO_VACIO_CONTRASENIA'=>'',
-                    'MENSAJE_DATOS_INCORRECTOS'=>'',
-                    'TITULO'=>'Error'
-                ));
+            $this->vista = new IniciarSesion('error', $datos = array(
+                'CLASS_CORREO'=>COLOR_ROJO,
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,
+                ), CU2_ERROR_2, false);
             exit;
         }
 
-        if (strpos($correo, '115') === false && strpos($correo, '015') === false) {
-            $this->vista->retornar_vista('crear',
-                array('MENSAJE_CAMPO_VACIO_CODIGO'=>MENSAJE_CODIGO_NO_SISTEMAS,
-                    'MENSAJE_CAMPO_VACIO_CONTRASENIA'=>'',
-                    'MENSAJE_DATOS_INCORRECTOS'=>'',
-                    'TITULO'=>'Error'
-                ));
+        if (empty($contrasenia)) {
+            $this->vista = new IniciarSesion('error', $datos = array(
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+                'CLASS_CONTRASENIA'=>COLOR_ROJO,
+            ), CU2_ERROR_3, false);
             exit;
         }
+    }
 
-        if (empty($contraseña)) {
-            $this->vista->retornar_vista('crear',
-                array('MENSAJE_CAMPO_VACIO_CODIGO'=>'',
-                    'MENSAJE_CAMPO_VACIO_CONTRASENIA'=>MENSAJE_CAMPO_VACIO_CONTRASENIA,
-                    'MENSAJE_DATOS_INCORRECTOS'=>'',
-                    'TITULO'=>'Error'
-                ));
-            exit;
-        }
+    private function validarDatosRecuperarContrasenia() {
 
     }
 
-    public function recuperarContraseña($correo) {
-        //ValidarDatos()
+    public function recuperarContrasenia($correo) {
+        if (empty($correo)) {
+            $this->vista = new RecuperarContrasenia('error', $datos = array(
+                'CLASS_CORREO'=>COLOR_ROJO
+            ), CU3_ERROR_1, false);
+            exit;
+        }
 
         $this->modelo = new Usuario();
         $this->modelo->obtener($correo);
 
         if($correo != $this->modelo->getCorreo()) {
-            echo "Malo el correo no coincide";
-            echo md5('123');
+            $this->vista = new RecuperarContrasenia('error', $datos = array(
+                'CLASS_CORREO'=>COLOR_ROJO
+            ), CU3_ERROR_2, false);
             exit;
         }
 
@@ -106,9 +120,18 @@ class SistemaCursoProfundizacion {
 
         $this->modelo->setContrasenia(md5($contrasenia));
 
-        $this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia);
+        echo "Aca voy a cambiar contraseña";
+        if($this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia)) {
+                $this->vista = new IniciarSesion('exito', $datos = array(
+                    'CLASS_CORREO'=>COLOR_DEFECTO,
+                    'CLASS_CONTRASENIA'=>COLOR_DEFECTO
+                ), CU3_EXITO, false);
+        }else {
+            $this->vista = new RecuperarContrasenia('error', $datos = array(
+                'CLASS_CORREO'=>COLOR_ROJO
+            ), CU3_ERROR_3, false);
+        }
         $contrasenia = null;
-
     }
 
 
@@ -173,11 +196,7 @@ class SistemaCursoProfundizacion {
 
 
     private function enviarCorreo($correoDestinatario, $asunto, $body) {
-        if(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@noreply.com>\r\n")) {
-            echo "<br>El correo ha sido enviado a ".$correoDestinatario;
-        }else {
-                echo "<br>El correo no ha sido enviado.";
-        }
+        return(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@noreply.com>\r\n"));
     }
 
 
@@ -200,8 +219,25 @@ class SistemaCursoProfundizacion {
         return false;
     }
 
+    public function cargarVista($vista = '') {
+        if($vista == 'IU_RECUPERAR_CONTRASENIA') {
+            $this->vista = new RecuperarContrasenia('recuperar_contrasenia', $datos=array(
+                'DIV'=>'',
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+            ), '', false);
+            exit;
+        }
 
+        if(!isset($_SESSION['correo']) || $_SESSION['correo'] == '') {
+            $this->vista = new IniciarSesion('iniciar_sesion', $datos = array(
+                'DIV'=>'',
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,), '', false);
+            exit;
+        }
 
+      //  $this->vista->
+    }
 
 
 
@@ -1311,3 +1347,6 @@ class SistemaCursoProfundizacion {
 
 
 } 
+
+
+?>
