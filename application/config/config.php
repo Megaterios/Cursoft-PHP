@@ -1,10 +1,20 @@
 <?php
 
-//Errores CU2_Iniciar Sesión
+//Mensajes CU2_Iniciar Sesión
 const CU2_ERROR_1 = "Por favor digita un correo electrónico y una contraseña.";
 const CU2_ERROR_2 = "Por favor digita un correo electrónico.";
 const CU2_ERROR_3 = "Por favor digita una contraseña.";
 const CU2_ERROR_4 = "Has introducido una combinación de datos incorrecta.";
+
+const COLOR_ROJO = "form-group has-error";
+const COLOR_DEFECTO = "form-group";
+
+//Mensajes CU3_Recuperar Contraseña
+const CU3_ERROR_1 = CU2_ERROR_2;
+const CU3_ERROR_2 = "Lo sentimos pero el correo no se encuentra registrado en CURSOFT.";
+const CU3_ERROR_3 = "Ocurrió algo inesperado, lo sentimos.";
+const CU3_EXITO = "Su contraseña ha sido enviada al correo electrónico.";
+
 
 
 
