@@ -8,10 +8,15 @@
 
 require_once '/../libs/baseDatos.php';
 
+
 class Estudiante extends Usuario {
 
-private $reciboMatricula;
-private $estado;
+    use baseDatos;
+
+
+    private $idEstudiante;
+    private $reciboMatricula;
+    private $estado;
 
 
     function __construct(){
@@ -29,17 +34,75 @@ private $estado;
      */
     public function setReciboMatricula($reciboMatricula){
         $this->reciboMatricula = $reciboMatricula;
-        $this->actualizar('nombre', $this->getNombre());
+        $this->actualizar('reciboMatricula', $this->reciboMatricula);
     }
 
     /**
      * @return mixed
      */
-    public function getNombre()
+    public function getReciboMatricula()
     {
-        return $this->nombre;
+        return $this->reciboMatricula;
     }
 
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setEstado($estado){
+        $this->estado = $estado;
+        $this->actualizar('estado', $this->estado);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param $nombreAtributo
+     * @param unknown $valor
+     */
+    private function actualizar($nombreAtributo, $valor) {
+        $this->$nombreAtributo = $valor;
+        $this->peticion = "
+					UPDATE Estudiante SET " . $nombreAtributo . " = '$valor'
+					WHERE Estudiante.idEstudiante = '$this->idEstudiante'
+					";
+        $this->ejecutar_peticion_simple();
+        //Quitar al pasar a Master
+        $this->errores();
+    }
+
+    /**
+     * @param string $correo
+     */
+    public function obtenerEstudiante($codigo = '') {
+
+        if($codigo != '') {
+            $this->peticion = "
+						SELECT Estudiante.*
+						FROM Estudiante, Usuario, Aspirante
+						WHERE Usuario.codigo = '$codigo' AND Usuario.idUsuario = Aspirante.idUsuario AND
+						Aspirante.idAspirante = Estudiante.idAspirante";
+            $this->obtener_resultados_consulta();
+            //Quitar al pasar a Master
+            $this->errores();
+        }
+
+        if(count($this->filas) == 1) {
+            $este = 'this';
+            foreach ($this->filas[0] as $atributo=>$valor) {
+                $$este->$atributo = $valor;
+            }
+        }else {
+            $this->inicializar();
+        }
+
+    }
 
 
 

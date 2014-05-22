@@ -1000,18 +1000,24 @@ class SistemaCursoProfundizacion {
 
 
 
-//¡Mi línea!
+    //¡Mi línea!
 
-public function matricularEstudianteCurso(){
+    public function matricularEstudianteCurso($codigoEstudiante){
 
-    $estudiante = new Estudiante();
+        $curso = new Curso();
+        $curso->matricularEstudiante($codigoEstudiante);
 
-    $estudiante->
+        //Recargar vista.
+    }
 
+    public function consultarEstudiantesCurso($idCurso){
 
+        $curso = new Curso();
+        $curso->obtenerCurso($idCurso);
+        $listadoEstudiantes = $curso->consultarEstudiantes($idCurso);
 
-
-}
+        //Imprimir listado.
+    }
 
 
 

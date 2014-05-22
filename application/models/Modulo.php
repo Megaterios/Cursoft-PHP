@@ -6,12 +6,24 @@
  * Time: 10:24 AM
  */
 
-namespace application\models;
+require_once ('/../libs/baseDatos.php');
 
 
 class Modulo {
 
+    use baseDatos;
 
+
+    public function insertar(){
+
+
+        $this->peticion = "
+                            INSERT INTO Modulo ('idCurso', 'nombre', 'horas')
+                            VALUES ('', '');
+                          " ;
+
+
+    }
 
 
 
