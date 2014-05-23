@@ -6,7 +6,7 @@
  * Time: 7:16 AM
  */
 
-require_once '/../config/config.php';
+require_once 'application/config/config.php';
 
 class Vista {
 
@@ -39,7 +39,7 @@ class Vista {
 
 
     protected function obtenerPlantilla($form) {
-        $ruta = "C:/xampp/htdocs/Cursoft/public/".$form.".html";
+        $ruta = "public/".$form.".html";
         $this->plantilla = file_get_contents($ruta);
     }
 

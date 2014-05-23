@@ -8,10 +8,10 @@
 
 date_default_timezone_set('America/Bogota');
 
-require_once '/../models/Usuario.php';
-require_once '/../libs/Vista.php';
-require_once '/../views/IniciarSesion.php';
-require_once '/../views/RecuperarContrasenia.php';
+require_once 'application/models/Usuario.php';
+require_once 'application/libs/Vista.php';
+require_once 'application/views/IniciarSesion.php';
+require_once 'application/views/RecuperarContrasenia.php';
 
 class SistemaCursoProfundizacion {
 

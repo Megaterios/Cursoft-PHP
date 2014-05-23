@@ -6,11 +6,9 @@
  * Time: 10:16 AM
  */
 
-require_once '/../libs/baseDatos.php';
+require_once 'application/libs/baseDatos.php';
 
-class Usuario {
-
-    use baseDatos;
+class Usuario extends baseDatos {
 
     private $cedula;
     private $nombre;
