@@ -6,7 +6,7 @@
  * Time: 10:24 AM
  */
 
-require_once ('/../libs/baseDatos.php');
+require_once ('application/libs/baseDatos.php');
 
 
 class Modulo {

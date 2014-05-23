@@ -6,7 +6,7 @@
  * Time: 10:22 AM
  */
 
-require_once ('/../libs/baseDatos.php');
+require_once ('application/libs/baseDatos.php');
 
 
 class Aspirante extends Usuario {

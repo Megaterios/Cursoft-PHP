@@ -6,7 +6,7 @@
  * Time: 10:20 AM
  */
 
-require_once ('/../libs/baseDatos.php');
+require_once ('application/libs/baseDatos.php');
 
 
 class Curso {

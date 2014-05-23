@@ -45,10 +45,10 @@ class SistemaCursoProfundizacion {
 
             echo "El señor ".$_SESSION['correo']." ha iniciado sesión";
         }else {
-            $this->vista = new IniciarSesion('iniciar_sesion_error', $datos = array(
+            $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
                 'CLASS_CONTRASENIA'=>COLOR_ROJO,
-            ), CU2_ERROR_4, false);
+            ), CU2_ERROR_4);
             exit;
         }
 
@@ -73,7 +73,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
                 'CLASS_CONTRASENIA'=>COLOR_ROJO,
-            ), CU2_ERROR_1, false);
+            ), CU2_ERROR_1);
             exit;
         }
 
@@ -81,7 +81,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
                 'CLASS_CONTRASENIA'=>COLOR_DEFECTO,
-                ), CU2_ERROR_2, false);
+                ), CU2_ERROR_2);
             exit;
         }
 
@@ -89,7 +89,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_DEFECTO,
                 'CLASS_CONTRASENIA'=>COLOR_ROJO,
-            ), CU2_ERROR_3, false);
+            ), CU2_ERROR_3);
             exit;
         }
     }
@@ -102,7 +102,7 @@ class SistemaCursoProfundizacion {
         if (empty($correo)) {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO
-            ), CU3_ERROR_1, false);
+            ), CU3_ERROR_1);
             exit;
         }
 
@@ -112,7 +112,7 @@ class SistemaCursoProfundizacion {
         if($correo != $this->modelo->getCorreo()) {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO
-            ), CU3_ERROR_2, false);
+            ), CU3_ERROR_2);
             exit;
         }
 
@@ -125,11 +125,11 @@ class SistemaCursoProfundizacion {
                 $this->vista = new IniciarSesion('exito', $datos = array(
                     'CLASS_CORREO'=>COLOR_DEFECTO,
                     'CLASS_CONTRASENIA'=>COLOR_DEFECTO
-                ), CU3_EXITO, false);
+                ), CU3_EXITO);
         }else {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO
-            ), CU3_ERROR_3, false);
+            ), CU3_ERROR_3);
         }
         $contrasenia = null;
     }
@@ -224,7 +224,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new RecuperarContrasenia('recuperar_contrasenia', $datos=array(
                 'DIV'=>'',
                 'CLASS_CORREO'=>COLOR_DEFECTO,
-            ), '', false);
+            ), '');
             exit;
         }
 
@@ -232,7 +232,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('iniciar_sesion', $datos = array(
                 'DIV'=>'',
                 'CLASS_CORREO'=>COLOR_DEFECTO,
-                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,), '', false);
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,), '');
             exit;
         }
 
