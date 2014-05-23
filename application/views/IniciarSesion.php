@@ -6,7 +6,7 @@
  * Time: 7:24 AM
  */
 
-require_once('/../libs/Vista.php');
+require_once('application/libs/Vista.php');
 
 class IniciarSesion extends Vista {
 

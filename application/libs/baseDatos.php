@@ -14,7 +14,7 @@ require_once '/../config/bdDevelopment.php';
  * @author yeisonvargasf
  * 
  */
-trait baseDatos {
+abstract class baseDatos {
 	
 	#Atributos
 	private static $bd_host = BD_HOST;
