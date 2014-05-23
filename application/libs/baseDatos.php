@@ -3,7 +3,7 @@
 /**
  *  Requerimos el archivo config.php, que contiene las constantes generales en la aplicación web y otras configuraciones.
  */
-require_once '/../config/bdDevelopment.php';
+require_once 'application/config/bdDevelopment.php';
 
 /**
  * Clase de abstracción, contiene funciones que acceden a la base de datos.
