@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    
+    <title>CURSOFT - Sistema de Información</title>
+
+    <meta name="description" content="CURSOFT - Sistema de información para la administración de curso de profundización">
+    <meta name="author" content="Megaterios">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap-filestyle.min.js"> </script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <figure>
+                <img alt="CURSOFT" class="img-responsive" id="banner_cursoft" src="img/banne_cursoft.png">
+            </figure>
+        </header>
+
+        <section>
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="menu">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class=""><strong><a href="inicio_aspirante_aprobado.html">Aspirante</a></strong></li>
+                        <li class=""><a href="consultar_aspirante.html">Consultar</a></li>
+                        <li class=""><a href="actualizar_aspirante.html">Actualizar</a></li>
+                        <li class=""><a href="actualizar_aspirante.html">Borrar</a></li>
+                        <li class=""><strong><a href="inicio_aspirante_aprobado.html">Estudiante</a></strong></li>
+                        <li class=""><a href="consultar_aspirante.html">Consultar</a></li>
+                        <li class=""><a href="actualizar_aspirante.html">Actualizar</a></li>
+                        <li class=""><a href="actualizar_aspirante.html">Borrar</a></li>
+                        <li class=""><strong><a href="inicio_aspirante_aprobado.html">Docente</a></strong></li>
+                        <li class=""><a href="consultar_aspirante.html">Consultar</a></li>
+                        <li class=""><a href="actualizar_aspirante.html">Actualizar</a></li>
+                        <li class=""><a href="actualizar_aspirante.html">Borrar</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="contenido">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Aspirante</a></li>
+                        <li class="active">Consultar</li>
+                    </ol>
+                    <div id="subtitulo">
+                        <h2>Consultar Aspirante</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-offset-1 col-xs-10" id="contenedor">
+                            <div class="row" id="formulario">
+                                <form action="#" class="form-horizontal" method="post" role="form">
+                                    <fieldset>
+                                        <legend>Datos de inicio de sesión</legend>
+                                        <div class="form-group">
+                                            <label for="correo" class="col-xs-12 col-sm-6 col-md-4 control-label">Correo electrónico:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                                    <input class="form-control" id="correo" value="abdul.laiseca@gmail.com" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-6 col-md-4 control-label" for="contraseña" >Contraseña:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                                    <input class="form-control" id="contraseña" value="********" type="password" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Datos Personales</legend>
+                                        <div class="form-group">
+                                            <label for="nombres" class="col-xs-12 col-sm-6 col-md-4 control-label">Nombres:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                    <input class="form-control" id="nombres" value="Abdul Fabian" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apellidos" class="col-xs-12 col-sm-6 col-md-4 control-label">Apellidos:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                    <input class="form-control" id="apellidos" value="Laiseca Candelo" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tipo_documento" class="col-xs-12 col-sm-6 col-md-4 control-label">Tipo de documento:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <select class="form-control" id="tipo_documento" disabled>
+                                                    <option value="aspirante">Cédula de ciudadania</option>
+                                                    <option value="estudiante">Tarjeta de identidad</option>
+                                                    <option value="docente">Pasaporte</option>
+                                                </select>
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="numero_documento" class="col-xs-12 col-sm-6 col-md-4 control-label">Número de documento:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
+                                                    <input class="form-control" id="numero_documento" value="13278413" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fecha_nacimiento" class="col-xs-12 col-sm-6 col-md-4 control-label">Fecha de nacimiento:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    <input class="form-control" id="fecha_nacimiento" value="16/04/1984" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="direccion_residencia" class="col-xs-12 col-sm-6 col-md-4 control-label">Dirección de residencia:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                                    <input class="form-control" id="direccion_residencia" value="Cl 21A 11 48 Br Alfonso Lopez" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_residencia" class="col-xs-12 col-sm-6 col-md-4 control-label">Teléfono de recidencia:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
+                                                    <input class="form-control" id="telefono_residencia" value="5822276" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Teléfono móvil:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                                                    <input class="form-control" id="telefono_movil" value="3137496602" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fielset>
+                                        <legend>Datos de registro</legend>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Código:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
+                                                    <input class="form-control" id="telefono_movil" value="1150789" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Promedio ponderado:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-stats"></span></span>
+                                                    <input class="form-control" id="telefono_movil" value="4.2" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Semestre de terminación de materias:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                                    <input class="form-control" id="telefono_movil" value="02/2015" type="text" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de terminación de materias:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox" value="recibo_terminacion_materias.pdf" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de paz y salvo:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox" value="recibo_paz_y_salvo.pdf" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de pago de inscripción:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox" value="recibo_pago_inscripcion.pdf" disabled>
+                                            </div>
+                                        </div>
+                                    </fielset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p><strong>Copyright © 2014. Programa de Ingeniería de Sistemas - UFPS</strong></p>
+            <p>Desarrollado por <strom><a href="#">Megaterios</a></strong></p>
+        </footer>
+
+    </div>
+</body>
+</html>
