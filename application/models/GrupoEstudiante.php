@@ -7,7 +7,7 @@
  */
 
 require_once ('Estudiante.php');
-require_once ('../libs/baseDatos.php');
+require_once ('application/libs/baseDatos.php');
 
 
 class GrupoEstudiante {

@@ -6,7 +6,7 @@
  * Time: 10:23 AM
  */
 
-require_once '/../libs/baseDatos.php';
+require_once 'application/libs/baseDatos.php';
 
 
 class Estudiante {

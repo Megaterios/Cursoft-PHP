@@ -2,17 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Yeison
- * Date: 5/21/14
- * Time: 7:24 AM
+ * Date: 5/24/14
+ * Time: 10:14 AM
  */
 
-require_once('application/libs/Vista.php');
-
-class IniciarSesion extends Vista {
+class RegistrarAspirante extends Vista {
 
     function __construct($tipo, $datos=array(), $mensaje)
     {
-
         if($tipo == 'error' || $tipo == 'exito') {
             $this->obtenerPlantilla($tipo);
             $this->datos = array('MENSAJE'=>$mensaje);
@@ -22,6 +19,7 @@ class IniciarSesion extends Vista {
         $datos['DIV'] = $this->plantilla;
         $this->plantilla = "";
 
-        $this->retornarVista('iniciar_sesion', $datos);
+        $this->retornarVista('registrar_aspirante', $datos);
     }
-}
+
+} 

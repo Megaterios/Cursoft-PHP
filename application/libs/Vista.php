@@ -6,7 +6,7 @@
  * Time: 7:16 AM
  */
 
-require_once '/../config/config.php';
+require_once 'application/config/config.php';
 
 class Vista {
 
@@ -17,29 +17,13 @@ class Vista {
     function __construct(){
 
         $this->datosFormularioBase = array(
-            'TITULO_VENTANA'=>'Comfaoriente EPSS',
-            'FUNCION'=>'Ingresar' ,
-            'INICIO'=> '',
-            'INGRESAR'=> '',
-            'REGISTRAR'=> '',
-            'CONTACTENOS'=>'',
-            'RECUPERAR'=>'',
-            'CAMBIAR'=>'',
-            'BIENVENIDA'=>'',
-            'FUNCIONES DISPONIBLES PARA '=>'',
-            'CARGAR'=>'',
-            'ERROR'=>'',
-            'HTTP'=>HTTP,
-            'NOMBRE_URL_1'=>'Salir',
-            'URL_1'=>HTTP.'/login/index.php?accion=cerrarSesion',
-            'NOMBRE_URL_2'=>'Validador',
-            'URL_2'=>HTTP.'/login/index.php'
+            'SECTION'=>''
         );
     }
 
 
     protected function obtenerPlantilla($form) {
-        $ruta = "C:/xampp/htdocs/Cursoft/public/".$form.".html";
+        $ruta = "public/".$form.".html";
         $this->plantilla = file_get_contents($ruta);
     }
 
@@ -49,14 +33,16 @@ class Vista {
         }
     }
 
-    protected function retornarVista($vista, $datos=array(), $reenderizarPlantillaBase) {
+    protected function retornarVista($vista, $datos=array()) {
         $this->obtenerPlantilla($vista);
         $this->datos = $datos;
         $this->renderizarDatos();
-        if($reenderizarPlantillaBase) {
+
+        $this->datosFormularioBase['SECTION'] = $this->plantilla;
+        $this->obtenerPlantilla('template_base');
+
             $this->datos = $this->datosFormularioBase;
             $this->renderizarDatos();
-        }
 
         print $this->plantilla;
     }
