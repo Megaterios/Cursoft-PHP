@@ -16,7 +16,8 @@ const CU3_ERROR_3 = "Ocurrió algo inesperado, lo sentimos.";
 const CU3_EXITO = "Su contraseña ha sido enviada al correo electrónico.";
 
 
-
+//Mensajes CU_Registrarse
+const CU_EXITO = "Su registro se ha realizado satisfactoriamente.";
 
 
 

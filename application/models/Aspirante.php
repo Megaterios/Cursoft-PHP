@@ -11,9 +11,6 @@ require_once ('application/libs/baseDatos.php');
 
 class Aspirante extends Usuario {
 
-    use baseDatos;
-
-
     private $idAspirante;
     private $promedioPonderado;
     private $semestreFinalizacionMaterias;

@@ -1,203 +1,176 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="CURSOFT - Sistema de información para la administración de curso de profundización">
-    
-    <title>CURSOFT - Sistema de Información</title>
-
-    <link href="public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="public/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="public/css/style.css" rel="stylesheet">
-    
-    <script src="public/js/vendor/modernizr-2.6.2.min.js"></script>
-    <script src="public/js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="public/js/bootstrap-filestyle.min.js"> </script>
-    <script src="public/js/plugins.js"></script>
-    <script src="public/js/main.js"></script>
-    
-</head>
-<body>
-    <div class="container">
-        <header>
-            <figure>
-                <img alt="CURSOFT" class="img-responsive" id="banner_cursoft" src="public/img/banne_cursoft.png">
-            </figure>
-        </header>
 
         <section>
             <div class="row">
                 <div id="subtitulo">
                     <h2>Registrar Aspirante</h2>
                 </div>
+                [DIV]
                 <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
                     <div class="row">
                         <div class="col-xs-12 panel panel-default">
                             <div class="row" id="formulario">
-                                <form action="#" class="form-horizontal" method="post" role="form">
+                                <form action="index.php" class="form-horizontal" method="post" role="form">
                                     <fieldset>
                                         <legend>Datos de inicio de sesión</legend>
-                                        <div class="form-group">
+                                        <div class="[CLASS_CORREO]">
                                             <label for="correo" class="col-xs-12 col-sm-6 col-md-4 control-label">Correo electrónico:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                                    <input class="form-control" id="correo" placeholder="Ingresa tu correo electrónico" type="text">
+                                                    <input class="form-control" id="correo" name = "correo" placeholder="Ingresa tu correo electrónico" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_CONTRASENIA]">
                                             <label class="col-xs-12 col-sm-6 col-md-4 control-label" for="contraseña" >Contraseña:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    <input class="form-control" id="contraseña" placeholder="Ingresa tu contraseña" type="password">
+                                                    <input class="form-control" id="contraseña" name = "contrasenia" placeholder="Ingresa tu contraseña" type="password">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_CONFIRMAR_CONTRASENIA]">
                                             <label class="col-xs-12 col-sm-6 col-md-4 control-label" for="confirmar_contraseña">Confirmar contraseña:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    <input class="form-control" id="confirmar_contraseña" placeholder="Confirma tu contraseña" type="password">
+                                                    <input class="form-control" id="confirmar_contraseña" name = "confirmacionContrasenia" placeholder="Confirma tu contraseña" type="password">
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <legend>Datos Personales</legend>
-                                        <div class="form-group">
+                                        <div class="[CLASS_NOMBRES]">
                                             <label for="nombres" class="col-xs-12 col-sm-6 col-md-4 control-label">Nombres:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                                    <input class="form-control" id="nombres" placeholder="Ingresa tus nombres" type="text">
+                                                    <input class="form-control" id="nombres" name = "nombres" placeholder="Ingresa tus nombres" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_APELLIDOS]">
                                             <label for="apellidos" class="col-xs-12 col-sm-6 col-md-4 control-label">Apellidos:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                                    <input class="form-control" id="apellidos" placeholder="Ingresa tus apellidos" type="text">
+                                                    <input class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_TIPO_DOCUMENTO]">
                                             <label for="tipo_documento" class="col-xs-12 col-sm-6 col-md-4 control-label">Tipo de documento:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
-                                                <select class="form-control" id="tipo_documento">
-                                                    <option value="aspirante">Cédula de ciudadania</option>
-                                                    <option value="estudiante">Tarjeta de identidad</option>
-                                                    <option value="docente">Pasaporte</option>
+                                                <select class="form-control" id="tipo_documento" name = "tipoDocumento">
+                                                    <option value="CC">Cédula de ciudadania</option>
+                                                    <option value="TI">Tarjeta de identidad</option>
+                                                    <option value="PT">Pasaporte</option>
                                                 </select>
                                                 <p class="help-block">Selecciona tu tipo de documento</p>
                                              </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_NUMERO_DOCUMENTO]">
                                             <label for="numero_documento" class="col-xs-12 col-sm-6 col-md-4 control-label">Número de documento:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                    <input class="form-control" id="numero_documento" placeholder="Ingresa tu número de documento" type="text">
+                                                    <input class="form-control" id="numero_documento" name = "numeroDocumento" placeholder="Ingresa tu número de documento" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_FECHA_NACIMIENTO]">
                                             <label for="fecha_nacimiento" class="col-xs-12 col-sm-6 col-md-4 control-label">Fecha de nacimiento:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    <input class="form-control" id="fecha_nacimiento" placeholder="Ingresa tu fecha de nacimiento" type="text">
+                                                    <input class="form-control" id="fecha_nacimiento" name = "fechaNacimiento" placeholder="Ingresa tu fecha de nacimiento" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_DIRECCION_RESIDENCIA]">
                                             <label for="direccion_residencia" class="col-xs-12 col-sm-6 col-md-4 control-label">Dirección de residencia:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                                                    <input class="form-control" id="direccion_residencia" placeholder="Ingresa tu dirección de residencia" type="text">
+                                                    <input class="form-control" id="direccion_residencia" name = "direccionResidencia" placeholder="Ingresa tu dirección de residencia" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="telefono_residencia" class="col-xs-12 col-sm-6 col-md-4 control-label">Teléfono de recidencia:</label>
+                                        <div class="[CLASS_TELEFONO_RESIDENCIA]">
+                                            <label for="telefono_residencia" class="col-xs-12 col-sm-6 col-md-4 control-label">Teléfono de residencia:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
-                                                    <input class="form-control" id="telefono_residencia" placeholder="Ingresa tu teléfono de recidencia" type="text">
+                                                    <input class="form-control" id="telefono_residencia" name= "telefonoResidencia" placeholder="Ingresa tu teléfono de residencia" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_TELEFONO_MOVIL]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Teléfono móvil:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                                                    <input class="form-control" id="telefono_movil" placeholder="Ingresa tu teléfono móvil" type="text">
+                                                    <input class="form-control" id="telefono_movil" name = "telofonoMovil" placeholder="Ingresa tu teléfono móvil" type="text">
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <fielset>
                                         <legend>Datos de registro</legend>
-                                        <div class="form-group">
+                                        <div class="[CLASS_CODIGO]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Código:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
-                                                    <input class="form-control" id="telefono_movil" placeholder="Ingresa tu código" type="text">
+                                                    <input class="form-control" id="telefono_movil" name = "codigo" placeholder="Ingresa tu código" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_PROMEDIO_PONDERADO]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Promedio ponderado:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-stats"></span></span>
-                                                    <input class="form-control" id="telefono_movil" placeholder="Ingresa tu promedio ponderado" type="text">
+                                                    <input class="form-control" id="telefono_movil" name = "promedioPonderado" placeholder="Ingresa tu promedio ponderado" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_SEMESTRE_TERMINACION_MATERIAS]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Semestre de terminación de materias:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="form-control" id="telefono_movil" placeholder="Ingresa tu semestre de terminación de materias" type="text">
+                                                    <input class="form-control" id="telefono_movil" name = "semestreTerminacionMaterias" placeholder="Ingresa tu semestre de terminación de materias" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_RECIBO_TERMINACION_MATERIAS]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de terminación de materias:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
-                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox">
+                                                <input type="file" name = "reciboTerminacionMaterias" class="filestyle" data-iconName="glyphicon-inbox">
                                                 <p class="help-block">Selecciona tu archivo del recibo de terminación de materias</p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_RECIBO_PAZ_SALVO]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de paz y salvo:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
-                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox">
+                                                <input type="file" name = "reciboPazSalvo" class="filestyle" data-iconName="glyphicon-inbox">
                                                 <p class="help-block">Selecciona tu archivo del recibo de paz y salvo</p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="[CLASS_RECIBO_PAGO_INSCRIPCION]">
                                             <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de pago de inscripción:</label>
                                             <div class="col-xs-12 col-sm-6 col-md-8">
-                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox">
+                                                <input type="file" name = "reciboPagoInscripcion" class="filestyle" data-iconName="glyphicon-inbox">
                                                 <p class="help-block">Selecciona tu archivo del recibo de pago de inscripción</p>
                                             </div>
                                         </div>
                                     </fielset>
-                                    <div class="form-group">
+                                    <div class="[CLASS_BOTONES">
                                         <div id="botones">
-                                            <button class="btn btn-danger" id="recuperar" type="submit">Registrar</button>
+                                            <button class="btn btn-danger" id="recuperar" name = "requerimiento" value="RF10_REGISTRAR_ASPIRANTE" type="submit">Registrar</button>
                                             <button class="btn btn-danger" id="cancelar" type="submit">Cancelar</button>
                                         </div>
                                     </div>
@@ -209,11 +182,3 @@
             </div>
         </section>
 
-        <footer>
-            <p><strong>Copyright © 2014. Programa de Ingeniería de Sistemas - UFPS</strong></p>
-            <p>Desarrollado por <strong><a href="#">Megaterios</a></strong></p>
-        </footer>
-
-    </div>
-</body>
-</html>

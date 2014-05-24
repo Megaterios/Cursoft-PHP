@@ -17,6 +17,7 @@ if(isset($_POST['requerimiento']) ) {
 
         case 'RF2_FINALIZAR_SESION':
             $aplicacion->cerrarSesion();
+            $aplicacion->cargarVista();
             break;
 
         case 'RF3_RECUPERAR_CONTRASENIA':
@@ -36,6 +37,11 @@ if(isset($_POST['requerimiento']) ) {
             break;
 
         case 'RF10_REGISTRAR_ASPIRANTE':
+            $aplicacion->registrarAspirante($_POST['correo'], $_POST['contrasenia'], $_POST['confirmacionContrasenia'],
+                $_POST['nombres'], $_POST['apellidos'], $_POST['tipoDocumento'], $_POST['numeroDocumento'],
+                $_POST['fechaNacimiento'], $_POST['direccionResidencia'], $_POST['telefonoResidencia'], $_POST['telofonoMovil'],
+                $_POST['codigo'], $_POST['promedioPonderado'], $_POST['semestreTerminacionMaterias'],
+                $_FILES['reciboTerminacionMaterias']['tmp_name'], $_FILES['reciboPazSalvo']['tmp_name'],  $_FILES['reciboPagoInscripcion']['tmp_name']);
             break;
 
         case 'RF11-RF12_CARGAR_DOCUMENTOS':

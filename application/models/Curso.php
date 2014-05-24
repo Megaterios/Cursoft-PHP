@@ -7,12 +7,9 @@
  */
 
 require_once ('application/libs/baseDatos.php');
+require_once ('application/models/Aspirante.php');
 
-
-class Curso {
-
-    use baseDatos;
-
+class Curso extends baseDatos {
 
     private $idCurso;
     private $nombre;
@@ -33,6 +30,14 @@ class Curso {
         $this->fechaFin = $fechaFin;
         $this->resolucion = $resolucion;
 
+    }
+
+    public function inicializar() {
+        $this->idCurso = '';
+        $this->nombre = '';
+        $this->fechaInicio = '';
+        $this->fechaFin = '';
+        $this->resolucion = '';
     }
 
 
@@ -95,6 +100,58 @@ class Curso {
     {
         return $this->fechaFin;
     }
+
+    public function registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
+                                       $TelefonoResidencia, $TelofonoMovil, $codigo, $promedioPonderado,
+                                       $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+                                       $reciboPagoInscripcion) {
+        $aspirante = new Aspirante();
+        $aspirante->obtenerAspirante($codigo);
+        echo $aspirante->getCorreo();
+
+
+    //    if(/*Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
+            //retornar el mensaje de que ya hasido aspirante a este curso.
+      //  }else {
+            //Registrar al aspirante.
+            //retornar mensaje de exito
+        //}
+
+
+//Estado en 1 Si soy estudiante
+        //Si termine el curso 2
+        //En 0 cuando queda pendiente... Cuando puede cargar y nunca lo aceptaron o nunca cargo.
+        //Aspirar a un curso en un solo lapso de tiempo, no puede aspirar sino hasta que el curso halla pasado
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private function insertar(){
 
@@ -180,6 +237,12 @@ class Curso {
         return $this->filas;
 
     }
+
+
+
+
+
+
 
 
 

@@ -9,9 +9,12 @@
 date_default_timezone_set('America/Bogota');
 
 require_once 'application/models/Usuario.php';
+require_once 'application/models/Curso.php';
 require_once 'application/libs/Vista.php';
 require_once 'application/views/IniciarSesion.php';
 require_once 'application/views/RecuperarContrasenia.php';
+require_once 'application/views/RegistrarAspirante.php';
+
 
 class SistemaCursoProfundizacion {
 
@@ -21,6 +24,74 @@ class SistemaCursoProfundizacion {
     public function __construct() {
 
     }
+
+
+    public function registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
+                                       $TelefonoResidencia, $telofonoMovil, $codigo, $promedioPonderado,
+                                       $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+                                       $reciboPagoInscripcion) {
+
+
+        //Validar datos de entrada
+          //Genera interfaz con los diferentes errores
+
+        $this->modelo = new Curso();
+        $this->modelo->obtenerCurso(0);
+        //El curso está ?
+            //No, genere vista de error
+
+
+
+        $mensaje = $this->modelo->registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+            $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
+            $TelefonoResidencia, $telofonoMovil, $codigo, $promedioPonderado,
+            $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+            $reciboPagoInscripcion);
+
+        if($mensaje[0] == true) {
+            $this->vista = new IniciarSesion('exito', $datos = array(
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO
+            ), CU_EXITO);
+        }else {
+            $this->vista = new RegistrarAspirante('error', $datos=array(
+                'DIV'=>'',
+                'CLASS_CORREO'=>COLOR_ROJO,
+                'CLASS_CONTRASENIA'=>COLOR_ROJO,
+                'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_ROJO,
+                'CLASS_NOMBRES'=>COLOR_ROJO,
+                'CLASS_APELLIDOS'=>COLOR_ROJO,
+                'CLASS_TIPO_DOCUMENTO'=>COLOR_ROJO,
+                'CLASS_NUMERO_DOCUMENTO'=>COLOR_ROJO,
+                'CLASS_FECHA_NACIMIENTO'=>COLOR_ROJO,
+                'CLASS_DIRECCION_RESIDENCIA'=>COLOR_ROJO,
+                'CLASS_TELEFONO_RESIDENCIA'=>COLOR_ROJO,
+                'CLASS_TELEFONO_MOVIL'=>COLOR_ROJO,
+                'CLASS_CODIGO'=>COLOR_ROJO,
+                'CLASS_PROMEDIO_PONDERADO'=>COLOR_ROJO,
+                'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_ROJO,
+                'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_ROJO,
+                'CLASS_RECIBO_PAZ_SALVO'=>COLOR_ROJO,
+                'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_ROJO,
+                'CLASS_BOTONES'=>COLOR_ROJO
+            ), $mensaje);
+            exit;
+        }
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
 
     /**
      * Método que activa la variable de sesión para que el usuario pueda
@@ -120,7 +191,6 @@ class SistemaCursoProfundizacion {
 
         $this->modelo->setContrasenia(md5($contrasenia));
 
-        echo "Aca voy a cambiar contraseña";
         if($this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia)) {
                 $this->vista = new IniciarSesion('exito', $datos = array(
                     'CLASS_CORREO'=>COLOR_DEFECTO,
@@ -196,7 +266,7 @@ class SistemaCursoProfundizacion {
 
 
     private function enviarCorreo($correoDestinatario, $asunto, $body) {
-        return(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@noreply.com>\r\n"));
+        return(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@sandbox1.com>\r\n"));
     }
 
 
@@ -227,6 +297,32 @@ class SistemaCursoProfundizacion {
             ), '');
             exit;
         }
+
+        if($vista == 'IU_REGISTRAR_ASPIRANTE') {
+            $this->vista = new RegistrarAspirante('registrar_aspirante', $datos=array(
+                'DIV'=>'',
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,
+                'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_DEFECTO,
+                'CLASS_NOMBRES'=>COLOR_DEFECTO,
+                'CLASS_APELLIDOS'=>COLOR_DEFECTO,
+                'CLASS_TIPO_DOCUMENTO'=>COLOR_DEFECTO,
+                'CLASS_NUMERO_DOCUMENTO'=>COLOR_DEFECTO,
+                'CLASS_FECHA_NACIMIENTO'=>COLOR_DEFECTO,
+                'CLASS_DIRECCION_RESIDENCIA'=>COLOR_DEFECTO,
+                'CLASS_TELEFONO_RESIDENCIA'=>COLOR_DEFECTO,
+                'CLASS_TELEFONO_MOVIL'=>COLOR_DEFECTO,
+                'CLASS_CODIGO'=>COLOR_DEFECTO,
+                'CLASS_PROMEDIO_PONDERADO'=>COLOR_DEFECTO,
+                'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_DEFECTO,
+                'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_DEFECTO,
+                'CLASS_RECIBO_PAZ_SALVO'=>COLOR_DEFECTO,
+                'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_DEFECTO,
+                'CLASS_BOTONES'=>COLOR_DEFECTO
+            ), '');
+            exit;
+        }
+
 
         if(!isset($_SESSION['correo']) || $_SESSION['correo'] == '') {
             $this->vista = new IniciarSesion('iniciar_sesion', $datos = array(
