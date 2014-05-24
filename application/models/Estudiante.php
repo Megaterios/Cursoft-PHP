@@ -9,12 +9,14 @@
 require_once '/../libs/baseDatos.php';
 
 
-class Estudiante extends Usuario {
+class Estudiante {
 
     use baseDatos;
 
 
     private $idEstudiante;
+    private $idAspirante;
+    private $idCurso;
     private $reciboMatricula;
     private $estado;
 
@@ -63,15 +65,28 @@ class Estudiante extends Usuario {
     }
 
     /**
+     *
+     */
+    public function getIdEstudiante(){
+
+        return $this->idEstudiante;
+
+    }
+
+
+
+    /**
      * @param $nombreAtributo
      * @param unknown $valor
      */
     private function actualizar($nombreAtributo, $valor) {
+
         $this->$nombreAtributo = $valor;
         $this->peticion = "
 					UPDATE Estudiante SET " . $nombreAtributo . " = '$valor'
 					WHERE Estudiante.idEstudiante = '$this->idEstudiante'
 					";
+
         $this->ejecutar_peticion_simple();
         //Quitar al pasar a Master
         $this->errores();

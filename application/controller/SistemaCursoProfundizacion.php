@@ -1038,6 +1038,9 @@ class SistemaCursoProfundizacion {
 
     //¡Mi línea!
 
+    /**
+     * @param $codigoEstudiante
+     */
     public function matricularEstudianteCurso($codigoEstudiante){
 
         $curso = new Curso();
@@ -1046,14 +1049,51 @@ class SistemaCursoProfundizacion {
         //Recargar vista.
     }
 
+
+    /**
+     * @param $idCurso
+     */
     public function consultarEstudiantesCurso($idCurso){
 
         $curso = new Curso();
         $curso->obtenerCurso($idCurso);
-        $listadoEstudiantes = $curso->consultarEstudiantes($idCurso);
+        if($curso->getIdCurso() != ''){
+            $listadoEstudiantes = $curso->consultarEstudiantes();
 
-        //Imprimir listado.
+            //Imprimir listado.
+        }
     }
+
+    /**
+     *
+     */
+    public function evaluarCurso(){
+
+        //Agregar columna "notaEvaluacion" a tabla Curso en BD.
+
+
+
+    }
+
+    /**
+     *
+     */
+    public function cargarNotaEstudiante($idCurso, $codigoEstudiante, $nota){
+
+        $curso = new Curso();
+
+        if($curso->getIdCurso() != ''){
+            $curso->cargarNotaEstudiante($codigoEstudiante, $nota);
+
+            //Imprimir vista.
+        }
+
+
+
+    }
+
+
+
 
 
 

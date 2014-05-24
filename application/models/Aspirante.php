@@ -11,7 +11,6 @@ require_once ('/../libs/baseDatos.php');
 
 class Aspirante extends Usuario {
 
-    use baseDatos;
 
 
     private $idAspirante;
@@ -38,10 +37,21 @@ class Aspirante extends Usuario {
         $this->estado = 0;
     }
 
+
+    /**
+     *
+     */
+    public function getIdAspirante() {
+
+        return $this->idAspirante;
+    }
+
+
     /**
      * @param mixed $nombre
      */
     public function setReciboMatricula($reciboMatricula){
+
         $this->reciboMatricula = $reciboMatricula;
         $this->actualizar('reciboMatricula', $this->reciboMatricula);
     }
@@ -49,9 +59,10 @@ class Aspirante extends Usuario {
     /**
      * @return mixed
      */
-    public function getReciboMatricula()
-    {
+    public function getReciboMatricula(){
+
         return $this->reciboMatricula;
+
     }
 
 
@@ -91,11 +102,13 @@ class Aspirante extends Usuario {
      * @param unknown $valor
      */
     private function actualizar($nombreAtributo, $valor) {
+
         $this->$nombreAtributo = $valor;
         $this->peticion = "
 					UPDATE Aspirante SET " . $nombreAtributo . " = '$valor'
 					WHERE Aspirante.idAspirante = '$this->idAspirante'
 					";
+
         $this->ejecutar_peticion_simple();
         //Quitar al pasar a Master
         $this->errores();

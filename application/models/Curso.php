@@ -161,23 +161,32 @@ class Curso {
 
     }
 
-    public function consultarEstudiantes($idCurso){
+    public function consultarEstudiantes(){
 
         $this->peticion = "
-						SELECT Usuario.* FROM Usuario, Aspirante, Estudiante
+						SELECT Usuario.* FROM Usuario, Aspirante, Estudiante, Curso, AspiranteCurso
                         WHERE Usuario.idUsuario = Aspirante.idUsuario AND Aspirante.idAspirante = Estudiante.idAspirante AND
                         Estudiante.estado = 1 AND
-                        Estudiante.idEstudiante IN (
-                                SELECT DocenteModuloEstudiante.idEstudiante FROM
-                                        DocenteModuloEstudiante, Modulo, DocenteModulo, Curso
-                                        WHERE Curso.idCurso = '$idCurso' AND Curso.idCurso = Modulo.idCurso AND
-                                        Modulo.idModulo = DocenteModulo.idModulo AND DocenteModulo.idDocenteModulo = DocenteModuloEstudiante.idDocenteModulo
-                                        )
+                        Curso.idCurso = '$this->idCurso' AND Curso.idCurso = AspiranteCurso.idCurso AND Aspirante.idAspirante = AspiranteCurso.idAspirante
                         ";
 
         $this->obtener_resultados_consulta();
 
         return $this->filas;
+
+    }
+
+    public function cargarNotaEstudiante($codigoEstudiante, $nota){
+
+        $estudiante = new Estudiante();
+        $estudiante->obtenerEstudiante();
+
+        if($estudiante->getIdEstudiante() != ''){
+
+            $estudiante = new Estudiante();
+
+        }
+
 
     }
 
