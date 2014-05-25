@@ -13,8 +13,8 @@
     
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     <script src="js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap-filestyle.min.js"> </script>
-    <script src="js/plugins.js"></script>
+    <script src="js/bootstrap-filestyle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     
 </head>
@@ -29,20 +29,30 @@
         <section>
             <div class="row">
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="menu">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class=""><strong><a href="inicio_aspirante_aprobado.html">Aspirante</a></strong></li>
-                        <li class=""><a href="consultar_aspirante.html">Consultar</a></li>
-                        <li class=""><a href="actualizar_aspirante.html">Actualizar</a></li>
-                        <li class=""><a href="#">Borrar</a></li>
-                        <li class=""><strong><a href="inicio_estudiante_aprobado.html">Estudiante</a></strong></li>
-                        <li class=""><a href="consultar_estudiante.html">Consultar</a></li>
-                        <li class=""><a href="actualizar_estudiante.html">Actualizar</a></li>
-                        <li class=""><a href="#">Borrar</a></li>
-                        <li class=""><strong><a href="inicio_docente_aprobado.html">Docente</a></strong></li>
-                        <li class=""><a href="consultar_docente.html">Consultar</a></li>
-                        <li class=""><a href="actualizar_docente.html">Actualizar</a></li>
-                        <li class=""><a href="#">Borrar</a></li>
-                    </ul>
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                <span class="sr-only">Botón de menú</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                              </button>
+                              <span class="visible-xs navbar-brand">Menú</span>
+                            </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                              <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Aspirante</a></li>
+                                <li><a href="#">Consultar</a></li>
+                                <li><a href="#">Actualizar</a></li>
+                                <li class="divider"></li>
+                                <li class="active"><a href="#">Estudiante</a></li>
+                                <li><a href="#">Consultar</a></li>
+                                <li><a href="#">Actualizar</a></li>
+                              </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="contenido">
                     <ol class="breadcrumb">
@@ -215,9 +225,13 @@
                                         </div>
                                     </fielset>
                                     <div class="form-group">
-                                        <div id="botones">
-                                            <button class="btn btn-danger" id="actualizar" type="submit">Actualizar</button>
-                                            <button class="btn btn-danger" id="cancelar" type="submit">Cancelar</button>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right">
+                                                <button class="btn btn-danger" id="actualizar" type="submit">Actualizar</button>
+                                            </div>
+                                            <div class="col-xs-6 text-left">
+                                                <button class="btn btn-danger" id="cancelar" type="submit">Cancelar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>

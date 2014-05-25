@@ -38,13 +38,38 @@
 	content: "\e600";
 }
 
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
 section {
     border-bottom: 2px solid #ccc;
     border-top: 1px solid #ccc;
     padding-bottom: 2em;
+}
+
+fieldset {
+    padding-bottom: 1em;
 }
 
 footer {
@@ -54,6 +79,22 @@ footer {
 }
 
 
+#avatar {
+    width: 48px;
+}
+
+#cancelar {
+    padding-left: 0.5em;
+}
+
+#contenedor {
+    padding: 2em;
+}
+
+#contenido {
+    margin-top: 2em;
+}
+
 #formulario {
     padding-bottom: 1em;
     padding-left: 1em;
@@ -61,8 +102,16 @@ footer {
     padding-top: 2em;    
 }
 
-#subtitulo {
-    text-align: center;
+#megaterios {
+    text-decoration: none;
+}
+
+#menu {
+    margin-top: 2em;
+}
+
+#nombre {
+    list-style-type: none;
 }
 
 #recordar {
@@ -70,48 +119,19 @@ footer {
     font-size: 0.9em;
 }
 
-#registro {
-    text-align: center;
-}
-
-#botones {
-    text-align: center;
-}
-
 #recuperar {
     margin-right: 0.5em;
 }
 
-#cancelar {
-    padding-left: 0.5em;
+#registro {
+    text-align: center;
+}
+
+#subtitulo {
+    text-align: center;
 }
 
 .registro {
     display: inline-block;
     margin: 0.5em;
-    
-}
-
-#formulario row {
-    
-}
-
-fieldset {
-    padding-bottom: 1em;
-}
-
-#menu {
-    margin-top: 2em;
-}
-
-#contenido {
-    margin-top: 2em;
-}
-
-#contenedor {
-    padding: 2em;
-}
-
-#megaterios {
-    text-decoration: none;
 }
