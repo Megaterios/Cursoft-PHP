@@ -248,6 +248,23 @@ class Curso extends baseDatos {
     }
 
 
+    /**
+     *
+     */
+    public function consultarNotasEstudiante($idEstudiante){
+
+        $grupo = new GrupoEstudiante();
+
+        $grupo->obtenerNotasGrupoEstudiante($idEstudiante);
+
+
+
+
+
+
+    }
+
+
 
 
 

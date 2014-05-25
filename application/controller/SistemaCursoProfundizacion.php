@@ -1189,6 +1189,27 @@ class SistemaCursoProfundizacion {
     }
 
 
+    /**
+     *
+     */
+    public function consultarNotasCursoEstudiante($idCurso, $codigoEstudiante){
+
+
+        $idCurso = 1;
+        $idEstudiante = $_SESSION['idEstudiante'];
+        $curso = new Curso();
+
+        $curso->obtenerCurso($idCurso);
+
+        if($curso->getIdCurso() != ''){
+            $curso->consultarNotasEstudiante($idEstudiante);
+
+        }
+
+
+    }
+
+
 
 
 
