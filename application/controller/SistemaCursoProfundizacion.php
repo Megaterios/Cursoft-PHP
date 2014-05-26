@@ -114,14 +114,19 @@ class SistemaCursoProfundizacion {
                 $this->modelo = new Aspirante();
                 $this->modelo->obtenerAspirante($_SESSION ['codigo']);
 
+
                 switch($this->modelo->getEstado()) {
 
                     //Pendiente
                     case 0:
 
-                        $this->vista = new InicioAspirante('aprobado', $datos = array(
-
-                        ), ''
+                        echo "Este es el codigo ".$this->modelo->getCodigo();
+                        $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                                'TIPO'=> $this->modelo->getTipo(),
+                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
+                                'CODIGO'=>$this->modelo->getCodigo(),
+                                'ESTADO'=>'Aprobado'
+                        ), MENSAJE_APROBADO
 
                         );
 
@@ -131,11 +136,32 @@ exit;
                     //Aprobado
                     case 1:
 
+                        $this->vista = new InicioAspirante('Pendiente', $datos = array(
+                                'TIPO'=> $this->modelo->getTipo(),
+                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
+                                'CODIGO'=>$this->modelo->getCodigo(),
+                                'ESTADO'=>'Pendiente'
+
+                            ), MENSAJE_PENDIENTE
+
+                        );
+
 
                         break;
 
                     //Rechazado
                     case 2:
+
+
+                        $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                                'TIPO'=> $this->modelo->getTipo(),
+                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
+                                'CODIGO'=>$this->modelo->getCodigo(),
+                                'ESTADO'=>'Pendiente'
+
+                            ), MENSAJE_RECHAZADO
+
+                        );
 
                         break;
                 }

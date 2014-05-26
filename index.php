@@ -73,12 +73,11 @@ if(isset($_POST['requerimiento']) ) {
 
         $mostrar =  $_GET['mostrar'];
     }
-<<<<<<< HEAD
+
 
     $aplicacion->cargarVista($mostrar);
-=======
-    //$aplicacion->cargarVista($mostrar);
->>>>>>> b338c075236004c77b5639b24b3badad2becda2e
+
+
 }
 
 //$aplicacion->enviarCorreo('yei558@gmail.com', 'Correo Cursoft', 'Hola esta es la prueba de correo de cursoft');

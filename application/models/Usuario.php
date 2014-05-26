@@ -264,16 +264,27 @@ class Usuario extends baseDatos {
     public function obtener($correo='', $codigo = -1) {
 
         if($correo != '') {
+            $criterio='correo';
+            $valor= "'".$correo."'";
+        }else if($codigo != -1) {
+            $criterio='codigo';
+            $valor= $codigo;
+        }
+        echo "ESTO TIENE QUE IMPRIMIR DOS VECES<br>";
+        if($correo != '' || $codigo != -1) {
             $this->peticion = "
 						SELECT *
 						FROM Usuario
-						WHERE correo = '$correo' OR codigo = $codigo";
+						WHERE $criterio = $valor";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
             $this->errores();
         }
 
+        print_r($this->filas);
+
         if(count($this->filas) == 1) {
+            echo "ENCONTRO AL USUARIO";
             $este = 'this';
             foreach ($this->filas[0] as $atributo=>$valor) {
                 $$este->$atributo = $valor;
@@ -281,6 +292,8 @@ class Usuario extends baseDatos {
         }else {
             $this->inicializar();
         }
+        echo $this->getNombre();
+        echo $this->getApellido();
 
     }
 

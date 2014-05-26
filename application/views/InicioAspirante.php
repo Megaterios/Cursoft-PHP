@@ -24,18 +24,42 @@ class InicioAspirante extends Vista {
                 $this->plantilla = "";
         */
 
-        $this->obtenerPlantilla("menu");
-        $this->renderizarDatos();
+        print_r($datos);
+
+        $this->generarMenu();
         $datos['MENU'] = $this->plantilla;
         $this->plantilla = "";
 
-        $this->obtenerPlantilla("migas_pan");
-        $this->renderizarDatos();
 
+        $this->generarMigasPan($datos['CODIGO'], $datos['NOMBRE']);
         $datos['MIGAS_PAN'] = $this->plantilla;
         $this->plantilla = "";
 
+        $datos ['MENSAJE'] = $mensaje;
         $this->retornarVista('inicio_aspirante', $datos);
+
+    }
+
+
+    private function generarMenu() {
+        $this->obtenerPlantilla("menu");
+        $this->datos = array(
+            'TIPO'=>'Aspirante',
+            'FUNCIONES'=>ASPIRANTE_FUNCION_1
+        );
+        $this->renderizarDatos();
+    }
+
+
+    private function generarMigasPan($codigo, $nombre) {
+        $this->obtenerPlantilla("migas_pan");
+        $this->datos = array(
+            'TIPO'=>'Aspirante',
+            'FUNCION_ACTUAL'=>'',
+            'CODIGO'=>$codigo,
+            'NOMBRE'=>$nombre
+        );
+        $this->renderizarDatos();
 
     }
 
