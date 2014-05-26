@@ -10,7 +10,9 @@ require_once 'application/libs/baseDatos.php';
 
 class Usuario extends baseDatos {
 
-    private $cedula;
+    private $idUsuario;
+    private $numeroDocumento;
+    private $codigo;
     private $nombre;
     private $apellido;
     private $correo;
@@ -19,15 +21,17 @@ class Usuario extends baseDatos {
     private $telefonoFijo;
     private $telefonoCelular;
     private $direccion;
+    private $tipo;
 
     function __construct()
     {
     }
 
-    function crear($apellido, $cedula, $contrasenia, $correo, $direccion, $fechaNacimiento, $nombre, $telefonoCelular, $telefonoFijo)
+    function crear($codigo, $apellido, $cedula, $contrasenia, $correo, $direccion, $fechaNacimiento, $nombre, $telefonoCelular, $telefonoFijo)
     {
         $this->apellido = $apellido;
-        $this->cedula = $cedula;
+        $this->numeroDocumento = $cedula;
+        $this->codigo = $codigo;
         $this->contrasenia = $contrasenia;
         $this->correo = $correo;
         $this->direccion = $direccion;
@@ -35,11 +39,12 @@ class Usuario extends baseDatos {
         $this->nombre = $nombre;
         $this->telefonoCelular = $telefonoCelular;
         $this->telefonoFijo = $telefonoFijo;
+        $this->insertar();
     }
 
     public function inicializar() {
         $this->apellido = '';
-        $this->cedula = '';
+        $this->numeroDocumento = '';
         $this->contrasenia = '';
         $this->correo = '';
         $this->direccion = '';
@@ -59,6 +64,56 @@ class Usuario extends baseDatos {
     }
 
     /**
+     * @param mixed $codigo
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+
+
+    /**
+     * @param mixed $idUsuario
+     */
+    public function setIdUsuario($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
+
+    /**
+     * @param mixed $tipo
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
      * @return mixed
      */
     public function getApellido()
@@ -67,20 +122,20 @@ class Usuario extends baseDatos {
     }
 
     /**
-     * @param mixed $cedula
+     * @param mixed $numeroDocumento
      */
-    public function setCedula($cedula)
+    public function setNumeroDocumento($numeroDocumento)
     {
-        $this->cedula = $cedula;
-        $this->actualizar('cedula', $this->getCedula());
+        $this->numeroDocumento = $numeroDocumento;
+        $this->actualizar('numeroDocumento', $this->getNumeroDocumento());
     }
 
     /**
      * @return mixed
      */
-    public function getCedula()
+    public function getNumeroDocumento()
     {
-        return $this->cedula;
+        return $this->numeroDocumento;
     }
 
     /**
@@ -206,13 +261,13 @@ class Usuario extends baseDatos {
      *
      * @param string $correo
      */
-    public function obtener($correo='') {
+    public function obtener($correo='', $codigo = -1) {
 
         if($correo != '') {
             $this->peticion = "
 						SELECT *
 						FROM Usuario
-						WHERE correo = '$correo'";
+						WHERE correo = '$correo' OR codigo = $codigo";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
             $this->errores();
@@ -247,7 +302,7 @@ class Usuario extends baseDatos {
     }
 
     public function __toString() {
-        return  "<br>".$this->cedula."<br>".$this->nombre."<br>".$this->apellido."<br>".$this->correo."<br>".$this->contrasenia."<br>".
+        return  "<br>".$this->numeroDocumento."<br>".$this->nombre."<br>".$this->apellido."<br>".$this->correo."<br>".$this->contrasenia."<br>".
                 $this->fechaNacimiento."<br>".$this->direccion;
     }
 
@@ -273,6 +328,27 @@ class Usuario extends baseDatos {
 
      }
 
+
+    public function insertar(){
+
+        echo "INSERTAR DE USUARIO: <br>";
+        $this->peticion = "
+                    INSERT INTO Usuario (numeroDocumento, codigo, nombre, apellido, correo, contrasenia, fechaNacimiento,
+                                          telefonoFijo, telefonoCelular, direccion, tipo)
+                    VALUES ('$this->numeroDocumento', '$this->codigo', '$this->nombre', '$this->apellido', '$this->correo', '$this->contrasenia'
+                    , '$this->fechaNacimiento', '$this->telefonoFijo', '$this->telefonoCelular', '$this->direccion', '$this->tipo')
+                    ";
+
+        $this->ejecutar_peticion_simple();
+
+        $this->peticion = "SELECT MAX(idUsuario) as idUsuario FROM Usuario";
+
+        $this->obtener_resultados_consulta();
+
+        $this->idUsuario = $this->filas[0]['idUsuario'];
+
+        $this->errores();
+    }
 
 }
 ?>

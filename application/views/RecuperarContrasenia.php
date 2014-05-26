@@ -11,6 +11,7 @@ class RecuperarContrasenia extends Vista {
 
     function __construct($tipo, $datos=array(), $mensaje)
     {
+        parent::__construct();
         if($tipo == 'error') {
             $this->obtenerPlantilla($tipo);
             $this->datos = array('MENSAJE'=>$mensaje);

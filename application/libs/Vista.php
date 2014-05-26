@@ -17,7 +17,9 @@ class Vista {
     function __construct(){
 
         $this->datosFormularioBase = array(
-            'SECTION'=>''
+            'SECTION'=>'',
+            'MENU'=>'',
+            'MIGAS_PAN'=>''
         );
     }
 
@@ -28,8 +30,10 @@ class Vista {
     }
 
     protected function renderizarDatos() {
-        foreach ($this->datos as $clave => $valor) {
-            $this->plantilla = str_replace('['.$clave.']', $valor, $this->plantilla);
+        if(count($this->datos)>0) {
+            foreach ($this->datos as $clave => $valor) {
+                $this->plantilla = str_replace('['.$clave.']', $valor, $this->plantilla);
+            }
         }
     }
 
@@ -39,6 +43,12 @@ class Vista {
         $this->renderizarDatos();
 
         $this->datosFormularioBase['SECTION'] = $this->plantilla;
+
+        if(isset($_SESSION['correo'])) {
+            $this->datosFormularioBase['MENU'] = $datos['MENU'];
+            $this->datosFormularioBase['MIGAS_PAN'] = $datos['MIGAS_PAN'];
+        }
+
         $this->obtenerPlantilla('template_base');
 
             $this->datos = $this->datosFormularioBase;

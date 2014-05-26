@@ -7,6 +7,7 @@
  */
 
 require_once ('application/libs/baseDatos.php');
+require_once ('application/config/config.php');
 require_once ('application/models/Aspirante.php');
 
 class Curso extends baseDatos {
@@ -102,21 +103,33 @@ class Curso extends baseDatos {
     }
 
     public function registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
-                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
-                                       $TelefonoResidencia, $TelofonoMovil, $codigo, $promedioPonderado,
+                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                                       $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                                        $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
                                        $reciboPagoInscripcion) {
         $aspirante = new Aspirante();
         $aspirante->obtenerAspirante($codigo);
-        echo $aspirante->getCorreo();
 
 
-    //    if(/*Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
+
+
+        if(false){//Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
             //retornar el mensaje de que ya hasido aspirante a este curso.
-      //  }else {
+
+            return array(0=>false, 1=>'Error El ya ha sido registrado');
+
+        }
+
+        $aspirante->crearAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+            $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+            $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
+            $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+            $reciboPagoInscripcion);
+
             //Registrar al aspirante.
+        return array(0=>true, 1=>CU_EXITO);
             //retornar mensaje de exito
-        //}
+
 
 
 //Estado en 1 Si soy estudiante
