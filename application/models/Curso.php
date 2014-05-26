@@ -255,12 +255,7 @@ class Curso extends baseDatos {
 
         $grupo = new GrupoEstudiante();
 
-        $grupo->obtenerNotasGrupoEstudiante($idEstudiante);
-
-
-
-
-
+        return $grupo->obtenerNotasGrupoEstudiante($idEstudiante);
 
     }
 

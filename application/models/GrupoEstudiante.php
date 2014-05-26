@@ -10,7 +10,7 @@ require_once ('Estudiante.php');
 require_once ('application/libs/baseDatos.php');
 
 
-class GrupoEstudiante {
+class GrupoEstudiante extends baseDatos{
 
 
     private $idDocenteModuloEstudiante;
@@ -119,11 +119,13 @@ class GrupoEstudiante {
         if($idEstudiante != '') {
 
             $this->peticion = "
-						SELECT Modulo.idModulo, Modulo.nombre, DocenteModuloEstudiante.nota
-                        FROM Modulo, Docente, DocenteModuloEstudiante, DocenteModulo, Estudiante
+						SELECT Modulo.idModulo, Modulo.nombre, Usuario.nombre, Usuario.apellido, DocenteModuloEstudiante.nota
+                        FROM Modulo, Docente, DocenteModuloEstudiante, DocenteModulo, Estudiante, Usuario
                         WHERE Modulo.idModulo = DocenteModulo.idModulo AND
-                        DocenteModulo.idDocenteModulo = DocenteModuloEstudiante.idDocenteModuloEstudiante AND
+                        DocenteModulo.idDocenteModulo = DocenteModuloEstudiante.idDocenteModulo AND
                         Estudiante.idEstudiante= '$idEstudiante' AND Estudiante.idEstudiante = DocenteModuloEstudiante.idEstudiante
+                        AND Usuario.idUsuario = Docente.idUsuario AND Docente.idDocente = DocenteModulo.idDocente AND
+                        DocenteModulo.idDocenteModulo = DocenteModuloEstudiante.idDocenteModulo
                         ";
 
             $this->obtener_resultados_consulta();
@@ -131,14 +133,7 @@ class GrupoEstudiante {
             $this->errores();
         }
 
-        if(count($this->filas) == 1) {
-            $este = 'this';
-            foreach ($this->filas[0] as $atributo=>$valor) {
-                $$este->$atributo = $valor;
-            }
-        }else {
-            $this->inicializar();
-        }
+        return $this->filas;
 
     }
 

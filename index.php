@@ -90,7 +90,7 @@ if(isset($_POST['requerimiento']) ) {
 
 
 
-    $aplicacion->consultarNotasCursoEstudiante()
+    $aplicacion->consultarNotasCursoEstudiante(1, 15);
 
 
 
