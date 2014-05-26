@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0aa40876-bd4a-43a1-9b84-e6a23c660bc0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Aspirante.php" afterPath="$PROJECT_DIR$/application/models/Aspirante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/InicioAspirante.php" afterPath="$PROJECT_DIR$/application/views/InicioAspirante.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" afterPath="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Usuario.php" afterPath="$PROJECT_DIR$/application/models/Usuario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/inicio_aspirante.html" afterPath="$PROJECT_DIR$/public/inicio_aspirante.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/menu.html" afterPath="$PROJECT_DIR$/public/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/migas_pan.html" afterPath="$PROJECT_DIR$/public/migas_pan.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cursoft.iws" />
@@ -34,101 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SistemaCursoProfundizacion.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SistemaCursoProfundizacion.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="38" selection-start="4493" selection-end="4493" vertical-scroll-proportion="-4.9038463" vertical-offset="1462" max-vertical-offset="26877">
-              <folding>
-                <element signature="e#3168#3622#0" expanded="false" />
-                <element signature="e#7187#7615#0" expanded="false" />
-                <element signature="e#11769#12042#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inicio_aspirante_rechazado.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/inicio_aspirante_rechazado.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="250" selection-start="3018" selection-end="3240" vertical-scroll-proportion="-7.230769" vertical-offset="781" max-vertical-offset="1309">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inicio_aspirante.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/inicio_aspirante.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="24" selection-start="359" selection-end="359" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="323">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InicioAspirante.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/InicioAspirante.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="35" selection-start="604" selection-end="604" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="1139">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Usuario.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/models/Usuario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="277" column="42" selection-start="5746" selection-end="5746" vertical-scroll-proportion="0.59090906" vertical-offset="4312" max-vertical-offset="6239">
-              <folding>
-                <marker date="1401111128983" expanded="true" signature="5694:5752" placeholder="SELECT * FRO..Usuario..." />
-                <marker date="1401111128983" expanded="true" signature="5694:5752" placeholder="SELECT * FRO..Usuario..." />
-                <marker date="1401111128983" expanded="true" signature="7251:7320" placeholder="SELECT tipo ..Usuario..." />
-                <marker date="1401111128983" expanded="true" signature="7783:8251" placeholder="INSERT INTO ..." />
-                <marker date="1401111128983" expanded="true" signature="8347:8394" placeholder="SELECT MAX(i..Usuario..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bdDevelopment.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/config/bdDevelopment.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="baseDatos.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/libs/baseDatos.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="19" selection-start="1254" selection-end="1254" vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="1938">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inicio_aspirante_pendiente.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/inicio_aspirante_pendiente.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="26" selection-start="2891" selection-end="3262" vertical-scroll-proportion="-17.0" vertical-offset="561" max-vertical-offset="1309">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/menu.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="66" selection-start="334" selection-end="334" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="544">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vista.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/libs/Vista.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="247" selection-end="247" vertical-scroll-proportion="-6.923077" vertical-offset="7" max-vertical-offset="1020">
+            <state line="138" column="29" selection-start="6016" selection-end="6016" vertical-scroll-proportion="0.8350877" vertical-offset="1785" max-vertical-offset="28339">
               <folding />
             </state>
           </provider>
@@ -184,9 +85,9 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/public/inicio_aspirante.html" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
-        <option value="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" />
         <option value="$PROJECT_DIR$/application/models/Aspirante.php" />
         <option value="$PROJECT_DIR$/application/models/Usuario.php" />
+        <option value="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" />
       </list>
     </option>
   </component>
@@ -223,6 +124,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -343,7 +245,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -423,15 +324,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41530946" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18353474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22809668" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22767204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24018839" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -439,11 +340,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -461,9 +362,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22809668" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -490,8 +391,6 @@
         <state line="8" column="26" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="19890">
           <folding>
             <element signature="e#6#95#0" expanded="true" />
-            <marker date="1401110402723" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1401110402723" expanded="true" signature="-1:-1" placeholder="SELECT Aspir..Usuario..." />
           </folding>
         </state>
       </provider>
@@ -593,8 +492,8 @@
             <node x="288.8657407407408" y="0.0">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.usuario</node>
             <node x="0.0" y="80.0">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.funcion</node>
             <node x="896.0833333333334" y="319.0">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.aspirante</node>
-            <node x="93.61574074074076" y="578.0">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.horariosalon</node>
             <node x="30.0" y="369.0">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.funcionusuario</node>
+            <node x="93.61574074074076" y="578.0">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.horariosalon</node>
           </nodes>
           <notes />
           <edges>
@@ -670,17 +569,17 @@
               <point x="-51.5" y="-44.5" />
               <point x="0.0" y="44.5" />
             </edge>
-            <edge source="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.docentecurso" target="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.curso">
-              <point x="49.75" y="-44.5" />
-              <point x="751.9583333333334" y="299.0" />
-              <point x="801.75" y="299.0" />
-              <point x="-24.0" y="64.5" />
-            </edge>
             <edge source="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.docentecurso" target="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.docente">
               <point x="-49.75" y="-44.5" />
               <point x="652.4583333333334" y="528.0" />
               <point x="428.58333333333337" y="528.0" />
               <point x="51.75" y="64.5" />
+            </edge>
+            <edge source="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.docentecurso" target="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.curso">
+              <point x="49.75" y="-44.5" />
+              <point x="751.9583333333334" y="299.0" />
+              <point x="801.75" y="299.0" />
+              <point x="-24.0" y="64.5" />
             </edge>
             <edge source="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.salondocentemodulo" target="47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.horariosalon">
               <point x="-62.75" y="-64.5" />
@@ -738,8 +637,8 @@
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_LOCK_WAITS</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.aspirantecurso</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_FT_INDEX_CACHE</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.OPTIMIZER_TRACE</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.docentemodulo</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.OPTIMIZER_TRACE</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_FT_DEFAULT_STOPWORD</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.SCHEMATA</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_TABLES</node>
@@ -775,32 +674,32 @@
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_TABLESPACES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.COLUMN_PRIVILEGES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.GLOBAL_VARIABLES</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_LOCKS</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMP_PER_INDEX_RESET</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_METRICS</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_LOCKS</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_TRX</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_METRICS</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.TABLE_PRIVILEGES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.proyecto</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.ROUTINES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_FIELDS</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.aspirante</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.TABLESPACES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.horariosalon</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.TABLESPACES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMPMEM_RESET</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.modulo</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMP_PER_INDEX</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_TABLESTATS</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.GLOBAL_STATUS</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_INDEXES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMP</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMPMEM</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_INDEXES</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.TABLES</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMPMEM</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.salondocentemodulo</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_CMP_RESET</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.docente</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.ENGINES</node>
-            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.funcion</node>
             <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:information_schema.INNODB_SYS_FOREIGN</node>
+            <node x="" y="">47f0b709-a90f-4dbb-a44e-a83220ec8239.table:ufps_69.funcion</node>
           </nodes>
           <notes />
           <edges />
@@ -937,49 +836,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/inicio_estudiante_aprobado.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="680">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="680" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/template_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="19" selection-start="1163" selection-end="1163" vertical-scroll-proportion="-10.269231" vertical-offset="243" max-vertical-offset="799">
-          <folding />
-        </state>
+        <state line="30" column="19" selection-start="1163" selection-end="1163" vertical-scroll-proportion="-10.269231" vertical-offset="243" max-vertical-offset="799" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/actualizar_aspirante.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1028" selection-end="1028" vertical-scroll-proportion="-1.9615384" vertical-offset="408" max-vertical-offset="3825">
-          <folding />
-        </state>
+        <state line="27" column="0" selection-start="1028" selection-end="1028" vertical-scroll-proportion="-1.9615384" vertical-offset="408" max-vertical-offset="3825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/iniciar_sesion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="57" selection-start="1786" selection-end="1786" vertical-scroll-proportion="0.35416666" vertical-offset="306" max-vertical-offset="1020">
-          <folding />
-        </state>
+        <state line="29" column="57" selection-start="1786" selection-end="1786" vertical-scroll-proportion="0.35416666" vertical-offset="306" max-vertical-offset="1020" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/inicio_aspirante_aprobado.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="61" selection-start="1762" selection-end="1762" vertical-scroll-proportion="-7.9615383" vertical-offset="218" max-vertical-offset="1156">
-          <folding />
-        </state>
+        <state line="25" column="61" selection-start="1762" selection-end="1762" vertical-scroll-proportion="-7.9615383" vertical-offset="218" max-vertical-offset="1156" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/migas_pan.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="35" selection-start="308" selection-end="308" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="493">
-          <folding />
-        </state>
+        <state line="5" column="35" selection-start="308" selection-end="308" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="493" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/libs/Vista.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="247" selection-end="247" vertical-scroll-proportion="-6.923077" vertical-offset="7" max-vertical-offset="1020">
+        <state line="16" column="13" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
@@ -993,14 +880,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/inicio_aspirante.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="24" selection-start="359" selection-end="359" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="323">
+        <state line="9" column="24" selection-start="359" selection-end="359" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/InicioAspirante.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="35" selection-start="604" selection-end="604" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="1139">
+        <state line="22" column="35" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1224">
           <folding />
         </state>
       </provider>
@@ -1008,50 +895,20 @@
     <entry file="file://$PROJECT_DIR$/application/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="161" selection-start="2954" selection-end="2954" vertical-scroll-proportion="-4.576923" vertical-offset="918" max-vertical-offset="18462">
-          <folding>
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1401109538898" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/inicio_aspirante_rechazado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="250" selection-start="3018" selection-end="3240" vertical-scroll-proportion="-7.230769" vertical-offset="781" max-vertical-offset="1309">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="38" selection-start="4493" selection-end="4493" vertical-scroll-proportion="-4.9038463" vertical-offset="1462" max-vertical-offset="26877">
-          <folding>
-            <element signature="e#3168#3622#0" expanded="false" />
-            <element signature="e#7187#7615#0" expanded="false" />
-            <element signature="e#11769#12042#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/inicio_aspirante_pendiente.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="26" selection-start="2891" selection-end="3262" vertical-scroll-proportion="-17.0" vertical-offset="561" max-vertical-offset="1309">
+        <state line="59" column="26" selection-start="2891" selection-end="3262" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1309">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="66" selection-start="334" selection-end="334" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="544">
+        <state line="6" column="66" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="544">
           <folding />
         </state>
       </provider>
@@ -1061,16 +918,7 @@
         <state line="132" column="18" selection-start="3475" selection-end="3475" vertical-scroll-proportion="-10.269231" vertical-offset="1977" max-vertical-offset="20383">
           <folding>
             <element signature="e#6#95#0" expanded="true" />
-            <marker date="1401110402723" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1401110402723" expanded="true" signature="-1:-1" placeholder="SELECT Aspir..Usuario..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/libs/baseDatos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="19" selection-start="1254" selection-end="1254" vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="1938">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1083,14 +931,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="42" selection-start="5746" selection-end="5746" vertical-scroll-proportion="0.59090906" vertical-offset="4312" max-vertical-offset="6239">
+        <state line="295" column="34" selection-start="6270" selection-end="6270" vertical-scroll-proportion="0.8350877" vertical-offset="4454" max-vertical-offset="6239">
           <folding>
-            <marker date="1401111128983" expanded="true" signature="5694:5752" placeholder="SELECT * FRO..Usuario..." />
-            <marker date="1401111128983" expanded="true" signature="5694:5752" placeholder="SELECT * FRO..Usuario..." />
-            <marker date="1401111128983" expanded="true" signature="7251:7320" placeholder="SELECT tipo ..Usuario..." />
-            <marker date="1401111128983" expanded="true" signature="7783:8251" placeholder="INSERT INTO ..." />
-            <marker date="1401111128983" expanded="true" signature="8347:8394" placeholder="SELECT MAX(i..Usuario..." />
+            <marker date="1401113294610" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..Usuario..." />
+            <marker date="1401113294610" expanded="true" signature="-1:-1" placeholder="SELECT tipo ..Usuario..." />
+            <marker date="1401113294610" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1401113294610" expanded="true" signature="-1:-1" placeholder="SELECT MAX(i..Usuario..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/inicio_aspirante_rechazado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="37" selection-start="3027" selection-end="3027" vertical-scroll-proportion="0.40350878" vertical-offset="739" max-vertical-offset="1309">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libs/baseDatos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="19" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1938">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="29" selection-start="6016" selection-end="6016" vertical-scroll-proportion="0.8350877" vertical-offset="1785" max-vertical-offset="28339">
+          <folding />
         </state>
       </provider>
     </entry>
