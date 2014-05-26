@@ -14,6 +14,7 @@ require_once 'application/libs/Vista.php';
 require_once 'application/views/IniciarSesion.php';
 require_once 'application/views/RecuperarContrasenia.php';
 require_once 'application/views/RegistrarAspirante.php';
+require_once 'application/views/InicioAspirante.php';
 
 
 class SistemaCursoProfundizacion {
@@ -79,6 +80,35 @@ class SistemaCursoProfundizacion {
                 $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                 $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
                 $reciboPagoInscripcion);
+        if($mensaje[0] == true) {
+            $this->vista = new IniciarSesion('exito', $datos = array(
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO
+            ), $mensaje[1]);
+        }else {
+            $this->vista = new RegistrarAspirante('error', $datos=array(
+                'DIV'=>'',
+                'CLASS_CORREO'=>COLOR_ROJO,
+                'CLASS_CONTRASENIA'=>COLOR_ROJO,
+                'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_ROJO,
+                'CLASS_NOMBRES'=>COLOR_ROJO,
+                'CLASS_APELLIDOS'=>COLOR_ROJO,
+                'CLASS_TIPO_DOCUMENTO'=>COLOR_ROJO,
+                'CLASS_NUMERO_DOCUMENTO'=>COLOR_ROJO,
+                'CLASS_FECHA_NACIMIENTO'=>COLOR_ROJO,
+                'CLASS_DIRECCION_RESIDENCIA'=>COLOR_ROJO,
+                'CLASS_TELEFONO_RESIDENCIA'=>COLOR_ROJO,
+                'CLASS_TELEFONO_MOVIL'=>COLOR_ROJO,
+                'CLASS_CODIGO'=>COLOR_ROJO,
+                'CLASS_PROMEDIO_PONDERADO'=>COLOR_ROJO,
+                'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_ROJO,
+                'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_ROJO,
+                'CLASS_RECIBO_PAZ_SALVO'=>COLOR_ROJO,
+                'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_ROJO,
+                'CLASS_BOTONES'=>COLOR_ROJO
+            ), $mensaje[1]);
+            exit;
+        }
 
             if($mensaje[0] == true) {
                 $this->vista = new IniciarSesion('exito', $datos = array(
@@ -110,16 +140,6 @@ class SistemaCursoProfundizacion {
                 exit;
             }
 
-
-
-
-        }
-
-
-
-
-
-
     }
 
 
@@ -140,10 +160,95 @@ class SistemaCursoProfundizacion {
         $this->validarDatosIniciarSesion($correo, $contrasenia, $tipoUsuario);
         $this->modelo = new Usuario();
         $this->modelo->obtener($correo);
-        if ($correo == $this->modelo->getCorreo() && md5($contrasenia) == $this->modelo->getContrasenia()) {
-            session_start ();
+        if ($correo == $this->modelo->getCorreo() && md5($contrasenia) == $this->modelo->getContrasenia() &&
+            $tipoUsuario == $this->modelo->getTipo()) {
+            if(!session_id()) session_start();
+            echo "Inicie sesion";
             $_SESSION ['correo'] = $this->modelo->getCorreo();
-            $_SESSION ['tipo'] = $tipoUsuario;
+            $_SESSION ['idUsuario'] = $this->modelo->getIdUsuario();
+            $_SESSION ['tipo'] = $this->modelo->getTipo();
+            $_SESSION ['codigo'] = $this->modelo->getCodigo();
+
+            if($this->modelo->getTipo() == '1') {
+                $this->modelo = new Aspirante();
+                $this->modelo->obtenerAspirante($_SESSION ['codigo']);
+
+
+                switch($this->modelo->getEstado()) {
+
+                    //Pendiente
+                    case 0:
+
+                        echo "Este es el codigo ".$this->modelo->getCodigo();
+                        $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                                'TIPO'=> $this->modelo->getTipo(),
+                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
+                                'CODIGO'=>$this->modelo->getCodigo(),
+                                'ESTADO'=>'Aprobado'
+                        ), MENSAJE_APROBADO
+
+                        );
+
+exit;
+                        break;
+
+                    //Aprobado
+                    case 1:
+
+                        $this->vista = new InicioAspirante('Pendiente', $datos = array(
+                                'TIPO'=> $this->modelo->getTipo(),
+                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
+                                'CODIGO'=>$this->modelo->getCodigo(),
+                                'ESTADO'=>'Pendiente'
+
+                            ), MENSAJE_PENDIENTE
+
+                        );
+
+
+                        break;
+
+                    //Rechazado
+                    case 2:
+
+
+                        $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                                'TIPO'=> $this->modelo->getTipo(),
+                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
+                                'CODIGO'=>$this->modelo->getCodigo(),
+                                'ESTADO'=>'Pendiente'
+
+                            ), MENSAJE_RECHAZADO
+
+                        );
+
+                        break;
+                }
+
+
+            }
+            /*
+             * Tipos:
+             *
+             * Aspirante
+             * --Aprobado
+             * --Pendiente
+             * --rechazado
+             * Estudiante
+             * --Pendiente (Aspirante carga pago de la matricula)
+             * --Rechazado (Cargo mal el pago de la matricula, foto de novia)
+             * --Aprobado
+             * Docente
+             *
+             *
+             */
+
+
+
+
+
+
+
             //$this->vista = new vista();
             //$this->vista->delegar_vista();
 
@@ -1262,15 +1367,7 @@ class SistemaCursoProfundizacion {
     }
 
 
-    public function cargarReciboMatricula($reciboMatricula){
 
-
-
-
-
-
-
-    }
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+if(!session_id()) session_start();
 
 require_once 'application/controller/SistemaCursoProfundizacion.php';
 
@@ -70,9 +70,14 @@ if(isset($_POST['requerimiento']) ) {
     $mostrar = '';
 
     if(isset($_GET['mostrar'])) {
+
         $mostrar =  $_GET['mostrar'];
     }
+
+
     $aplicacion->cargarVista($mostrar);
+
+
 }
 
 //$aplicacion->enviarCorreo('yei558@gmail.com', 'Correo Cursoft', 'Hola esta es la prueba de correo de cursoft');
@@ -90,7 +95,7 @@ if(isset($_POST['requerimiento']) ) {
 
 
 
-    //$aplicacion->consultarNotasCursoEstudiante(1, 15);
+    $aplicacion->consultarNotasCursoEstudiante(1, 15);
 
 
 

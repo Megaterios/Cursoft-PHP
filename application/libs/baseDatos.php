@@ -92,6 +92,7 @@ abstract class baseDatos {
 		$temporal->execute();
 		$this->mensaje = $temporal->errorInfo();
 		$this->codigo_error = $temporal->errorCode();
+        $this->filas = null;
 		while($this->filas[] =  $temporal->fetch(PDO::FETCH_ASSOC) );
 		array_pop($this->filas);
 		$this->borrar_conexion();
@@ -101,8 +102,7 @@ abstract class baseDatos {
         print_r($this->mensaje);
         echo $this->codigo_error;
     }
-	
-	
+
 }
 
 ?>

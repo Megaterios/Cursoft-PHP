@@ -13,6 +13,7 @@ class Aspirante extends Usuario {
 
 
     private $idAspirante;
+    private $idUsuario;
     private $promedioPonderado;
     private $semestreFinalizacionMaterias;
     private $reporteFinalizacionMaterias;
@@ -25,15 +26,22 @@ class Aspirante extends Usuario {
 
     }
 
-    function crear($promedioPonderado, $semestreFinalizacionMaterias, $reporteFinalizacionMaterias,
-                   $reportePazSalvo, $reciboInscripcion){
+    function crearAspirante($correo, $contrasenia, $nombres, $apellidos,
+                            $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                            $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
+                            $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+                            $reciboPagoInscripcion){
+
+        $this->crear($codigo, $apellidos, $numeroDocumento, $contrasenia, $correo, $direccionResidencia, $fechaNacimiento, $nombres, $telefonoMovil, $telefonoResidencia);
+
 
         $this->promedioPonderado = $promedioPonderado;
-        $this->semestreFinalizacionMaterias = $semestreFinalizacionMaterias;
-        $this->reporteFinalizacionMaterias = $reporteFinalizacionMaterias;
-        $this->reportePazSalvo = $reportePazSalvo;
-        $this->reciboInscripcion = $reciboInscripcion;
+        $this->semestreFinalizacionMaterias = $semestreTerminacionMaterias;
+        $this->reporteFinalizacionMaterias = $reciboTerminacionMaterias;
+        $this->reportePazSalvo = $reciboPazSalvo;
+        $this->reciboInscripcion = $reciboPagoInscripcion;
         $this->estado = 0;
+        $this->insertarAspirante();
     }
 
 
@@ -82,11 +90,15 @@ class Aspirante extends Usuario {
     }
 
 
-    private function insertar(){
+    public function insertarAspirante(){
+
+        echo "INSERTAR DE ASPIRANTE: <br> Este es el ID DEL HP USUARIO EN ASPIRANTE";
+
+        echo $this->idUsuario;
 
         $this->peticion = "
-                    INSERT INTO Aspirante (promedioPonderado, semestreFinalizacionMaterias, reporteFinalizacionMaterias,
-                    reportePazSalvo, reciboInscripcion, estado) VALUES ('$this->promedioPonderado', '$this->semestreFinalizacionMaterias',
+                    INSERT INTO Aspirante (idUsuario, promedioPonderado, semestreFinalizacionMaterias, reporteFinalizacionMaterias,
+                    reportePazSalvo, reciboInscripcion, estado) VALUES ($this->idUsuario,'$this->promedioPonderado', '$this->semestreFinalizacionMaterias',
                     '$this->reporteFinalizacionMaterias', '$this->reportePazSalvo', '$this->reciboInscripcion', '$this->estado')
                     ";
 
@@ -117,6 +129,11 @@ class Aspirante extends Usuario {
      * @param string $correo
      */
     public function obtenerAspirante($codigo = '') {
+
+        $this->obtener('', $codigo);
+
+        echo "Ahora entre a aspirante";
+        echo "nombre en la clase ASpirante ".$this->getNombre();
 
         if($codigo != '') {
             $this->peticion = "

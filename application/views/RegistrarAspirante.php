@@ -10,6 +10,7 @@ class RegistrarAspirante extends Vista {
 
     function __construct($tipo, $datos=array(), $mensaje)
     {
+        parent::__construct();
         if($tipo == 'error' || $tipo == 'exito') {
             $this->obtenerPlantilla($tipo);
             $this->datos = array('MENSAJE'=>$mensaje);
