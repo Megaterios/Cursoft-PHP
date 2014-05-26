@@ -74,12 +74,13 @@ class SistemaCursoProfundizacion {
         }
         else{
 
-
+            //
             $mensaje = $curso->registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
                 $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
                 $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                 $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
                 $reciboPagoInscripcion);
+
         if($mensaje[0] == true) {
             $this->vista = new IniciarSesion('exito', $datos = array(
                 'CLASS_CORREO'=>COLOR_DEFECTO,
