@@ -10,69 +10,43 @@ require_once ('Estudiante.php');
 require_once ('application/libs/baseDatos.php');
 
 
-class GrupoEstudiante {
+class GrupoEstudiante extends baseDatos{
 
-    use baseDatos;
 
-    private $estudiante;
-    private $docente;
+    private $idDocenteModuloEstudiante;
+    private $idEstudiante;
+    private $idDocente;
 
 
     function __construct(){
 
     }
 
-    function crear($promedioPonderado, $semestreFinalizacionMaterias, $reporteFinalizacionMaterias,
-                   $reportePazSalvo, $reciboInscripcion){
+    function crear($idEstudiante, $idDocente){
 
-        $this->promedioPonderado = $promedioPonderado;
-        $this->semestreFinalizacionMaterias = $semestreFinalizacionMaterias;
-        $this->reporteFinalizacionMaterias = $reporteFinalizacionMaterias;
-        $this->reportePazSalvo = $reportePazSalvo;
-        $this->reciboInscripcion = $reciboInscripcion;
-        $this->estado = 0;
-    }
-
-    /**
-     * @param mixed $nombre
-     */
-    public function setReciboMatricula($reciboMatricula){
-        $this->reciboMatricula = $reciboMatricula;
-        $this->actualizar('reciboMatricula', $this->reciboMatricula);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReciboMatricula()
-    {
-        return $this->reciboMatricula;
+        $this->idEstudiante = $idEstudiante;
+        $this->idDocente = $idDocente;
     }
 
 
     /**
-     * @param mixed $nombre
+     *
      */
-    public function setEstado($estado){
-        $this->estado = $estado;
-        $this->actualizar('estado', $this->estado);
+    public function inicializar(){
+
+        $this->idDocenteModuloEstudiante = '';
+        $this->idEstudiante = '';
+        $this->idDocente = '';
+
     }
 
     /**
-     * @return mixed
+     *
      */
-    public function getEstado()
-    {
-        return $this->estado;
-    }
-
-
     private function insertar(){
 
         $this->peticion = "
-                    INSERT INTO Aspirante (promedioPonderado, semestreFinalizacionMaterias, reporteFinalizacionMaterias,
-                    reportePazSalvo, reciboInscripcion, estado) VALUES ('$this->promedioPonderado', '$this->semestreFinalizacionMaterias',
-                    '$this->reporteFinalizacionMaterias', '$this->reportePazSalvo', '$this->reciboInscripcion', '$this->estado')
+                    INSERT INTO DocenteModuloEstudiante (idEstudiante, idDocente) VALUES ('$this->idEstudiante', '$this->idDocente')
                     ";
 
         $this->ejecutar_peticion_simple();
@@ -85,29 +59,37 @@ class GrupoEstudiante {
      * @param $nombreAtributo
      * @param unknown $valor
      */
-    private function actualizar($nombreAtributo, $valor) {
+    private function actualizarGrupoEstudiante($nombreAtributo, $valor) {
+
         $this->$nombreAtributo = $valor;
         $this->peticion = "
-					UPDATE Aspirante SET " . $nombreAtributo . " = '$valor'
-					WHERE Aspirante.idAspirante = '$this->idAspirante'
+					UPDATE DocenteModuloEstudiante SET " . $nombreAtributo . " = '$valor'
+					WHERE DocenteModuloEstudiante.idDocenteModuloEstudiante = '$this->idDocenteModuloEstudiante'
 					";
         $this->ejecutar_peticion_simple();
         //Quitar al pasar a Master
         $this->errores();
+
     }
 
     /**
      * @param string $correo
      */
-    public function obtenerGrupoEstudiante($estudiante = new Estudiante(), $docente = new Docente()) {
+    public function obtenerGrupoEstudiante($codigoEstudiante, $codigoDocente) {
 
         $estudiante = new Estudiante();
+        $estudiante->obtenerEstudiante($codigoEstudiante);
 
-        if($estudiante != '' && $docente != '') {
+        $docente = new Docente();
+        $docente->obtenerDocente($codigoDocente);
+
+        if($estudiante->getIdEstudiante() != '' && $docente->getIdDocente() != '') {
+
             $this->peticion = "
 						SELECT DocenteModuloEstudiante.*
-						FROM DocenteModuloEstudiante, Estudiante, Docente
-						WHERE $estudiante.codigo = '$codigo' AND Usuario.idUsuario = Aspirante.idUsuario
+						FROM DocenteModuloEstudiante
+						WHERE DocenteModuloEstudiante.idEstudiante = '$estudiante->getIdEstudiante()' AND
+						DocenteModuloEstudiante.idDocente = '$docente->getIdDocente()'
                         ";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
@@ -127,4 +109,36 @@ class GrupoEstudiante {
 
 
 
-} 
+    public function obtenerNotasGrupoEstudiante($idEstudiante) {
+
+        /*
+        $estudiante = new Estudiante();
+        $estudiante->obtenerEstudiante($codigoEstudiante);
+        */
+
+        if($idEstudiante != '') {
+
+            $this->peticion = "
+						SELECT Modulo.idModulo, Modulo.nombre, Usuario.nombre, Usuario.apellido, DocenteModuloEstudiante.nota
+                        FROM Modulo, Docente, DocenteModuloEstudiante, DocenteModulo, Estudiante, Usuario
+                        WHERE Modulo.idModulo = DocenteModulo.idModulo AND
+                        DocenteModulo.idDocenteModulo = DocenteModuloEstudiante.idDocenteModulo AND
+                        Estudiante.idEstudiante= '$idEstudiante' AND Estudiante.idEstudiante = DocenteModuloEstudiante.idEstudiante
+                        AND Usuario.idUsuario = Docente.idUsuario AND Docente.idDocente = DocenteModulo.idDocente AND
+                        DocenteModulo.idDocenteModulo = DocenteModuloEstudiante.idDocenteModulo
+                        ";
+
+            $this->obtener_resultados_consulta();
+            //Quitar al pasar a Master
+            $this->errores();
+        }
+
+        return $this->filas;
+
+    }
+
+}
+
+
+
+?>

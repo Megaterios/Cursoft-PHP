@@ -1243,6 +1243,45 @@ exit;
     }
 
 
+    /**
+     *
+     */
+    public function consultarNotasCursoEstudiante($idCurso, $codigoEstudiante){
+
+
+        $idCurso = 1;
+        $idEstudiante = $_SESSION['idEstudiante'];
+        $curso = new Curso();
+
+        $curso->obtenerCurso($idCurso);
+        $resultadoNotas = array();
+
+        if($curso->getIdCurso() != ''){
+            $resultadoNotas = $curso->consultarNotasEstudiante($idEstudiante);
+        }
+
+        $registroNotas = '';
+        foreach($resultadoNotas as $pos){
+
+            $nombreProfesor = $pos['Usuario.nombre'].$pos['Usuario.apellido'];
+
+            $registroNotas .= '
+                            <tr>
+                                <td>'.$pos['Modulo.idModulo'].'</td>
+                                <td><a href="#">'.$pos['Modulo.nombreModulo'].'</a></td>
+                                <td><a href="#">'.$pos['Modulo.nombreProfesor'].'</a></td>
+                                <td><a href="#">'.$nombreProfesor.'</a></td>
+                                <td>'.$pos['DocenteModuloEstudiante.nota'].'</td>
+                            </tr>';
+
+        }
+
+        $this->vista = new InicioEstudianteAprobado('inicio_estudiante_aprobado', $registroNotas);
+
+
+    }
+
+
 
 
 
