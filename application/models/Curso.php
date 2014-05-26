@@ -102,17 +102,18 @@ class Curso extends baseDatos {
     }
 
     public function registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
-                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
-                                       $TelefonoResidencia, $TelofonoMovil, $codigo, $promedioPonderado,
+                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                                       $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                                        $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
                                        $reciboPagoInscripcion) {
+
         $aspirante = new Aspirante();
         $aspirante->obtenerAspirante($codigo);
         echo $aspirante->getCorreo();
 
-
+        if($aspirante->getIdAspirante());
     //    if(/*Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
-            //retornar el mensaje de que ya hasido aspirante a este curso.
+            //retornar el mensaje de que ya ha sido aspirante a este curso.
       //  }else {
             //Registrar al aspirante.
             //retornar mensaje de exito
@@ -258,6 +259,12 @@ class Curso extends baseDatos {
         return $grupo->obtenerNotasGrupoEstudiante($idEstudiante);
 
     }
+
+
+    /**
+     *
+     */
+
 
 
 

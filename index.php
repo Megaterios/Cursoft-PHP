@@ -39,7 +39,7 @@ if(isset($_POST['requerimiento']) ) {
         case 'RF10_REGISTRAR_ASPIRANTE':
             $aplicacion->registrarAspirante($_POST['correo'], $_POST['contrasenia'], $_POST['confirmacionContrasenia'],
                 $_POST['nombres'], $_POST['apellidos'], $_POST['tipoDocumento'], $_POST['numeroDocumento'],
-                $_POST['fechaNacimiento'], $_POST['direccionResidencia'], $_POST['telefonoResidencia'], $_POST['telofonoMovil'],
+                $_POST['fechaNacimiento'], $_POST['direccionResidencia'], $_POST['telefonoResidencia'], $_POST['telefonoMovil'],
                 $_POST['codigo'], $_POST['promedioPonderado'], $_POST['semestreTerminacionMaterias'],
                 $_FILES['reciboTerminacionMaterias']['tmp_name'], $_FILES['reciboPazSalvo']['tmp_name'],  $_FILES['reciboPagoInscripcion']['tmp_name']);
             break;
@@ -72,7 +72,7 @@ if(isset($_POST['requerimiento']) ) {
     if(isset($_GET['mostrar'])) {
         $mostrar =  $_GET['mostrar'];
     }
-    //$aplicacion->cargarVista($mostrar);
+    $aplicacion->cargarVista($mostrar);
 }
 
 //$aplicacion->enviarCorreo('yei558@gmail.com', 'Correo Cursoft', 'Hola esta es la prueba de correo de cursoft');
@@ -90,7 +90,7 @@ if(isset($_POST['requerimiento']) ) {
 
 
 
-    $aplicacion->consultarNotasCursoEstudiante(1, 15);
+    //$aplicacion->consultarNotasCursoEstudiante(1, 15);
 
 
 

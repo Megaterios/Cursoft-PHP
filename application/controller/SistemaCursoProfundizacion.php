@@ -27,59 +27,93 @@ class SistemaCursoProfundizacion {
 
 
     public function registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
-                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
-                                       $TelefonoResidencia, $telofonoMovil, $codigo, $promedioPonderado,
+                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                                       $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                                        $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-                                       $reciboPagoInscripcion) {
+                                       $reciboPagoInscripcion, $idCurso) {
+
+        $idCurso = 1;
+
+        if(empty($correo) || empty($contrasenia) || empty($confirmacionContrasenia) || empty($nombres) ||
+            empty($apellidos) || empty($tipoDocumento) || empty($fechaNacimiento) || empty($direccionResidencia) ||
+            empty($telefonoResidencia) || empty($telefonoMovil) || empty($codigo) || empty($promedioPonderado) ||
+            empty($semestreTerminacionMaterias) || empty($reciboTerminacionMaterias) || empty($reciboPazSalvo) ||
+            empty($reciboPagoInscripcion) || empty($idCurso)){
+
+            //Imprimir vista de error por campos vacíos.
+        }
+
+        if($contrasenia < 8){
+            //Imprimir error por condición de contraseña no cumplida.
+        }
+
+        if($contrasenia != $confirmacionContrasenia){
+            //Imprimir error por inconsistencia de contraseñas.
+        }
+
+        if(!filter_var($correo, FILTER_VALIDATE_EMAIL) || !preg_replace("/[^0-9]/","", $numeroDocumento) ||
+            !preg_replace("/[^0-9]/","", $telefonoResidencia) || !preg_replace("/[^0-9]/","", $telefonoMovil) ||
+            !preg_replace("/[^0-9]/","", $semestreTerminacionMaterias) || !preg_replace("/[^A-Za-z]/", "", $nombres) ||
+            !preg_replace("/[^A-Za-z]/", "", $apellidos) || !preg_replace("/[^A-Za-z]/", "", $nombres)){
+
+            //Imprimir vista de error por formato inválido de datos.
+
+        }
 
 
         //Validar datos de entrada
           //Genera interfaz con los diferentes errores
 
-        $this->modelo = new Curso();
-        $this->modelo->obtenerCurso(0);
-        //El curso está ?
-            //No, genere vista de error
+        $curso = new Curso();
+        $curso->obtenerCurso($idCurso);
 
+        if($curso->getIdCurso() == ''){
 
-
-        $mensaje = $this->modelo->registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
-            $tipoDocumento, $numeroDocumento, $fechaNacimiento, $DireccionResidencia,
-            $TelefonoResidencia, $telofonoMovil, $codigo, $promedioPonderado,
-            $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-            $reciboPagoInscripcion);
-
-        if($mensaje[0] == true) {
-            $this->vista = new IniciarSesion('exito', $datos = array(
-                'CLASS_CORREO'=>COLOR_DEFECTO,
-                'CLASS_CONTRASENIA'=>COLOR_DEFECTO
-            ), CU_EXITO);
-        }else {
-            $this->vista = new RegistrarAspirante('error', $datos=array(
-                'DIV'=>'',
-                'CLASS_CORREO'=>COLOR_ROJO,
-                'CLASS_CONTRASENIA'=>COLOR_ROJO,
-                'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_ROJO,
-                'CLASS_NOMBRES'=>COLOR_ROJO,
-                'CLASS_APELLIDOS'=>COLOR_ROJO,
-                'CLASS_TIPO_DOCUMENTO'=>COLOR_ROJO,
-                'CLASS_NUMERO_DOCUMENTO'=>COLOR_ROJO,
-                'CLASS_FECHA_NACIMIENTO'=>COLOR_ROJO,
-                'CLASS_DIRECCION_RESIDENCIA'=>COLOR_ROJO,
-                'CLASS_TELEFONO_RESIDENCIA'=>COLOR_ROJO,
-                'CLASS_TELEFONO_MOVIL'=>COLOR_ROJO,
-                'CLASS_CODIGO'=>COLOR_ROJO,
-                'CLASS_PROMEDIO_PONDERADO'=>COLOR_ROJO,
-                'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_ROJO,
-                'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_ROJO,
-                'CLASS_RECIBO_PAZ_SALVO'=>COLOR_ROJO,
-                'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_ROJO,
-                'CLASS_BOTONES'=>COLOR_ROJO
-            ), $mensaje);
-            exit;
+            //Imprimir vista de error.
         }
+        else{
 
 
+            $mensaje = $curso->registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+                $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
+                $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+                $reciboPagoInscripcion);
+
+            if($mensaje[0] == true) {
+                $this->vista = new IniciarSesion('exito', $datos = array(
+                    'CLASS_CORREO'=>COLOR_DEFECTO,
+                    'CLASS_CONTRASENIA'=>COLOR_DEFECTO
+                ), CU_EXITO);
+            }else {
+                $this->vista = new RegistrarAspirante('error', $datos=array(
+                    'DIV'=>'',
+                    'CLASS_CORREO'=>COLOR_ROJO,
+                    'CLASS_CONTRASENIA'=>COLOR_ROJO,
+                    'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_ROJO,
+                    'CLASS_NOMBRES'=>COLOR_ROJO,
+                    'CLASS_APELLIDOS'=>COLOR_ROJO,
+                    'CLASS_TIPO_DOCUMENTO'=>COLOR_ROJO,
+                    'CLASS_NUMERO_DOCUMENTO'=>COLOR_ROJO,
+                    'CLASS_FECHA_NACIMIENTO'=>COLOR_ROJO,
+                    'CLASS_DIRECCION_RESIDENCIA'=>COLOR_ROJO,
+                    'CLASS_TELEFONO_RESIDENCIA'=>COLOR_ROJO,
+                    'CLASS_TELEFONO_MOVIL'=>COLOR_ROJO,
+                    'CLASS_CODIGO'=>COLOR_ROJO,
+                    'CLASS_PROMEDIO_PONDERADO'=>COLOR_ROJO,
+                    'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_ROJO,
+                    'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_ROJO,
+                    'CLASS_RECIBO_PAZ_SALVO'=>COLOR_ROJO,
+                    'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_ROJO,
+                    'CLASS_BOTONES'=>COLOR_ROJO
+                ), $mensaje);
+                exit;
+            }
+
+
+
+
+        }
 
 
 
@@ -1192,7 +1226,7 @@ class SistemaCursoProfundizacion {
     /**
      *
      */
-    public function consultarNotasCursoEstudiante($idCurso, $codigoEstudiante){
+    public function consultarNotasCursoEstudiante($idCurso){
 
 
         $idCurso = 1;
@@ -1228,7 +1262,15 @@ class SistemaCursoProfundizacion {
     }
 
 
+    public function cargarReciboMatricula($reciboMatricula){
 
+
+
+
+
+
+
+    }
 
 
 
