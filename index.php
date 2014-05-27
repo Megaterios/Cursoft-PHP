@@ -39,31 +39,20 @@ if(isset($_POST['requerimiento']) ) {
         case 'RF10_REGISTRAR_ASPIRANTE':
 
             $idCurso = 1;
-
-            /*
-            if(empty($_POST['correo']) || empty($_POST['contrasenia']) || empty($_POST['confirmacionContrasenia']) || empty($_POST['nombres']) ||
-                empty($_POST['apellidos']) || empty($_POST['tipoDocumento']) || empty($_POST['numeroDocumento']) ||
-                empty($_POST['fechaNacimiento']) || empty($_POST['direccionResidencia']) || empty( $_POST['telefonoResidencia']) ||
-                empty($_POST['telefonoMovil']) || empty($_POST['codigo']) || empty($_POST['promedioPonderado']) ||
-                empty($_POST['semestreTerminacionMaterias']) || empty($_POST['reciboTerminacionMaterias']) || empty($_POST['reciboPazSalvo']) ||
-                empty($_POST['reciboPagoInscripcion']) || empty($_POST['idCurso'])){
-
-                //Imprimir vista de error por campos vacíos.
-                echo 'Hay campos vacíos.';
-            }
-            */
-
-            //else{
-
-                $aplicacion->registrarAspirante($_POST['correo'], $_POST['contrasenia'], $_POST['confirmacionContrasenia'],
-                    $_POST['nombres'], $_POST['apellidos'], $_POST['tipoDocumento'], $_POST['numeroDocumento'],
-                    $_POST['fechaNacimiento'], $_POST['direccionResidencia'], $_POST['telefonoResidencia'], $_POST['telefonoMovil'],
-                    $_POST['codigo'], $_POST['promedioPonderado'], $_POST['semestreTerminacionMaterias'],
-                    $_FILES['reciboTerminacionMaterias']['tmp_name'], $_FILES['reciboPazSalvo']['tmp_name'],  $_FILES['reciboPagoInscripcion']['tmp_name'],
-                    $idCurso);
+            $reciboPazSalvo = 'pazSalvo.jpg';
+            $reciboTerminacionMaterias = 'reciboTerminacion.jpg';
+            $reciboPagoInscripcion = 'reciboPago.jpg';
+            $tipoUsuario = 1;
 
 
-            //}
+            $aplicacion->registrarAspirante($_POST['correo'], $_POST['contrasenia'], $_POST['confirmacionContrasenia'],
+                $_POST['nombres'], $_POST['apellidos'], $_POST['tipoDocumento'], $_POST['numeroDocumento'],
+                $_POST['fechaNacimiento'], $_POST['direccionResidencia'], $_POST['telefonoResidencia'], $_POST['telefonoMovil'],
+                $_POST['codigo'], $_POST['promedioPonderado'], $_POST['semestreTerminacionMaterias'],
+                $reciboTerminacionMaterias, $reciboPazSalvo,  $reciboPagoInscripcion,
+                $idCurso, $tipoUsuario);
+
+
 
             break;
 

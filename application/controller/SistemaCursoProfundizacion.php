@@ -31,7 +31,7 @@ class SistemaCursoProfundizacion {
                                        $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
                                        $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                                        $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-                                       $reciboPagoInscripcion, $idCurso) {
+                                       $reciboPagoInscripcion, $idCurso, $tipoUsuario) {
 
 
         if(empty($correo) || empty($contrasenia) || empty($confirmacionContrasenia) || empty($nombres) ||
@@ -41,6 +41,10 @@ class SistemaCursoProfundizacion {
             empty($reciboPazSalvo) || empty($reciboPagoInscripcion) || empty($idCurso)){
 
             //Imprimir vista de error por campos vacíos.
+            $mensaje = 'Debe llenar todos los campos del formulario.';
+
+            $this->imprimirErroresRegistrarAspirante($mensaje);
+            exit;
         }
 
         if(strlen($contrasenia) < 8){
@@ -89,7 +93,7 @@ class SistemaCursoProfundizacion {
                 $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
                 $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                 $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-                $reciboPagoInscripcion);
+                $reciboPagoInscripcion, $tipoUsuario);
 
 
 

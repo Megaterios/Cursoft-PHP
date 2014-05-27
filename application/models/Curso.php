@@ -106,11 +106,8 @@ class Curso extends baseDatos {
                                        $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
                                        $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                                        $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-                                       $reciboPagoInscripcion) {
+                                       $reciboPagoInscripcion, $tipoUsuario) {
 
-        $reciboTerminacionMaterias = 'reciboterminacion';
-        $reciboPazSalvo = 'recibopazsalvo';
-        $reciboPagoInscripcion = 'recibopagoinsc';
 
         $aspirante = new Aspirante();
         $aspirante->obtenerAspirante('codigo', $codigo);
@@ -146,7 +143,7 @@ class Curso extends baseDatos {
             $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
             $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
             $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-            $reciboPagoInscripcion);
+            $reciboPagoInscripcion, $tipoUsuario);
 
         $aspirante->obtenerAspirante('codigo', $codigo);
         $this->insertarAspiranteCurso($aspirante->getIdAspirante());
@@ -175,7 +172,7 @@ class Curso extends baseDatos {
 
         $this->ejecutar_peticion_simple();
 
-        $this->errores();
+        //$this->errores();
 
     }
 
@@ -211,7 +208,7 @@ class Curso extends baseDatos {
 
         $this->ejecutar_peticion_simple();
 
-        $this->errores();
+        //$this->errores();
     }
 
 
@@ -227,7 +224,7 @@ class Curso extends baseDatos {
 					";
         $this->ejecutar_peticion_simple();
         //Quitar al pasar a Master
-        $this->errores();
+        //$this->errores();
     }
 
     /**
@@ -243,7 +240,7 @@ class Curso extends baseDatos {
                         ";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
-            $this->errores();
+            //$this->errores();
         }
 
         if(count($this->filas) == 1) {

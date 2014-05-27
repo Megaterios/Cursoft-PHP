@@ -28,7 +28,8 @@ class Usuario extends baseDatos {
     {
     }
 
-    function crear($codigo, $nombre, $apellido, $tipoDocumento, $numeroDocumento, $contrasenia, $correo, $direccion, $fechaNacimiento, $telefonoCelular, $telefonoFijo)
+    function crear($codigo, $nombre, $apellido, $tipoDocumento, $numeroDocumento, $contrasenia, $correo,
+                   $direccion, $fechaNacimiento, $telefonoCelular, $telefonoFijo, $tipoUsuario)
     {
         $this->apellido = $apellido;
         $this->tipoDocumento = $tipoDocumento;
@@ -41,6 +42,7 @@ class Usuario extends baseDatos {
         $this->nombre = $nombre;
         $this->telefonoCelular = $telefonoCelular;
         $this->telefonoFijo = $telefonoFijo;
+        $this->tipo = $tipoUsuario;
         $this->insertar();
     }
 
@@ -289,13 +291,12 @@ class Usuario extends baseDatos {
 						WHERE Usuario.$criterio = '$valor'";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
-            $this->errores();
+            //$this->errores();
         }
 
-        print_r($this->filas);
+        //print_r($this->filas);
 
         if(count($this->filas) == 1) {
-            echo "ENCONTRO AL USUARIO";
             $este = 'this';
             foreach ($this->filas[0] as $atributo=>$valor) {
                 $$este->$atributo = $valor;
@@ -303,8 +304,7 @@ class Usuario extends baseDatos {
         }else {
             $this->inicializar();
         }
-        echo "<br>nombre: ".$this->getNombre().' ';
-        echo $this->getApellido();
+
 
     }
 
@@ -348,16 +348,14 @@ class Usuario extends baseDatos {
             echo "Es Docente";
         }
 
-        print_r( $this->filas);
+        //print_r( $this->filas);
 
      }
 
 
     public function insertar(){
 
-        echo "INSERTAR DE USUARIO: <br>";
-        echo 'num doc: '.$this->numeroDocumento;
-        echo 'tipo doc: '.$this->tipoDocumento;
+
         $this->peticion = "
                     INSERT INTO Usuario (numeroDocumento, tipoDocumento, codigo, nombre, apellido, correo, contrasenia, fechaNacimiento,
                                           telefonoFijo, telefonoCelular, direccion, tipo)
@@ -367,13 +365,8 @@ class Usuario extends baseDatos {
 
         $this->ejecutar_peticion_simple();
 
-        $this->peticion = "SELECT MAX(idUsuario) as idUsuario FROM Usuario";
 
-        $this->obtener_resultados_consulta();
-
-        //$this->idUsuario = $this->filas[0]['idUsuario'];
-        echo 'soy ID USUARIO: '.$this->idUsuario;
-        $this->errores();
+        //$this->errores();
     }
 
 }

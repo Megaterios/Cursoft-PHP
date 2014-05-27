@@ -30,12 +30,13 @@ class Aspirante extends Usuario {
                             $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
                             $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                             $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
-                            $reciboPagoInscripcion){
+                            $reciboPagoInscripcion, $tipoUsuario){
 
-        $this->crear($codigo, $nombres, $apellidos, $tipoDocumento, $numeroDocumento, $contrasenia, $correo, $direccionResidencia, $fechaNacimiento, $telefonoMovil, $telefonoResidencia);
+        $this->crear($codigo, $nombres, $apellidos, $tipoDocumento, $numeroDocumento, $contrasenia, $correo,
+            $direccionResidencia, $fechaNacimiento, $telefonoMovil, $telefonoResidencia, $tipoUsuario);
 
         $this->obtener('correo', $correo);
-        
+
         $this->promedioPonderado = $promedioPonderado;
         $this->semestreFinalizacionMaterias = $semestreTerminacionMaterias;
         $this->reporteFinalizacionMaterias = $reciboTerminacionMaterias;
@@ -104,7 +105,7 @@ class Aspirante extends Usuario {
 
         $this->ejecutar_peticion_simple();
 
-        $this->errores();
+        //$this->errores();
     }
 
 
@@ -122,7 +123,7 @@ class Aspirante extends Usuario {
 
         $this->ejecutar_peticion_simple();
         //Quitar al pasar a Master
-        $this->errores();
+        //$this->errores();
     }
 
     /**
@@ -139,7 +140,7 @@ class Aspirante extends Usuario {
                         ";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
-            $this->errores();
+            //$this->errores();
         }
 
         if(count($this->filas) == 1) {
