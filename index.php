@@ -49,8 +49,6 @@ if(isset($_POST['requerimiento']) ) {
                 $reciboTerminacionMaterias, $reciboPazSalvo,  $reciboPagoInscripcion,
                 $idCurso, $tipoUsuario);
 
-
-
             break;
 
         case 'RF11-RF12_CARGAR_DOCUMENTOS':
@@ -80,7 +78,6 @@ if(isset($_POST['requerimiento']) ) {
     switch($_GET['requerimiento']) {
 
         case 'RF2_FINALIZAR_SESION':
-            echo "Voy a cerrar la sesion";
             $aplicacion->cerrarSesion();
             $aplicacion->cargarVista();
             break;
@@ -94,7 +91,6 @@ if(isset($_POST['requerimiento']) ) {
         $mostrar =  $_GET['mostrar'];
     }
 
-echo "Entre a mostrar la interfaz consultar datos<br>";
     $aplicacion->cargarVista($mostrar);
 
 

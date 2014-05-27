@@ -99,8 +99,8 @@ abstract class baseDatos {
 	}
 
     protected function errores() {
-        print_r($this->mensaje);
-        echo $this->codigo_error;
+       // print_r($this->mensaje);
+       // echo $this->codigo_error;
     }
 
 }

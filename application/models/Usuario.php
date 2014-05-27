@@ -297,7 +297,6 @@ class Usuario extends baseDatos {
         //print_r($this->filas);
 
         if(count($this->filas) == 1) {
-            echo "ENCONTRO AL USUARIO";
             $este = 'this';
             foreach ($this->filas[0] as $atributo=>$valor) {
                 $$este->$atributo = $valor;
@@ -356,9 +355,9 @@ class Usuario extends baseDatos {
         }
 
         if($this->filas[0]['tipo'] == 1) {
-            echo "Aspirante";
+           // echo "Aspirante";
         }else if($this->filas[0]['tipo'] == 2) {
-            echo "Es Docente";
+           // echo "Es Docente";
         }
 
         //print_r( $this->filas);

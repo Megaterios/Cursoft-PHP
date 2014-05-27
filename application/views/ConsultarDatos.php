@@ -24,7 +24,7 @@ class ConsultarDatos extends Vista {
                 $this->plantilla = "";
         */
 
-        print_r($datos);
+      //  print_r($datos);
 
         $this->generarMenu();
         $datos['MENU'] = $this->plantilla;

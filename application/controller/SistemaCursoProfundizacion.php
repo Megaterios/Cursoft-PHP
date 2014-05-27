@@ -10,12 +10,15 @@ date_default_timezone_set('America/Bogota');
 
 require_once 'application/models/Usuario.php';
 require_once 'application/models/Curso.php';
+require_once 'application/models/Docente.php';
+require_once 'application/models/Estudiante.php';
 require_once 'application/libs/Vista.php';
 require_once 'application/views/IniciarSesion.php';
 require_once 'application/views/RecuperarContrasenia.php';
 require_once 'application/views/RegistrarAspirante.php';
 require_once 'application/views/InicioAspirante.php';
-
+require_once 'application/views/ConsultarDatos.php';
+require_once 'application/views/ActualizarDatos.php';
 
 class SistemaCursoProfundizacion {
 
@@ -155,101 +158,45 @@ class SistemaCursoProfundizacion {
     public function iniciarSesion($correo, $contrasenia, $tipoUsuario) {
         $this->validarDatosIniciarSesion($correo, $contrasenia, $tipoUsuario);
         $this->modelo = new Usuario();
-        $this->modelo->obtener($correo);
+        $this->modelo->obtener('correo', $correo);
+
+
+
         if ($correo == $this->modelo->getCorreo() && md5($contrasenia) == $this->modelo->getContrasenia() &&
             $tipoUsuario == $this->modelo->getTipo()) {
             if(!session_id()) session_start();
-            echo "Inicie sesion";
+
+
             $_SESSION ['correo'] = $this->modelo->getCorreo();
             $_SESSION ['idUsuario'] = $this->modelo->getIdUsuario();
             $_SESSION ['tipo'] = $this->modelo->getTipo();
             $_SESSION ['codigo'] = $this->modelo->getCodigo();
-
+            $_SESSION ['nombre'] = explode(' ', $this->modelo->getNombre())[0] .' '. explode(' ', $this->modelo->getApellido())[0];
+            //Aspirante
             if($this->modelo->getTipo() == '1') {
                 $this->modelo = new Aspirante();
-                $this->modelo->obtenerAspirante($_SESSION ['codigo']);
-
-
-                switch($this->modelo->getEstado()) {
-
-                    //Pendiente
-                    case 0:
-
-                        echo "Este es el codigo ".$this->modelo->getCodigo();
-                        $this->vista = new InicioAspirante('Aprobado', $datos = array(
-                                'TIPO'=> $this->modelo->getTipo(),
-                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
-                                'CODIGO'=>$this->modelo->getCodigo(),
-                                'ESTADO'=>'Aprobado'
-                        ), MENSAJE_APROBADO
-
-                        );
-
-exit;
-                        break;
-
-                    //Aprobado
-                    case 1:
-
-                        $this->vista = new InicioAspirante('Pendiente', $datos = array(
-                                'TIPO'=> $this->modelo->getTipo(),
-                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
-                                'CODIGO'=>$this->modelo->getCodigo(),
-                                'ESTADO'=>'Pendiente'
-
-                            ), MENSAJE_PENDIENTE
-
-                        );
-
-
-                        break;
-
-                    //Rechazado
-                    case 2:
-
-
-                        $this->vista = new InicioAspirante('Rechazado', $datos = array(
-                                'TIPO'=> $this->modelo->getTipo(),
-                                'NOMBRE'=>$this->modelo->getNombre() . $this->modelo->getApellido(),
-                                'CODIGO'=>$this->modelo->getCodigo(),
-                                'ESTADO'=>'Pendiente'
-
-                            ), MENSAJE_RECHAZADO
-
-                        );
-
-                        break;
-                }
-
-
+                $this->modelo->obtenerAspirante('codigo', $_SESSION ['codigo']);
+                $this->cargarVistaAspiranteEstado();
             }
-            /*
-             * Tipos:
-             *
-             * Aspirante
-             * --Aprobado
-             * --Pendiente
-             * --rechazado
-             * Estudiante
-             * --Pendiente (Aspirante carga pago de la matricula)
-             * --Rechazado (Cargo mal el pago de la matricula, foto de novia)
-             * --Aprobado
-             * Docente
-             *
-             *
-             */
 
+            //Docente
+            if($this->modelo->getTipo() == '2') {
+                $this->modelo = new Docente();
+                $this->modelo->obtenerDocente($_SESSION['codigo']);
+                $this->cargarVistaDocenteCargo();
+			}
 
+            //Estudiante
+            if($this->modelo->getTipo() == '3') {
+                $this->modelo = new Estudiante();
+                $this->modelo->obtenerEstudiante($_SESSION['codigo']);
+                $this->cargarVistaEstudianteEstado();
+                //0 Pendiente
+                //1 Aprobado
+                //2 Rechazado
+                //3 Graduado
+            }
 
-
-
-
-
-            //$this->vista = new vista();
-            //$this->vista->delegar_vista();
-
-
-            echo "El señor ".$_SESSION['correo']." ha iniciado sesión";
         }else {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
@@ -258,6 +205,169 @@ exit;
             exit;
         }
 
+    }
+
+    private function cargarVistaAspiranteEstado() {
+        switch($this->modelo->getEstado()) {
+
+            //Pendiente
+            case 0:
+
+                $this->vista = new InicioAspirante('Pendiente', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$_SESSION['codigo'],
+                        'ESTADO'=>'Pendiente'
+
+                    ), MENSAJE_PENDIENTE
+
+                );
+
+
+                break;
+
+
+            //Aprobado
+            case 1:
+
+                $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Aprobado'
+                    ), MENSAJE_APROBADO
+
+                );
+
+                exit;
+                break;
+
+
+            //Rechazado
+            case 2:
+
+
+                $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Rechazado'
+
+                    ), MENSAJE_RECHAZADO
+
+                );
+
+                break;
+        }
+    }
+
+
+    private function cargarVistaEstudianteEstado() {
+        switch($this->modelo->getEstado()) {
+
+            //Pendiente
+            case 0:
+
+                $this->vista = new InicioEstudiante('Pendiente', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Pendiente'
+
+                    ), MENSAJE_PENDIENTE
+
+                );
+
+
+                break;
+
+
+            //Aprobado
+            case 1:
+
+
+                $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Aprobado'
+                    ), MENSAJE_APROBADO
+
+                );
+
+                exit;
+                break;
+
+
+            //Rechazado
+            case 2:
+
+                $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Rechazado'
+
+                    ), MENSAJE_RECHAZADO
+
+                );
+
+                break;
+        }
+    }
+
+
+    private function cargarVistaDocenteCargo() {
+        switch($this->modelo->getEstado()) {
+
+            //Pendiente
+            case 0:
+
+                $this->vista = new InicioAspirante('Pendiente', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Pendiente'
+
+                    ), MENSAJE_PENDIENTE
+
+                );
+
+
+                break;
+
+
+            //Aprobado
+            case 1:
+
+                $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Aprobado'
+                    ), MENSAJE_APROBADO
+
+                );
+
+                exit;
+                break;
+
+
+            //Rechazado
+            case 2:
+
+                $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Rechazado'
+
+                    ), MENSAJE_RECHAZADO
+
+                );
+
+                break;
+        }
     }
 
 
@@ -313,7 +423,7 @@ exit;
         }
 
         $this->modelo = new Usuario();
-        $this->modelo->obtener($correo);
+        $this->modelo->obtener('correo', $correo);
 
         if($correo != $this->modelo->getCorreo()) {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
@@ -359,7 +469,7 @@ exit;
         //Debe tener la sesión iniciada - Validar
 
         $this->modelo = new Usuario();
-        $this->modelo->obtener($_SESSION['correo']);
+        $this->modelo->obtener('correo', $_SESSION['correo']);
 
         if($_SESSION['correo'] != $this->modelo->getCorreo()) {
             echo '<br>El correo no está registrado, Algo ilógico casi nunca se daria porque se supone que inició sesión porque estaba
@@ -384,13 +494,10 @@ exit;
 
     public function consultarDatos() {
         $this->modelo = new Usuario();
-        $this->modelo->obtenerDatos($_SESSION['correo'], $_SESSION['tipo']);
-       //$this->modelo->obtener($_SESSION['correo']);
-        echo $this->modelo->__toString();
-
+        return $datos = $this->modelo->consultar($_SESSION['codigo']);
     }
 
-    private function actualizarDatos() {
+    public function actualizarDatos() {
 
     }
 
@@ -467,7 +574,62 @@ exit;
             exit;
         }
 
-      //  $this->vista->
+
+
+        if($vista == 'IU_CONSULTAR_DATOS') {
+            $this->modelo = new Aspirante();
+            $this->modelo->obtenerAspirante('codigo', $_SESSION['codigo']);
+
+
+            /*
+             * $datos=array(
+                            'DIV'=>'',
+                            'CODIGO'=>$this->modelo->getCodigo(),
+                            'NOMBRE'=>explode(' ', $this->modelo->getNombre())[0] .' '. explode(' ', $this->modelo->getApellido())[0]
+                        )
+             *
+             *
+             *
+             */
+            $this->vista = new ConsultarDatos($_SESSION['tipo'], $this->consultarDatos(), '');
+            exit;
+        }
+
+        if($vista == 'IU_ACTUALIZAR_DATOS') {
+
+            $this->modelo = new Aspirante();
+            $this->modelo->obtenerAspirante('correo', $_SESSION['codigo']);
+            $this->vista = new ActualizarDatos($_SESSION['tipo'], $this->consultarDatos(), '');
+            exit;
+        }
+
+        if(isset($_SESSION['correo'])) {
+
+            switch($_SESSION['tipo']) {
+
+                case 1:
+                    $this->modelo = new Aspirante();
+                    $this->modelo->obtenerAspirante('codigo', $_SESSION['codigo']);
+                    $this->cargarVistaAspiranteEstado();
+                    break;
+
+                case 2:
+                    $this->modelo = new Docente();
+                    $this->modelo->obtenerDocente($_SESSION['codigo']);
+                    $this->cargarVistaDocenteCargo();
+                    break;
+
+                case 3:
+                    $this->modelo = new Estudiante();
+                    $this->modelo->obtenerEstudiante($_SESSION['codigo']);
+                    $this->cargarVistaEstudianteEstado();
+                    break;
+            }
+
+
+        }
+
+        //  $this->vista->
     }
 
 
