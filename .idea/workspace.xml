@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0aa40876-bd4a-43a1-9b84-e6a23c660bc0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" afterPath="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Aspirante.php" afterPath="$PROJECT_DIR$/application/models/Aspirante.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Curso.php" afterPath="$PROJECT_DIR$/application/models/Curso.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Usuario.php" afterPath="$PROJECT_DIR$/application/models/Usuario.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cursoft.iws" />
@@ -26,10 +28,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SistemaCursoProfundizacion.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SistemaCursoProfundizacion.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="31" selection-start="1784" selection-end="1784" vertical-scroll-proportion="0.3140351" vertical-offset="501" max-vertical-offset="28203">
+            <state line="87" column="48" selection-start="3135" selection-end="3135" vertical-scroll-proportion="-10.807693" vertical-offset="1113" max-vertical-offset="28203">
               <folding>
                 <marker date="1401179201681" expanded="true" signature="18416:18454" placeholder="..." />
               </folding>
@@ -40,27 +42,27 @@
       <file leaf-file-name="Curso.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Curso.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="12" selection-start="5061" selection-end="5061" vertical-scroll-proportion="-7.923077" vertical-offset="2650" max-vertical-offset="22644">
+            <state line="124" column="56" selection-start="3146" selection-end="3146" vertical-scroll-proportion="-4.2156863" vertical-offset="1808" max-vertical-offset="22593">
               <folding>
-                <marker date="1401147996917" expanded="true" signature="5129:5237" placeholder="INSERT INTO ..." />
-                <marker date="1401147996917" expanded="true" signature="5445:5613" placeholder="INSERT INTO ..." />
-                <marker date="1401147996917" expanded="true" signature="6302:6372" placeholder="SELECT Curso..Curso..." />
-                <marker date="1401147996917" expanded="true" signature="7069:7474" placeholder="SELECT Usuar..Usuario..." />
+                <marker date="1401181015511" expanded="true" signature="4958:5066" placeholder="INSERT INTO ..." />
+                <marker date="1401181015511" expanded="true" signature="5274:5442" placeholder="INSERT INTO ..." />
+                <marker date="1401181015511" expanded="true" signature="6131:6201" placeholder="SELECT Curso..Curso..." />
+                <marker date="1401181015511" expanded="true" signature="6898:7303" placeholder="SELECT Usuar..Usuario..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Aspirante.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Aspirante.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/models/Aspirante.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="135" selection-start="1033" selection-end="1033" vertical-scroll-proportion="-7.923077" vertical-offset="287" max-vertical-offset="20366">
+            <state line="37" column="8" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.39122808" vertical-offset="321" max-vertical-offset="20264">
               <folding>
-                <marker date="1401158822596" expanded="true" signature="2749:3141" placeholder="INSERT INTO ..." />
-                <marker date="1401158822596" expanded="true" signature="3874:3943" placeholder="SELECT Aspir..Usuario..." />
-                <marker date="1401158822596" expanded="true" signature="3874:3955" placeholder="SELECT Aspir..Usuario..." />
-                <marker date="1401158822596" expanded="true" signature="3874:4007" placeholder="SELECT Aspir..Usuario..." />
-                <marker date="1401158822596" expanded="true" signature="3874:3952" placeholder="SELECT Aspir..Usuario..." />
+                <marker date="1401181283257" expanded="true" signature="2412:2804" placeholder="INSERT INTO ..." />
+                <marker date="1401181283257" expanded="true" signature="3537:3606" placeholder="SELECT Aspir..Usuario..." />
+                <marker date="1401181283257" expanded="true" signature="3537:3618" placeholder="SELECT Aspir..Usuario..." />
+                <marker date="1401181283257" expanded="true" signature="3537:3670" placeholder="SELECT Aspir..Usuario..." />
+                <marker date="1401181283257" expanded="true" signature="3537:3615" placeholder="SELECT Aspir..Usuario..." />
               </folding>
             </state>
           </provider>
@@ -78,13 +80,13 @@
       <file leaf-file-name="Usuario.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Usuario.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="121" selection-start="666" selection-end="666" vertical-scroll-proportion="-7.923077" vertical-offset="304" max-vertical-offset="6511">
+            <state line="355" column="20" selection-start="7803" selection-end="7803" vertical-scroll-proportion="-7.3076925" vertical-offset="5845" max-vertical-offset="6545">
               <folding>
                 <element signature="e#6#95#0" expanded="true" />
-                <marker date="1401158358323" expanded="true" signature="5788:5856" placeholder="SELECT * FRO..Usuario..." />
-                <marker date="1401158358323" expanded="true" signature="7374:7443" placeholder="SELECT tipo ..Usuario..." />
-                <marker date="1401158358323" expanded="true" signature="7906:8412" placeholder="INSERT INTO ..." />
-                <marker date="1401158358323" expanded="true" signature="8508:8555" placeholder="SELECT MAX(i..Usuario..." />
+                <marker date="1401180626895" expanded="true" signature="5788:5856" placeholder="SELECT * FRO..Usuario..." />
+                <marker date="1401180626895" expanded="true" signature="7374:7443" placeholder="SELECT tipo ..Usuario..." />
+                <marker date="1401180626895" expanded="true" signature="8003:8510" placeholder="INSERT INTO ..." />
+                <marker date="1401180626895" expanded="true" signature="8606:8653" placeholder="SELECT MAX(i..Usuario..." />
               </folding>
             </state>
           </provider>
@@ -139,10 +141,10 @@
         <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/public/registrar_aspirante.html" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/application/models/Curso.php" />
-        <option value="$PROJECT_DIR$/application/models/Usuario.php" />
-        <option value="$PROJECT_DIR$/application/models/Aspirante.php" />
         <option value="$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php" />
+        <option value="$PROJECT_DIR$/application/models/Usuario.php" />
+        <option value="$PROJECT_DIR$/application/models/Curso.php" />
+        <option value="$PROJECT_DIR$/application/models/Aspirante.php" />
       </list>
     </option>
   </component>
@@ -370,7 +372,11 @@
       <created>1401178898983</created>
       <updated>1401178898983</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="RF: Registrar Aspirante (validaciones)">
+      <created>1401179244862</created>
+      <updated>1401179244862</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -444,11 +450,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="26" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="19890">
           <folding>
-            <marker date="1401158822596" expanded="true" signature="2749:3141" placeholder="INSERT INTO ..." />
-            <marker date="1401158822596" expanded="true" signature="3874:3943" placeholder="SELECT Aspir..Usuario..." />
-            <marker date="1401158822596" expanded="true" signature="3874:3955" placeholder="SELECT Aspir..Usuario..." />
-            <marker date="1401158822596" expanded="true" signature="3874:4007" placeholder="SELECT Aspir..Usuario..." />
-            <marker date="1401158822596" expanded="true" signature="3874:3952" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="2412:2804" placeholder="INSERT INTO ..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3606" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3618" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3670" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3615" placeholder="SELECT Aspir..Usuario..." />
           </folding>
         </state>
       </provider>
@@ -969,49 +975,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Aspirante.php">
+    <entry file="file://$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="135" selection-start="1033" selection-end="1033" vertical-scroll-proportion="-7.923077" vertical-offset="287" max-vertical-offset="20366">
+        <state line="87" column="48" selection-start="3135" selection-end="3135" vertical-scroll-proportion="-10.807693" vertical-offset="1113" max-vertical-offset="28203">
           <folding>
-            <marker date="1401158822596" expanded="true" signature="2749:3141" placeholder="INSERT INTO ..." />
-            <marker date="1401158822596" expanded="true" signature="3874:3943" placeholder="SELECT Aspir..Usuario..." />
-            <marker date="1401158822596" expanded="true" signature="3874:3955" placeholder="SELECT Aspir..Usuario..." />
-            <marker date="1401158822596" expanded="true" signature="3874:4007" placeholder="SELECT Aspir..Usuario..." />
-            <marker date="1401158822596" expanded="true" signature="3874:3952" placeholder="SELECT Aspir..Usuario..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Curso.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="12" selection-start="5061" selection-end="5061" vertical-scroll-proportion="-7.923077" vertical-offset="2650" max-vertical-offset="22644">
-          <folding>
-            <marker date="1401147996917" expanded="true" signature="5129:5237" placeholder="INSERT INTO ..." />
-            <marker date="1401147996917" expanded="true" signature="5445:5613" placeholder="INSERT INTO ..." />
-            <marker date="1401147996917" expanded="true" signature="6302:6372" placeholder="SELECT Curso..Curso..." />
-            <marker date="1401147996917" expanded="true" signature="7069:7474" placeholder="SELECT Usuar..Usuario..." />
+            <marker date="1401179201681" expanded="true" signature="18416:18454" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="121" selection-start="666" selection-end="666" vertical-scroll-proportion="-7.923077" vertical-offset="304" max-vertical-offset="6511">
+        <state line="355" column="20" selection-start="7803" selection-end="7803" vertical-scroll-proportion="-7.3076925" vertical-offset="5845" max-vertical-offset="6545">
           <folding>
             <element signature="e#6#95#0" expanded="true" />
-            <marker date="1401158358323" expanded="true" signature="5788:5856" placeholder="SELECT * FRO..Usuario..." />
-            <marker date="1401158358323" expanded="true" signature="7374:7443" placeholder="SELECT tipo ..Usuario..." />
-            <marker date="1401158358323" expanded="true" signature="7906:8412" placeholder="INSERT INTO ..." />
-            <marker date="1401158358323" expanded="true" signature="8508:8555" placeholder="SELECT MAX(i..Usuario..." />
+            <marker date="1401180626895" expanded="true" signature="5788:5856" placeholder="SELECT * FRO..Usuario..." />
+            <marker date="1401180626895" expanded="true" signature="7374:7443" placeholder="SELECT tipo ..Usuario..." />
+            <marker date="1401180626895" expanded="true" signature="8003:8510" placeholder="INSERT INTO ..." />
+            <marker date="1401180626895" expanded="true" signature="8606:8653" placeholder="SELECT MAX(i..Usuario..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/SistemaCursoProfundizacion.php">
+    <entry file="file://$PROJECT_DIR$/application/models/Curso.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="31" selection-start="1784" selection-end="1784" vertical-scroll-proportion="0.3140351" vertical-offset="501" max-vertical-offset="28203">
+        <state line="124" column="56" selection-start="3146" selection-end="3146" vertical-scroll-proportion="-4.2156863" vertical-offset="1808" max-vertical-offset="22593">
           <folding>
-            <marker date="1401179201681" expanded="true" signature="18416:18454" placeholder="..." />
+            <marker date="1401181015511" expanded="true" signature="4958:5066" placeholder="INSERT INTO ..." />
+            <marker date="1401181015511" expanded="true" signature="5274:5442" placeholder="INSERT INTO ..." />
+            <marker date="1401181015511" expanded="true" signature="6131:6201" placeholder="SELECT Curso..Curso..." />
+            <marker date="1401181015511" expanded="true" signature="6898:7303" placeholder="SELECT Usuar..Usuario..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Aspirante.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="8" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.39122808" vertical-offset="321" max-vertical-offset="20264">
+          <folding>
+            <marker date="1401181283257" expanded="true" signature="2412:2804" placeholder="INSERT INTO ..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3606" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3618" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3670" placeholder="SELECT Aspir..Usuario..." />
+            <marker date="1401181283257" expanded="true" signature="3537:3615" placeholder="SELECT Aspir..Usuario..." />
           </folding>
         </state>
       </provider>

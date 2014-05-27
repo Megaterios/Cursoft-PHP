@@ -35,10 +35,7 @@ class Aspirante extends Usuario {
         $this->crear($codigo, $nombres, $apellidos, $tipoDocumento, $numeroDocumento, $contrasenia, $correo, $direccionResidencia, $fechaNacimiento, $telefonoMovil, $telefonoResidencia);
 
         $this->obtener('correo', $correo);
-        echo 'ya obtuve consulta(nombre): '.$this->getNombre();
-        echo 'ya obtuve consulta (idUsuario): '.$this->getIdUsuario();
-        echo 'ya obtuve consulta (idUsuario puro this): '.$this->idUsuario;
-
+        
         $this->promedioPonderado = $promedioPonderado;
         $this->semestreFinalizacionMaterias = $semestreTerminacionMaterias;
         $this->reporteFinalizacionMaterias = $reciboTerminacionMaterias;
@@ -97,9 +94,6 @@ class Aspirante extends Usuario {
 
     public function insertarAspirante(){
 
-        echo "<br>INSERTAR DE ASPIRANTE: <br> Este es el ID DEL HP USUARIO EN ASPIRANTE<br>";
-
-        echo '_'.$this->idUsuario.'l';
         $idUsuario = $this->getIdUsuario();
 
         $this->peticion = "

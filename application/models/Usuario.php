@@ -356,8 +356,10 @@ class Usuario extends baseDatos {
     public function insertar(){
 
         echo "INSERTAR DE USUARIO: <br>";
+        echo 'num doc: '.$this->numeroDocumento;
+        echo 'tipo doc: '.$this->tipoDocumento;
         $this->peticion = "
-                    INSERT INTO Usuario (numeroDocumento, tipoDocumento codigo, nombre, apellido, correo, contrasenia, fechaNacimiento,
+                    INSERT INTO Usuario (numeroDocumento, tipoDocumento, codigo, nombre, apellido, correo, contrasenia, fechaNacimiento,
                                           telefonoFijo, telefonoCelular, direccion, tipo)
                     VALUES ('$this->numeroDocumento', '$this->tipoDocumento', '$this->codigo', '$this->nombre', '$this->apellido', '$this->correo', '$this->contrasenia',
                      '$this->fechaNacimiento', '$this->telefonoFijo', '$this->telefonoCelular', '$this->direccion', '$this->tipo')
