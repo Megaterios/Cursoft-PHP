@@ -43,7 +43,7 @@ class SistemaCursoProfundizacion {
             //Imprimir vista de error por campos vacíos.
         }
 
-        if($contrasenia < 8){
+        if(strlen($contrasenia) < 8){
             //Imprimir error por condición de contraseña no cumplida.
             $this->imprimirErroresRegistrarAspirante('La contraseña debe contar con al menos 8 caracteres.');
             exit;
