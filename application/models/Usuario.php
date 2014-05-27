@@ -297,6 +297,7 @@ class Usuario extends baseDatos {
         //print_r($this->filas);
 
         if(count($this->filas) == 1) {
+            echo "ENCONTRO AL USUARIO";
             $este = 'this';
             foreach ($this->filas[0] as $atributo=>$valor) {
                 $$este->$atributo = $valor;
@@ -328,6 +329,18 @@ class Usuario extends baseDatos {
     public function __toString() {
         return  "<br>".$this->numeroDocumento."<br>".$this->nombre."<br>".$this->apellido."<br>".$this->correo."<br>".$this->contrasenia."<br>".
                 $this->fechaNacimiento."<br>".$this->direccion;
+    }
+
+    public function consultar($codigo) {
+        $this->peticion = "
+        select u.correo, u.contrasenia, u.nombre, u.apellido, u.numeroDocumento, u.fechaNacimiento, u.direccion, u.telefonoFijo, u.telefonoCelular, u.codigo, a.promedioPonderado, a.semestreFinalizacionMaterias, a.reporteFinalizacionMaterias, a.reportePazSalvo, a.reciboInscripcion
+              from Usuario u, Aspirante a
+              where u.idUsuario = a.idUsuario and u.codigo = '$codigo'
+        ";
+
+        $this->obtener_resultados_consulta();
+
+        return $this->filas[0];
     }
 
     public function obtenerDatos($correo) {

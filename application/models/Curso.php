@@ -149,9 +149,14 @@ class Curso extends baseDatos {
         $this->insertarAspiranteCurso($aspirante->getIdAspirante());
         //Retornar mensaje de éxito.
         return array(0=>true, 1=>CU_EXITO);
+            //retornar mensaje de exito
 
 
 
+//Estado en 1 Si soy estudiante
+        //Si termine el curso 2
+        //En 0 cuando queda pendiente... Cuando puede cargar y nunca lo aceptaron o nunca cargo.
+        //Aspirar a un curso en un solo lapso de tiempo, no puede aspirar sino hasta que el curso halla pasado
 
     //Estado en 1 Si soy estudiante
             //Si termine el curso 2
@@ -159,8 +164,9 @@ class Curso extends baseDatos {
             //Aspirar a un curso en un solo lapso de tiempo, no puede aspirar sino hasta que el curso halla pasado
 
 
+}
 
-    }
+ //   }
 
 
     private function insertarAspiranteCurso($idAspirante){
