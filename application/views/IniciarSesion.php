@@ -10,9 +10,10 @@ require_once('application/libs/Vista.php');
 
 class IniciarSesion extends Vista {
 
-    function __construct($tipo, $datos=array(), $mensaje, $reenderizarPlantillaBase)
+    function __construct($tipo, $datos=array(), $mensaje)
     {
 
+        parent::__construct();
         if($tipo == 'error' || $tipo == 'exito') {
             $this->obtenerPlantilla($tipo);
             $this->datos = array('MENSAJE'=>$mensaje);
@@ -22,6 +23,6 @@ class IniciarSesion extends Vista {
         $datos['DIV'] = $this->plantilla;
         $this->plantilla = "";
 
-        $this->retornarVista('iniciar_sesion', $datos, $reenderizarPlantillaBase);
+        $this->retornarVista('iniciar_sesion', $datos);
     }
 }

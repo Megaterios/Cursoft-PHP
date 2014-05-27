@@ -9,8 +9,9 @@
 class RecuperarContrasenia extends Vista {
 
 
-    function __construct($tipo, $datos=array(), $mensaje, $reenderizarPlantillaBase)
+    function __construct($tipo, $datos=array(), $mensaje)
     {
+        parent::__construct();
         if($tipo == 'error') {
             $this->obtenerPlantilla($tipo);
             $this->datos = array('MENSAJE'=>$mensaje);
@@ -20,7 +21,7 @@ class RecuperarContrasenia extends Vista {
         $datos['DIV'] = $this->plantilla;
         $this->plantilla = "";
 
-        $this->retornarVista('recuperar_contrasenia', $datos, $reenderizarPlantillaBase);
+        $this->retornarVista('recuperar_contrasenia', $datos);
     }
 
 } 

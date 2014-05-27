@@ -9,9 +9,16 @@
 date_default_timezone_set('America/Bogota');
 
 require_once 'application/models/Usuario.php';
+require_once 'application/models/Curso.php';
+require_once 'application/models/Docente.php';
+require_once 'application/models/Estudiante.php';
 require_once 'application/libs/Vista.php';
 require_once 'application/views/IniciarSesion.php';
 require_once 'application/views/RecuperarContrasenia.php';
+require_once 'application/views/RegistrarAspirante.php';
+require_once 'application/views/InicioAspirante.php';
+require_once 'application/views/ConsultarDatos.php';
+require_once 'application/views/ActualizarDatos.php';
 
 class SistemaCursoProfundizacion {
 
@@ -21,6 +28,123 @@ class SistemaCursoProfundizacion {
     public function __construct() {
 
     }
+
+
+    public function registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+                                       $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                                       $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
+                                       $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+                                       $reciboPagoInscripcion, $idCurso, $tipoUsuario) {
+
+
+        if(empty($correo) || empty($contrasenia) || empty($confirmacionContrasenia) || empty($nombres) ||
+            empty($apellidos) || empty($tipoDocumento) || empty($numeroDocumento) || empty($fechaNacimiento) ||
+            empty($direccionResidencia) || empty($telefonoResidencia) || empty($telefonoMovil) || empty($codigo) ||
+            empty($promedioPonderado) || empty($semestreTerminacionMaterias) || empty($reciboTerminacionMaterias) ||
+            empty($reciboPazSalvo) || empty($reciboPagoInscripcion) || empty($idCurso)){
+
+            //Imprimir vista de error por campos vacíos.
+            $mensaje = 'Debe llenar todos los campos del formulario.';
+
+            $this->imprimirErroresRegistrarAspirante($mensaje);
+            exit;
+        }
+
+        if(strlen($contrasenia) < 8){
+            //Imprimir error por condición de contraseña no cumplida.
+            $this->imprimirErroresRegistrarAspirante('La contraseña debe contar con al menos 8 caracteres.');
+            exit;
+        }
+
+        if($contrasenia != $confirmacionContrasenia){
+            $this->imprimirErroresRegistrarAspirante('Los campos de contraseña no coinciden.');
+            exit;
+        }
+
+        if(!empty($correo) && !filter_var($correo, FILTER_VALIDATE_EMAIL)){
+
+            $mensaje = 'Ingrese un correo electrónico válido.';
+
+            $this->imprimirErroresRegistrarAspirante($mensaje);
+            exit;
+
+        }
+
+        if(!is_numeric($numeroDocumento) || !is_numeric($telefonoResidencia) || !is_numeric($telefonoMovil) ||
+            !is_numeric($codigo) || !is_numeric($promedioPonderado) || !is_numeric($semestreTerminacionMaterias)){
+
+            $mensaje = 'La información ingresada contiene errores o hay campos vacíos.';
+
+            $this->imprimirErroresRegistrarAspirante($mensaje);
+            exit;
+            //Imprimir vista de error por formato inválido de datos.
+
+        }
+
+
+        $curso = new Curso();
+        $curso->obtenerCurso($idCurso);
+
+        if($curso->getIdCurso() == ''){
+
+            //Imprimir vista de error.
+        }
+        else{
+
+            //
+            $mensaje = $curso->registrarAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+                $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
+                $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
+                $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
+                $reciboPagoInscripcion, $tipoUsuario);
+
+
+
+            if($mensaje[0] == true) {
+                $this->vista = new IniciarSesion('exito', $datos = array(
+                    'CLASS_CORREO'=>COLOR_DEFECTO,
+                    'CLASS_CONTRASENIA'=>COLOR_DEFECTO
+                ), $mensaje[1]);
+            }else {
+                $this->imprimirErroresRegistrarAspirante($mensaje[1]);
+                exit;
+            }
+
+        }
+    }
+
+
+    private function imprimirErroresRegistrarAspirante($mensaje){
+
+
+        $this->vista = new RegistrarAspirante('error', $datos=array(
+            'DIV'=>'',
+            'CLASS_CORREO'=>COLOR_ROJO,
+            'CLASS_CONTRASENIA'=>COLOR_ROJO,
+            'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_ROJO,
+            'CLASS_NOMBRES'=>COLOR_ROJO,
+            'CLASS_APELLIDOS'=>COLOR_ROJO,
+            'CLASS_TIPO_DOCUMENTO'=>COLOR_ROJO,
+            'CLASS_NUMERO_DOCUMENTO'=>COLOR_ROJO,
+            'CLASS_FECHA_NACIMIENTO'=>COLOR_ROJO,
+            'CLASS_DIRECCION_RESIDENCIA'=>COLOR_ROJO,
+            'CLASS_TELEFONO_RESIDENCIA'=>COLOR_ROJO,
+            'CLASS_TELEFONO_MOVIL'=>COLOR_ROJO,
+            'CLASS_CODIGO'=>COLOR_ROJO,
+            'CLASS_PROMEDIO_PONDERADO'=>COLOR_ROJO,
+            'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_ROJO,
+            'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_ROJO,
+            'CLASS_RECIBO_PAZ_SALVO'=>COLOR_ROJO,
+            'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_ROJO,
+            'CLASS_BOTONES'=>COLOR_ROJO
+        ), $mensaje);
+
+
+
+    }
+
+
+
 
     /**
      * Método que activa la variable de sesión para que el usuario pueda
@@ -34,24 +158,216 @@ class SistemaCursoProfundizacion {
     public function iniciarSesion($correo, $contrasenia, $tipoUsuario) {
         $this->validarDatosIniciarSesion($correo, $contrasenia, $tipoUsuario);
         $this->modelo = new Usuario();
-        $this->modelo->obtener($correo);
-        if ($correo == $this->modelo->getCorreo() && md5($contrasenia) == $this->modelo->getContrasenia()) {
-            session_start ();
+        $this->modelo->obtener('correo', $correo);
+
+
+
+        if ($correo == $this->modelo->getCorreo() && md5($contrasenia) == $this->modelo->getContrasenia() &&
+            $tipoUsuario == $this->modelo->getTipo()) {
+            if(!session_id()) session_start();
+
+
             $_SESSION ['correo'] = $this->modelo->getCorreo();
-            $_SESSION ['tipo'] = $tipoUsuario;
-            //$this->vista = new vista();
-            //$this->vista->delegar_vista();
+            $_SESSION ['idUsuario'] = $this->modelo->getIdUsuario();
+            $_SESSION ['tipo'] = $this->modelo->getTipo();
+            $_SESSION ['codigo'] = $this->modelo->getCodigo();
+            $_SESSION ['nombre'] = explode(' ', $this->modelo->getNombre())[0] .' '. explode(' ', $this->modelo->getApellido())[0];
+            //Aspirante
+            if($this->modelo->getTipo() == '1') {
+                $this->modelo = new Aspirante();
+                $this->modelo->obtenerAspirante('codigo', $_SESSION ['codigo']);
+                $this->cargarVistaAspiranteEstado();
+            }
 
+            //Docente
+            if($this->modelo->getTipo() == '2') {
+                $this->modelo = new Docente();
+                $this->modelo->obtenerDocente($_SESSION['codigo']);
+                $this->cargarVistaDocenteCargo();
+			}
 
-            echo "El señor ".$_SESSION['correo']." ha iniciado sesión";
+            //Estudiante
+            if($this->modelo->getTipo() == '3') {
+                $this->modelo = new Estudiante();
+                $this->modelo->obtenerEstudiante($_SESSION['codigo']);
+                $this->cargarVistaEstudianteEstado();
+                //0 Pendiente
+                //1 Aprobado
+                //2 Rechazado
+                //3 Graduado
+            }
+
         }else {
-            $this->vista = new IniciarSesion('iniciar_sesion_error', $datos = array(
+            $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
                 'CLASS_CONTRASENIA'=>COLOR_ROJO,
-            ), CU2_ERROR_4, false);
+            ), CU2_ERROR_4);
             exit;
         }
 
+    }
+
+    private function cargarVistaAspiranteEstado() {
+        switch($this->modelo->getEstado()) {
+
+            //Pendiente
+            case 0:
+
+                $this->vista = new InicioAspirante('Pendiente', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$_SESSION['codigo'],
+                        'ESTADO'=>'Pendiente'
+
+                    ), MENSAJE_PENDIENTE
+
+                );
+
+
+                break;
+
+
+            //Aprobado
+            case 1:
+
+                $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Aprobado'
+                    ), MENSAJE_APROBADO
+
+                );
+
+                exit;
+                break;
+
+
+            //Rechazado
+            case 2:
+
+
+                $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Rechazado'
+
+                    ), MENSAJE_RECHAZADO
+
+                );
+
+                break;
+        }
+    }
+
+
+    private function cargarVistaEstudianteEstado() {
+        switch($this->modelo->getEstado()) {
+
+            //Pendiente
+            case 0:
+
+                $this->vista = new InicioEstudiante('Pendiente', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Pendiente'
+
+                    ), MENSAJE_PENDIENTE
+
+                );
+
+
+                break;
+
+
+            //Aprobado
+            case 1:
+
+
+                $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Aprobado'
+                    ), MENSAJE_APROBADO
+
+                );
+
+                exit;
+                break;
+
+
+            //Rechazado
+            case 2:
+
+                $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Rechazado'
+
+                    ), MENSAJE_RECHAZADO
+
+                );
+
+                break;
+        }
+    }
+
+
+    private function cargarVistaDocenteCargo() {
+        switch($this->modelo->getEstado()) {
+
+            //Pendiente
+            case 0:
+
+                $this->vista = new InicioAspirante('Pendiente', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Pendiente'
+
+                    ), MENSAJE_PENDIENTE
+
+                );
+
+
+                break;
+
+
+            //Aprobado
+            case 1:
+
+                $this->vista = new InicioAspirante('Aprobado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Aprobado'
+                    ), MENSAJE_APROBADO
+
+                );
+
+                exit;
+                break;
+
+
+            //Rechazado
+            case 2:
+
+                $this->vista = new InicioAspirante('Rechazado', $datos = array(
+                        'TIPO'=> $this->modelo->getTipo(),
+                        'NOMBRE'=>$_SESSION['nombre'],
+                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'ESTADO'=>'Rechazado'
+
+                    ), MENSAJE_RECHAZADO
+
+                );
+
+                break;
+        }
     }
 
 
@@ -73,7 +389,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
                 'CLASS_CONTRASENIA'=>COLOR_ROJO,
-            ), CU2_ERROR_1, false);
+            ), CU2_ERROR_1);
             exit;
         }
 
@@ -81,7 +397,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO,
                 'CLASS_CONTRASENIA'=>COLOR_DEFECTO,
-                ), CU2_ERROR_2, false);
+                ), CU2_ERROR_2);
             exit;
         }
 
@@ -89,7 +405,7 @@ class SistemaCursoProfundizacion {
             $this->vista = new IniciarSesion('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_DEFECTO,
                 'CLASS_CONTRASENIA'=>COLOR_ROJO,
-            ), CU2_ERROR_3, false);
+            ), CU2_ERROR_3);
             exit;
         }
     }
@@ -102,17 +418,17 @@ class SistemaCursoProfundizacion {
         if (empty($correo)) {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO
-            ), CU3_ERROR_1, false);
+            ), CU3_ERROR_1);
             exit;
         }
 
         $this->modelo = new Usuario();
-        $this->modelo->obtener($correo);
+        $this->modelo->obtener('correo', $correo);
 
         if($correo != $this->modelo->getCorreo()) {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO
-            ), CU3_ERROR_2, false);
+            ), CU3_ERROR_2);
             exit;
         }
 
@@ -120,16 +436,15 @@ class SistemaCursoProfundizacion {
 
         $this->modelo->setContrasenia(md5($contrasenia));
 
-        echo "Aca voy a cambiar contraseña";
         if($this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia)) {
                 $this->vista = new IniciarSesion('exito', $datos = array(
                     'CLASS_CORREO'=>COLOR_DEFECTO,
                     'CLASS_CONTRASENIA'=>COLOR_DEFECTO
-                ), CU3_EXITO, false);
+                ), CU3_EXITO);
         }else {
             $this->vista = new RecuperarContrasenia('error', $datos = array(
                 'CLASS_CORREO'=>COLOR_ROJO
-            ), CU3_ERROR_3, false);
+            ), CU3_ERROR_3);
         }
         $contrasenia = null;
     }
@@ -154,7 +469,7 @@ class SistemaCursoProfundizacion {
         //Debe tener la sesión iniciada - Validar
 
         $this->modelo = new Usuario();
-        $this->modelo->obtener($_SESSION['correo']);
+        $this->modelo->obtener('correo', $_SESSION['correo']);
 
         if($_SESSION['correo'] != $this->modelo->getCorreo()) {
             echo '<br>El correo no está registrado, Algo ilógico casi nunca se daria porque se supone que inició sesión porque estaba
@@ -179,13 +494,10 @@ class SistemaCursoProfundizacion {
 
     public function consultarDatos() {
         $this->modelo = new Usuario();
-        $this->modelo->obtenerDatos($_SESSION['correo'], $_SESSION['tipo']);
-       //$this->modelo->obtener($_SESSION['correo']);
-        echo $this->modelo->__toString();
-
+        return $datos = $this->modelo->consultar($_SESSION['codigo']);
     }
 
-    private function actualizarDatos() {
+    public function actualizarDatos() {
 
     }
 
@@ -196,7 +508,7 @@ class SistemaCursoProfundizacion {
 
 
     private function enviarCorreo($correoDestinatario, $asunto, $body) {
-        return(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@noreply.com>\r\n"));
+        return(mail($correoDestinatario, $asunto, $body, "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: Cursoft <cursoft@sandbox1.com>\r\n"));
     }
 
 
@@ -224,1118 +536,1289 @@ class SistemaCursoProfundizacion {
             $this->vista = new RecuperarContrasenia('recuperar_contrasenia', $datos=array(
                 'DIV'=>'',
                 'CLASS_CORREO'=>COLOR_DEFECTO,
-            ), '', false);
+            ), '');
             exit;
         }
+
+        if($vista == 'IU_REGISTRAR_ASPIRANTE') {
+            $this->vista = new RegistrarAspirante('registrar_aspirante', $datos=array(
+                'DIV'=>'',
+                'CLASS_CORREO'=>COLOR_DEFECTO,
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,
+                'CLASS_CONFIRMAR_CONTRASENIA'=>COLOR_DEFECTO,
+                'CLASS_NOMBRES'=>COLOR_DEFECTO,
+                'CLASS_APELLIDOS'=>COLOR_DEFECTO,
+                'CLASS_TIPO_DOCUMENTO'=>COLOR_DEFECTO,
+                'CLASS_NUMERO_DOCUMENTO'=>COLOR_DEFECTO,
+                'CLASS_FECHA_NACIMIENTO'=>COLOR_DEFECTO,
+                'CLASS_DIRECCION_RESIDENCIA'=>COLOR_DEFECTO,
+                'CLASS_TELEFONO_RESIDENCIA'=>COLOR_DEFECTO,
+                'CLASS_TELEFONO_MOVIL'=>COLOR_DEFECTO,
+                'CLASS_CODIGO'=>COLOR_DEFECTO,
+                'CLASS_PROMEDIO_PONDERADO'=>COLOR_DEFECTO,
+                'CLASS_SEMESTRE_TERMINACION_MATERIAS'=>COLOR_DEFECTO,
+                'CLASS_RECIBO_TERMINACION_MATERIAS'=>COLOR_DEFECTO,
+                'CLASS_RECIBO_PAZ_SALVO'=>COLOR_DEFECTO,
+                'CLASS_RECIBO_PAGO_INSCRIPCION'=>COLOR_DEFECTO,
+                'CLASS_BOTONES'=>COLOR_DEFECTO
+            ), '');
+            exit;
+        }
+
 
         if(!isset($_SESSION['correo']) || $_SESSION['correo'] == '') {
             $this->vista = new IniciarSesion('iniciar_sesion', $datos = array(
                 'DIV'=>'',
                 'CLASS_CORREO'=>COLOR_DEFECTO,
-                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,), '', false);
+                'CLASS_CONTRASENIA'=>COLOR_DEFECTO,), '');
             exit;
         }
 
-      //  $this->vista->
+
+
+        if($vista == 'IU_CONSULTAR_DATOS') {
+            $this->modelo = new Aspirante();
+            $this->modelo->obtenerAspirante('codigo', $_SESSION['codigo']);
+
+
+            /*
+             * $datos=array(
+                            'DIV'=>'',
+                            'CODIGO'=>$this->modelo->getCodigo(),
+                            'NOMBRE'=>explode(' ', $this->modelo->getNombre())[0] .' '. explode(' ', $this->modelo->getApellido())[0]
+                        )
+             *
+             *
+             *
+             */
+            $this->vista = new ConsultarDatos($_SESSION['tipo'], $this->consultarDatos(), '');
+            exit;
+        }
+
+        if($vista == 'IU_ACTUALIZAR_DATOS') {
+
+            $this->modelo = new Aspirante();
+            $this->modelo->obtenerAspirante('correo', $_SESSION['codigo']);
+            $this->vista = new ActualizarDatos($_SESSION['tipo'], $this->consultarDatos(), '');
+            exit;
+        }
+
+        if(isset($_SESSION['correo'])) {
+
+            switch($_SESSION['tipo']) {
+
+                case 1:
+                    $this->modelo = new Aspirante();
+                    $this->modelo->obtenerAspirante('codigo', $_SESSION['codigo']);
+                    $this->cargarVistaAspiranteEstado();
+                    break;
+
+                case 2:
+                    $this->modelo = new Docente();
+                    $this->modelo->obtenerDocente($_SESSION['codigo']);
+                    $this->cargarVistaDocenteCargo();
+                    break;
+
+                case 3:
+                    $this->modelo = new Estudiante();
+                    $this->modelo->obtenerEstudiante($_SESSION['codigo']);
+                    $this->cargarVistaEstudianteEstado();
+                    break;
+            }
+
+
+        }
+
+        //  $this->vista->
     }
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //¡Mi línea!
+
+    /**
+     * @param $codigoEstudiante
+     */
+    public function matricularEstudianteCurso($codigoEstudiante){
+
+        $curso = new Curso();
+        $curso->matricularEstudiante($codigoEstudiante);
+
+        //Recargar vista.
+    }
+
+
+    /**
+     * @param $idCurso
+     */
+    public function consultarEstudiantesCurso($idCurso){
+
+        $curso = new Curso();
+        $curso->obtenerCurso($idCurso);
+        if($curso->getIdCurso() != ''){
+            $listadoEstudiantes = $curso->consultarEstudiantes();
+
+            //Imprimir listado.
+        }
+    }
+
+    /**
+     *
+     */
+    public function evaluarCurso(){
+
+        //Agregar columna "notaEvaluacion" a tabla Curso en BD.
+
+
+
+    }
+
+    /**
+     *
+     */
+    public function cargarNotaEstudiante($idCurso, $codigoEstudiante, $nota){
+
+        $curso = new Curso();
+
+        if($curso->getIdCurso() != ''){
+            $curso->cargarNotaEstudiante($codigoEstudiante, $nota);
+
+            //Imprimir vista.
+        }
+
+
+
+    }
+
+
+    /**
+     *
+     */
+    public function consultarNotasCursoEstudiante($idCurso){
+
+
+        $idCurso = 1;
+        $idEstudiante = $_SESSION['idEstudiante'];
+        $curso = new Curso();
+
+        $curso->obtenerCurso($idCurso);
+        $resultadoNotas = array();
+
+        if($curso->getIdCurso() != ''){
+            $resultadoNotas = $curso->consultarNotasEstudiante($idEstudiante);
+        }
+
+        $registroNotas = '';
+        foreach($resultadoNotas as $pos){
+
+            $nombreProfesor = $pos['Usuario.nombre'].$pos['Usuario.apellido'];
+
+            $registroNotas .= '
+                            <tr>
+                                <td>'.$pos['Modulo.idModulo'].'</td>
+                                <td><a href="#">'.$pos['Modulo.nombreModulo'].'</a></td>
+                                <td><a href="#">'.$pos['Modulo.nombreProfesor'].'</a></td>
+                                <td><a href="#">'.$nombreProfesor.'</a></td>
+                                <td>'.$pos['DocenteModuloEstudiante.nota'].'</td>
+                            </tr>';
+
+        }
+
+        $this->vista = new InicioEstudianteAprobado('inicio_estudiante_aprobado', $registroNotas);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} 
+
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

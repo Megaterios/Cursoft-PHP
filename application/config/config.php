@@ -16,16 +16,68 @@ const CU3_ERROR_3 = "Ocurrió algo inesperado, lo sentimos.";
 const CU3_EXITO = "Su contraseña ha sido enviada al correo electrónico.";
 
 
+//Mensajes CU_Registrarse
+const CU_EXITO = "Su registro se ha realizado satisfactoriamente.";
 
 
+//                                <li><a href="[URL_ACCION]">[ACCION]</a></li>
 
 
+const MENSAJE_APROBADO = '
+ <p>Consignar el valor de $ X.XXX.XXX</p>
+                            <p>En cualquiera de los siguietes bancos:</p>
+                            <ol>
+                                <li>Bancolombia</li>
+                                <li>Davivienda</li>
+                                <li>Banco de Bogotá</li>
+                            </ol>
+                            <p>Si ya realizo el pago, cargo el archivo a continuación:</p>
+                            <div id="formulario">
+                                <form action="#" method="post" role="form">
+                                     <fieldset>
+                                        <legend>Documentos</legend>
+                                        <div class="form-group">
+                                            <label for="telefono_movil" class="col-xs-12 col-sm-6 col-md-4 control-label">Recibo de pago de matricula:</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <input type="file" class="filestyle" data-iconName="glyphicon-inbox">
+                                                <p class="help-block">Selecciona tu archivo del recibo de pago de matricula</p>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <div id="botones">
+                                            <button class="btn btn-danger" id="recuperar" type="submit">Guardar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+';
 
 
+const MENSAJE_PENDIENTE = '
+
+<p>Su estado aun se encuentra <strong>PENDIENTE</strong>. Para más información, dirijase la Msc. Ing. <a href="mailto:pilinrt@gmail.com" target="_top">Judith del Pilar Rodriguez Tenjo</a>
+
+';
 
 
+const MENSAJE_RECHAZADO = '<p>Usted ha sido <strong>RECHAZADO</strong>, dado que no cumple con algunos de los requisitos. Para mas información, dirijase la Msc. Ing. <a href="mailto:pilinrt@gmail.com" target="_top">Judith del Pilar Rodriguez Tenjo</a>';
+/*
 
+//class="active"
 
+*/
+
+const USUARIO_CONSULTAR = '<li [CLASS_ACTIVE]><a href="index.php?mostrar=IU_CONSULTAR_DATOS">Consultar</a></li>';
+
+const USUARIO_CONSULTAR_ACTIVA = '<li class="active"><a href="index.php?mostrar=IU_CONSULTAR_DATOS">Consultar</a></li>';
+
+const USUARIO_ACTUAIZAR = '<li [CLASS_ACTIVE]><a href="index.php?mostrar=IU_ACTUALIZAR_DATOS">Actualizar</a></li>';
+
+const USUARIO_ACTUALIZAR_ACTIVA = '<li class="active"><a href="index.php?mostrar=IU_ACTUALIZAR_DATOS">Actualizar</a></li>';
 
 
 
