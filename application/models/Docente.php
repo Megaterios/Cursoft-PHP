@@ -6,9 +6,9 @@
  * Time: 10:23 AM
  */
 
+require_once 'application/libs/baseDatos.php';
 
-
-class Docente {
+class Docente extends baseDatos {
 
 
     private $idDocente;
@@ -50,6 +50,10 @@ class Docente {
     public function getIdDocente(){
 
         return $this->idDocente;
+
+    }
+
+    public function getEstado() {
 
     }
 

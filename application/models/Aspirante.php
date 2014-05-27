@@ -132,9 +132,6 @@ class Aspirante extends Usuario {
 
         $this->obtener('', $codigo);
 
-        echo "Ahora entre a aspirante";
-        echo "nombre en la clase ASpirante ".$this->getNombre();
-
         if($codigo != '') {
             $this->peticion = "
 						SELECT Aspirante.*

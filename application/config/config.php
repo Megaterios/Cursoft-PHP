@@ -59,22 +59,25 @@ const MENSAJE_APROBADO = '
 
 const MENSAJE_PENDIENTE = '
 
-<p>Su estado aun se encuentra <strong>PENDIENTE</strong>. Para mas información, dirijase la Msc. Ing. <a href="mailto:pilinrt@gmail.com" target="_top">Judith del Pilar Rodriguez Tenjo</a>
+<p>Su estado aun se encuentra <strong>PENDIENTE</strong>. Para más información, dirijase la Msc. Ing. <a href="mailto:pilinrt@gmail.com" target="_top">Judith del Pilar Rodriguez Tenjo</a>
 
 ';
 
 
-const MENSAJE_RECHAZADO = '<p>Usted a sido <strong>RECHAZADO</strong>, dado que no cumple con algunos de los requisitos. Para mas información, dirijase la Msc. Ing. <a href="mailto:pilinrt@gmail.com" target="_top">Judith del Pilar Rodriguez Tenjo</a>';
+const MENSAJE_RECHAZADO = '<p>Usted ha sido <strong>RECHAZADO</strong>, dado que no cumple con algunos de los requisitos. Para mas información, dirijase la Msc. Ing. <a href="mailto:pilinrt@gmail.com" target="_top">Judith del Pilar Rodriguez Tenjo</a>';
 /*
 
 //class="active"
 
 */
 
-const ASPIRANTE_FUNCION_1 = '<li [CLASS_ACTIVE]><a href="index.php?=mostrar=IU_CONSULTAR_DATOS">Consultar</a></li>
-';
+const USUARIO_CONSULTAR = '<li [CLASS_ACTIVE]><a href="index.php?mostrar=IU_CONSULTAR_DATOS">Consultar</a></li>';
 
+const USUARIO_CONSULTAR_ACTIVA = '<li class="active"><a href="index.php?mostrar=IU_CONSULTAR_DATOS">Consultar</a></li>';
 
+const USUARIO_ACTUAIZAR = '<li [CLASS_ACTIVE]><a href="index.php?mostrar=IU_ACTUALIZAR_DATOS">Actualizar</a></li>';
+
+const USUARIO_ACTUALIZAR_ACTIVA = '<li class="active"><a href="index.php?mostrar=IU_ACTUALIZAR_DATOS">Actualizar</a></li>';
 
 
 

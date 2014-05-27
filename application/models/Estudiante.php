@@ -9,9 +9,8 @@
 require_once 'application/libs/baseDatos.php';
 
 
-class Estudiante {
+class Estudiante extends baseDatos {
 
-    use baseDatos;
 
 
     private $idEstudiante;

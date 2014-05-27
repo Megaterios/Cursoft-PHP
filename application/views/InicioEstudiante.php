@@ -46,7 +46,7 @@ class InicioAspirante extends Vista {
         $this->datos = array(
             'TIPO'=>'Aspirante',
             'URL_TIPO'=>'index.php',
-            'FUNCIONES'=>USUARIO_CONSULTAR.USUARIO_ACTUAIZAR
+            'FUNCIONES'=>ASPIRANTE_FUNCION_1
         );
         $this->renderizarDatos();
     }

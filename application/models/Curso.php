@@ -260,10 +260,10 @@ class Curso extends baseDatos {
 
     }
 
-
+/*
     /**
      *
-     */
+
     public function consultarNotasEstudiante($idEstudiante){
 
         $grupo = new GrupoEstudiante();
@@ -273,7 +273,7 @@ class Curso extends baseDatos {
     }
 
 
-
+*/
 
 
 

@@ -8,7 +8,7 @@
 
 require_once('application/libs/Vista.php');
 
-class InicioAspirante extends Vista {
+class ConsultarDatos extends Vista {
 
     function __construct($tipo, $datos=array(), $mensaje)
     {
@@ -30,23 +30,35 @@ class InicioAspirante extends Vista {
         $datos['MENU'] = $this->plantilla;
         $this->plantilla = "";
 
-
-        $this->generarMigasPan($datos['CODIGO'], $datos['NOMBRE']);
+        $this->generarMigasPan($_SESSION['codigo'], $_SESSION['nombre']);
         $datos['MIGAS_PAN'] = $this->plantilla;
         $this->plantilla = "";
 
         $datos ['MENSAJE'] = $mensaje;
-        $this->retornarVista('inicio_aspirante', $datos);
+        $this->retornarVista('consultar_aspirante', $datos);
 
     }
 
 
+    private function getTipo() {
+        if($_SESSION['tipo'] == 1) {
+            return 'Aspirante';
+        }
+
+        if($_SESSION['tipo'] == 2) {
+            return 'Docente';
+        }
+
+        return 'Estdiante';
+    }
+
     private function generarMenu() {
         $this->obtenerPlantilla("menu");
+
         $this->datos = array(
-            'TIPO'=>'Aspirante',
-            'URL_TIPO'=>'index.php',
-            'FUNCIONES'=>USUARIO_CONSULTAR.USUARIO_ACTUAIZAR
+            'TIPO'=>$this->getTipo(),
+            'FUNCIONES'=>USUARIO_CONSULTAR_ACTIVA.USUARIO_ACTUAIZAR,
+            'URL_TIPO'=>'index.php'
         );
         $this->renderizarDatos();
     }
@@ -55,8 +67,8 @@ class InicioAspirante extends Vista {
     private function generarMigasPan($codigo, $nombre) {
         $this->obtenerPlantilla("migas_pan");
         $this->datos = array(
-            'TIPO'=>'Aspirante',
-            'FUNCION_ACTUAL'=>'',
+            'TIPO'=>$this->getTipo(),
+            'FUNCION_ACTUAL'=>USUARIO_CONSULTAR_ACTIVA,
             'CODIGO'=>$codigo,
             'NOMBRE'=>$nombre
         );

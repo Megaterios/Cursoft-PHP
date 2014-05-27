@@ -6,7 +6,7 @@ require_once 'application/controller/SistemaCursoProfundizacion.php';
 
 $aplicacion = new SistemaCursoProfundizacion();
 
-$aplicacion->cerrarSesion();
+//$aplicacion->cerrarSesion();
 
 if(isset($_POST['requerimiento']) ) {
     switch ($_POST['requerimiento']) {
@@ -15,19 +15,16 @@ if(isset($_POST['requerimiento']) ) {
             $aplicacion->iniciarSesion($_POST['correo'], $_POST['contrasenia'], $_POST['tipo']);
             break;
 
-        case 'RF2_FINALIZAR_SESION':
-            $aplicacion->cerrarSesion();
-            $aplicacion->cargarVista();
-            break;
-
         case 'RF3_RECUPERAR_CONTRASENIA':
             $aplicacion->recuperarContrasenia($_POST['correo']);
             break;
 
         case 'RF4_CONSULTAR_DATOS':
+            $aplicacion->consultarDatos();
             break;
 
         case 'RF5_ACTUALIZAR_DATOS':
+            $aplicacion->actualizarDatos();
             break;
 
         case 'RF6_ELIMINAR_ESTUDIANTE':
@@ -66,6 +63,17 @@ if(isset($_POST['requerimiento']) ) {
             break;
 
     }
+}else if(isset($_GET['requerimiento'])) {
+
+    switch($_GET['requerimiento']) {
+
+        case 'RF2_FINALIZAR_SESION':
+            echo "Voy a cerrar la sesion";
+            $aplicacion->cerrarSesion();
+            $aplicacion->cargarVista();
+            break;
+    }
+
 }else {
     $mostrar = '';
 
@@ -74,7 +82,7 @@ if(isset($_POST['requerimiento']) ) {
         $mostrar =  $_GET['mostrar'];
     }
 
-
+echo "Entre a mostrar la interfaz consultar datos<br>";
     $aplicacion->cargarVista($mostrar);
 
 
@@ -91,7 +99,7 @@ if(isset($_POST['requerimiento']) ) {
   //  $aplicacion->consultarDatos();
 
 
-
+/*
 
 
 
@@ -161,7 +169,7 @@ if(isset($_POST['requerimiento']) ) {
 
 
 
-
+*/
 
 
 

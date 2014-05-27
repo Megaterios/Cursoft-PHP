@@ -1,30 +1,3 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="CURSOFT - Sistema de información para la administración de curso de profundización">
-    
-    <title>CURSOFT - Sistema de Información</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    <script src="js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap-filestyle.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    
-</head>
-<body>
-    <div class="container">
-        <header>
-            <figure>
-                <img alt="CURSOFT" class="img-responsive" id="banner_cursoft" src="img/banne_cursoft.png">
-            </figure>
-        </header>
 
         <section>
 
@@ -34,7 +7,7 @@
                     <div class="row">
                         <div class="col-xs-offset-1 col-xs-10" id="contenedor">
                             <div class="row" id="formulario">
-                                <form action="#" class="form-horizontal" method="post" role="form">
+                                <form action="index.php" class="form-horizontal" method="post" role="form">
                                     <fieldset>
                                         <legend>Datos de inicio de sesión</legend>
                                         <div class="form-group">
@@ -42,7 +15,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                                    <input class="form-control" id="correo" value="abdul.laiseca@gmail.com" type="text">
+                                                    <input class="form-control" id="correo" value="[correo]" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -51,7 +24,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    <input class="form-control" id="contraseña" value="********" type="password">
+                                                    <input class="form-control" id="contraseña" value="[contrasenia]" type="password">
                                                 </div>
                                             </div>
                                         </div>
@@ -60,7 +33,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    <input class="form-control" id="confirmar_contraseña" value="********" type="password">
+                                                    <input class="form-control" id="confirmar_contraseña" value="[contrasenia]" type="password">
                                                 </div>
                                             </div>
                                         </div>
@@ -72,7 +45,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                                    <input class="form-control" id="nombres" value="Abdul Fabian" type="text" disabled>
+                                                    <input class="form-control" id="nombres" value="[nombre]" type="text" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -81,7 +54,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                                    <input class="form-control" id="apellidos" value="Laiseca Candelo" type="text" disabled>
+                                                    <input class="form-control" id="apellidos" value="[apellido]" type="text" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +73,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-barcode"></span></span>
-                                                    <input class="form-control" id="numero_documento" value="13278413" type="text" disabled>
+                                                    <input class="form-control" id="numero_documento" value="[numeroDocumento]" type="text" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +82,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    <input class="form-control" id="fecha_nacimiento" value="16/04/1984" type="text">
+                                                    <input class="form-control" id="fecha_nacimiento" value="[fechaNacimiento]" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +91,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                                                    <input class="form-control" id="direccion_residencia" value="Cl 21A 11 48 Br Alfonso Lopez" type="text">
+                                                    <input class="form-control" id="direccion_residencia" value="[direccion]" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +100,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
-                                                    <input class="form-control" id="telefono_residencia" value="5822276" type="text">
+                                                    <input class="form-control" id="telefono_residencia" value="[telefonoFijo]" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -136,7 +109,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                                                    <input class="form-control" id="telefono_movil" value="3137496602" type="text">
+                                                    <input class="form-control" id="telefono_movil" value="[telefonoCelular]" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +121,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
-                                                    <input class="form-control" id="telefono_movil" value="1150789" type="text" disabled>
+                                                    <input class="form-control" id="telefono_movil" value="[codigo]" type="text" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +130,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-stats"></span></span>
-                                                    <input class="form-control" id="telefono_movil" value="4.2" type="text" disabled>
+                                                    <input class="form-control" id="telefono_movil" value="[promedioPonderado]" type="text" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,7 +139,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                                    <input class="form-control" id="telefono_movil" value="02/2015" type="text" disabled>
+                                                    <input class="form-control" id="telefono_movil" value="[semestreFinalizacionMaterias]" type="text" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,7 +168,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6 text-right">
-                                                <button class="btn btn-danger" id="actualizar" type="submit">Actualizar</button>
+                                                <button class="btn btn-danger" id="actualizar" name="requerimiento" value="RF5_ACTUALIZAR_DATOS" type="submit">Actualizar</button>
                                             </div>
                                             <div class="col-xs-6 text-left">
                                                 <button class="btn btn-danger" id="cancelar" type="submit">Cancelar</button>
@@ -209,12 +182,3 @@
                 </div>
             </div>
         </section>
-
-        <footer>
-            <p><strong>Copyright © 2014. Programa de Ingeniería de Sistemas - UFPS</strong></p>
-            <p>Desarrollado por <strom><a href="#">Megaterios</a></strong></p>
-        </footer>
-
-    </div>
-</body>
-</html>
