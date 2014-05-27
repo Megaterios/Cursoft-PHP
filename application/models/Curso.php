@@ -122,9 +122,7 @@ class Curso extends baseDatos {
 
         }
 
-        echo '<br>Correo ingresado:'.$correo.'</br>';
         $aspirante->obtenerAspirante('correo', $correo);
-        echo '<br>Correo obtenido:'.$aspirante->getCorreo().'</br>';
 
         if($aspirante->getIdAspirante() != ''){//Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
             //retornar el mensaje de que ya hasido aspirante a este curso.
@@ -176,7 +174,6 @@ class Curso extends baseDatos {
 
     private function insertarAspiranteCurso($idAspirante){
 
-        echo 'soy id aspirante: '.$idAspirante;
         $fecha = date('Y-m-d');
         $this->peticion = "
                     INSERT INTO AspiranteCurso (idCurso, idAspirante, fecha) VALUES ('$this->idCurso', '$idAspirante', '$fecha')
