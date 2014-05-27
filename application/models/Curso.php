@@ -107,26 +107,52 @@ class Curso extends baseDatos {
                                        $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
                                        $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
                                        $reciboPagoInscripcion) {
+
+        $reciboTerminacionMaterias = 'reciboterminacion';
+        $reciboPazSalvo = 'recibopazsalvo';
+        $reciboPagoInscripcion = 'recibopagoinsc';
+
         $aspirante = new Aspirante();
-        $aspirante->obtenerAspirante($codigo);
+        $aspirante->obtenerAspirante('codigo', $codigo);
 
-
-
-
-        if(false){//Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
+        if($aspirante->getIdAspirante() != ''){//Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
             //retornar el mensaje de que ya hasido aspirante a este curso.
 
-            return array(0=>false, 1=>'Error El ya ha sido registrado');
+            return array(0=>false, 1=>'Ya se encuentra registrado un aspirante con el código ingresado');
 
         }
 
-        $aspirante->crearAspirante($correo, $contrasenia, $confirmacionContrasenia, $nombres, $apellidos,
+        echo '<br>Correo ingresado:'.$correo.'</br>';
+        $aspirante->obtenerAspirante('correo', $correo);
+        echo '<br>Correo obtenido:'.$aspirante->getCorreo().'</br>';
+
+        if($aspirante->getIdAspirante() != ''){//Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
+            //retornar el mensaje de que ya hasido aspirante a este curso.
+
+            return array(0=>false, 1=>'Ya se encuentra registrado un aspirante con el correo ingresado');
+
+        }
+
+        $aspirante->obtenerAspirante('numeroDocumento', $numeroDocumento);
+
+        if($aspirante->getIdAspirante() != ''){//Ya aspiró al curso de profundizacion y fue estudiante como 1 y 2*/) {
+            //retornar el mensaje de que ya hasido aspirante a este curso.
+
+            return array(0=>false, 1=>'Ya se encuentra registrado un aspirante con el número de documento ingresado');
+
+        }
+
+        //Registrar al aspirante.
+        $contrasenia = md5($contrasenia);
+        $aspirante->crearAspirante($correo, $contrasenia, $nombres, $apellidos,
             $tipoDocumento, $numeroDocumento, $fechaNacimiento, $direccionResidencia,
             $telefonoResidencia, $telefonoMovil, $codigo, $promedioPonderado,
             $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
             $reciboPagoInscripcion);
 
-            //Registrar al aspirante.
+        $aspirante->obtenerAspirante('codigo', $codigo);
+        $this->insertarAspiranteCurso($aspirante->getIdAspirante());
+        //Retornar mensaje de éxito.
         return array(0=>true, 1=>CU_EXITO);
             //retornar mensaje de exito
 
@@ -137,11 +163,30 @@ class Curso extends baseDatos {
         //En 0 cuando queda pendiente... Cuando puede cargar y nunca lo aceptaron o nunca cargo.
         //Aspirar a un curso en un solo lapso de tiempo, no puede aspirar sino hasta que el curso halla pasado
 
+    //Estado en 1 Si soy estudiante
+            //Si termine el curso 2
+            //En 0 cuando queda pendiente... Cuando puede cargar y nunca lo aceptaron o nunca cargo.
+            //Aspirar a un curso en un solo lapso de tiempo, no puede aspirar sino hasta que el curso halla pasado
 
 
 }
 
+ //   }
 
+
+    private function insertarAspiranteCurso($idAspirante){
+
+        echo 'soy id aspirante: '.$idAspirante;
+        $fecha = date('Y-m-d');
+        $this->peticion = "
+                    INSERT INTO AspiranteCurso (idCurso, idAspirante, fecha) VALUES ('$this->idCurso', '$idAspirante', '$fecha')
+                    ";
+
+        $this->ejecutar_peticion_simple();
+
+        $this->errores();
+
+    }
 
 
 
@@ -260,10 +305,10 @@ class Curso extends baseDatos {
 
     }
 
-/*
+
     /**
      *
-
+     */
     public function consultarNotasEstudiante($idEstudiante){
 
         $grupo = new GrupoEstudiante();
@@ -273,7 +318,13 @@ class Curso extends baseDatos {
     }
 
 
-*/
+    /**
+     *
+     */
+
+
+
+
 
 
 

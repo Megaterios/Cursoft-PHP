@@ -32,8 +32,12 @@ class Aspirante extends Usuario {
                             $semestreTerminacionMaterias, $reciboTerminacionMaterias, $reciboPazSalvo,
                             $reciboPagoInscripcion){
 
-        $this->crear($codigo, $apellidos, $numeroDocumento, $contrasenia, $correo, $direccionResidencia, $fechaNacimiento, $nombres, $telefonoMovil, $telefonoResidencia);
+        $this->crear($codigo, $nombres, $apellidos, $tipoDocumento, $numeroDocumento, $contrasenia, $correo, $direccionResidencia, $fechaNacimiento, $telefonoMovil, $telefonoResidencia);
 
+        $this->obtener('correo', $correo);
+        echo 'ya obtuve consulta(nombre): '.$this->getNombre();
+        echo 'ya obtuve consulta (idUsuario): '.$this->getIdUsuario();
+        echo 'ya obtuve consulta (idUsuario puro this): '.$this->idUsuario;
 
         $this->promedioPonderado = $promedioPonderado;
         $this->semestreFinalizacionMaterias = $semestreTerminacionMaterias;
@@ -42,6 +46,7 @@ class Aspirante extends Usuario {
         $this->reciboInscripcion = $reciboPagoInscripcion;
         $this->estado = 0;
         $this->insertarAspirante();
+
     }
 
 
@@ -92,13 +97,14 @@ class Aspirante extends Usuario {
 
     public function insertarAspirante(){
 
-        echo "INSERTAR DE ASPIRANTE: <br> Este es el ID DEL HP USUARIO EN ASPIRANTE";
+        echo "<br>INSERTAR DE ASPIRANTE: <br> Este es el ID DEL HP USUARIO EN ASPIRANTE<br>";
 
-        echo $this->idUsuario;
+        echo '_'.$this->idUsuario.'l';
+        $idUsuario = $this->getIdUsuario();
 
         $this->peticion = "
                     INSERT INTO Aspirante (idUsuario, promedioPonderado, semestreFinalizacionMaterias, reporteFinalizacionMaterias,
-                    reportePazSalvo, reciboInscripcion, estado) VALUES ($this->idUsuario,'$this->promedioPonderado', '$this->semestreFinalizacionMaterias',
+                    reportePazSalvo, reciboInscripcion, estado) VALUES ('$idUsuario','$this->promedioPonderado', '$this->semestreFinalizacionMaterias',
                     '$this->reporteFinalizacionMaterias', '$this->reportePazSalvo', '$this->reciboInscripcion', '$this->estado')
                     ";
 
@@ -128,15 +134,14 @@ class Aspirante extends Usuario {
     /**
      * @param string $correo
      */
-    public function obtenerAspirante($codigo = '') {
+    public function obtenerAspirante($criterio, $valor) {
 
-        $this->obtener('', $codigo);
 
-        if($codigo != '') {
+        if($criterio != '' && $valor != '') {
             $this->peticion = "
 						SELECT Aspirante.*
 						FROM Usuario, Aspirante
-						WHERE Usuario.codigo = '$codigo' AND Usuario.idUsuario = Aspirante.idUsuario
+						WHERE Usuario.$criterio = '$valor' AND Usuario.idUsuario = Aspirante.idUsuario
                         ";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
