@@ -12,6 +12,7 @@ class Usuario extends baseDatos {
 
     private $idUsuario;
     private $numeroDocumento;
+    private $tipoDocumento;
     private $codigo;
     private $nombre;
     private $apellido;
@@ -27,10 +28,11 @@ class Usuario extends baseDatos {
     {
     }
 
-    function crear($codigo, $apellido, $cedula, $contrasenia, $correo, $direccion, $fechaNacimiento, $nombre, $telefonoCelular, $telefonoFijo)
+    function crear($codigo, $nombre, $apellido, $tipoDocumento, $numeroDocumento, $contrasenia, $correo, $direccion, $fechaNacimiento, $telefonoCelular, $telefonoFijo)
     {
         $this->apellido = $apellido;
-        $this->numeroDocumento = $cedula;
+        $this->tipoDocumento = $tipoDocumento;
+        $this->numeroDocumento = $numeroDocumento;
         $this->codigo = $codigo;
         $this->contrasenia = $contrasenia;
         $this->correo = $correo;
@@ -119,6 +121,23 @@ class Usuario extends baseDatos {
     public function getApellido()
     {
         return $this->apellido;
+    }
+
+    /**
+     *
+     */
+    public function setTipoDocumento($tipoDocumento){
+
+        $this->tipoDocumento = $tipoDocumento;
+
+    }
+
+    /**
+     *
+     */
+    public function getTipoDocente(){
+
+        return $this->tipoDocumento;
     }
 
     /**
@@ -261,21 +280,13 @@ class Usuario extends baseDatos {
      *
      * @param string $correo
      */
-    public function obtener($correo='', $codigo = -1) {
+    public function obtener($criterio='', $valor = '') {
 
-        if($correo != '') {
-            $criterio='correo';
-            $valor= "'".$correo."'";
-        }else if($codigo != -1) {
-            $criterio='codigo';
-            $valor= $codigo;
-        }
-        echo "ESTO TIENE QUE IMPRIMIR DOS VECES<br>";
-        if($correo != '' || $codigo != -1) {
+        if($criterio != '' && $valor != '') {
             $this->peticion = "
 						SELECT *
 						FROM Usuario
-						WHERE $criterio = $valor";
+						WHERE Usuario.$criterio = '$valor'";
             $this->obtener_resultados_consulta();
             //Quitar al pasar a Master
             $this->errores();
@@ -292,7 +303,7 @@ class Usuario extends baseDatos {
         }else {
             $this->inicializar();
         }
-        echo $this->getNombre();
+        echo "<br>nombre: ".$this->getNombre().' ';
         echo $this->getApellido();
 
     }
@@ -346,10 +357,10 @@ class Usuario extends baseDatos {
 
         echo "INSERTAR DE USUARIO: <br>";
         $this->peticion = "
-                    INSERT INTO Usuario (numeroDocumento, codigo, nombre, apellido, correo, contrasenia, fechaNacimiento,
+                    INSERT INTO Usuario (numeroDocumento, tipoDocumento codigo, nombre, apellido, correo, contrasenia, fechaNacimiento,
                                           telefonoFijo, telefonoCelular, direccion, tipo)
-                    VALUES ('$this->numeroDocumento', '$this->codigo', '$this->nombre', '$this->apellido', '$this->correo', '$this->contrasenia'
-                    , '$this->fechaNacimiento', '$this->telefonoFijo', '$this->telefonoCelular', '$this->direccion', '$this->tipo')
+                    VALUES ('$this->numeroDocumento', '$this->tipoDocumento', '$this->codigo', '$this->nombre', '$this->apellido', '$this->correo', '$this->contrasenia',
+                     '$this->fechaNacimiento', '$this->telefonoFijo', '$this->telefonoCelular', '$this->direccion', '$this->tipo')
                     ";
 
         $this->ejecutar_peticion_simple();
@@ -358,8 +369,8 @@ class Usuario extends baseDatos {
 
         $this->obtener_resultados_consulta();
 
-        $this->idUsuario = $this->filas[0]['idUsuario'];
-
+        //$this->idUsuario = $this->filas[0]['idUsuario'];
+        echo 'soy ID USUARIO: '.$this->idUsuario;
         $this->errores();
     }
 
