@@ -434,7 +434,6 @@ class SistemaCursoProfundizacion {
 
         $contrasenia = $this->generarContrasenia();
 
-echo $contrasenia; 
         $this->modelo->setContrasenia(md5($contrasenia));
 
         if($this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia)) {
