@@ -10,7 +10,7 @@ require_once('application/libs/Vista.php');
 
 class InicioAspirante extends Vista {
 
-    function __construct($tipo, $datos=array(), $mensaje)
+    function __construct($tipo, $datosView, $mensaje)
     {
         parent::__construct();
         /*
@@ -25,18 +25,16 @@ class InicioAspirante extends Vista {
         */
 
       //  print_r($datos);
-
         $this->generarMenu();
-        $datos['MENU'] = $this->plantilla;
+        $datosView['MENU'] = $this->plantilla;
         $this->plantilla = "";
 
-
-        $this->generarMigasPan($datos['CODIGO'], $datos['NOMBRE']);
-        $datos['MIGAS_PAN'] = $this->plantilla;
+        $this->generarMigasPan($datosView['CODIGO'], $datosView['NOMBRE']);
+        $datosView['MIGAS_PAN'] = $this->plantilla;
         $this->plantilla = "";
 
-        $datos ['MENSAJE'] = $mensaje;
-        $this->retornarVista('inicio_aspirante', $datos);
+        $datosView ['MENSAJE'] = $mensaje;
+        $this->retornarVista('inicio_aspirante', $datosView);
 
     }
 
