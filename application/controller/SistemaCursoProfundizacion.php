@@ -233,7 +233,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Aprobado', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Aprobado'
                     ), MENSAJE_APROBADO
 
@@ -250,7 +250,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Rechazado', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Rechazado'
 
                     ), MENSAJE_RECHAZADO
@@ -271,7 +271,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioEstudiante('Pendiente', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Pendiente'
 
                     ), MENSAJE_PENDIENTE
@@ -289,7 +289,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Aprobado', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Aprobado'
                     ), MENSAJE_APROBADO
 
@@ -305,7 +305,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Rechazado', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Rechazado'
 
                     ), MENSAJE_RECHAZADO
@@ -326,7 +326,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Pendiente', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Pendiente'
 
                     ), MENSAJE_PENDIENTE
@@ -343,7 +343,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Aprobado', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Aprobado'
                     ), MENSAJE_APROBADO
 
@@ -359,7 +359,7 @@ class SistemaCursoProfundizacion {
                 $this->vista = new InicioAspirante('Rechazado', $datos = array(
                         'TIPO'=> $this->modelo->getTipo(),
                         'NOMBRE'=>$_SESSION['nombre'],
-                        'CODIGO'=>$this->modelo->getCodigo(),
+                        'CODIGO'=>$_SESSION['codigo'],
                         'ESTADO'=>'Rechazado'
 
                     ), MENSAJE_RECHAZADO
@@ -434,6 +434,7 @@ class SistemaCursoProfundizacion {
 
         $contrasenia = $this->generarContrasenia();
 
+echo $contrasenia; 
         $this->modelo->setContrasenia(md5($contrasenia));
 
         if($this->enviarCorreo($this->modelo->getCorreo(), 'Cambio de Contraseña - Provisional', $contrasenia)) {
@@ -497,7 +498,37 @@ class SistemaCursoProfundizacion {
         return $datos = $this->modelo->consultar($_SESSION['codigo']);
     }
 
-    public function actualizarDatos() {
+    public function actualizarDatos($correo, $contrasenia, $contraseniaNueva, $fechaNacimiento, $direccionResidencia, 
+        $telefonoResidencia, $telefonoMovil) {
+
+        if($contrasenia != $contraseniaNueva) {
+            echo '
+            <script>
+            alert("Datos no coninciden")
+            </script> 
+            <meta http-equiv="Refresh" content="0"; url="index.php" />
+            ';
+
+            exit;
+        }
+
+        $this->modelo = new Usuario();
+        $this->modelo->obtener('correo', $_SESSION['correo']);
+
+        $this->modelo->setCorreo($_POST['correo']);
+        $_SESSION['correo'] = $_POST['correo'];
+        $this->modelo->setContrasenia(md5($contrasenia));
+        $this->modelo->setFechaNacimiento($fechaNacimiento);
+        $this->modelo->setDireccion($direccionResidencia);
+        $this->modelo->setTelefonoFijo($telefonoResidencia);
+        $this->modelo->setTelefonoCelular($telefonoMovil);
+
+        echo '
+        <script>
+        alert("Datos actualizados.")
+        </script>
+        <meta http-equiv="Refresh" content="0"; url="index.php" />
+        ';
 
     }
 

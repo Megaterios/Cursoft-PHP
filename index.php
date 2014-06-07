@@ -24,7 +24,9 @@ if(isset($_POST['requerimiento']) ) {
             break;
 
         case 'RF5_ACTUALIZAR_DATOS':
-            $aplicacion->actualizarDatos();
+
+            $aplicacion->actualizarDatos($_POST['correo'], $_POST['contrasenia'], $_POST['contraseniaNueva'],
+                $_POST['fechaNacimiento'], $_POST['direccionResidencia'], $_POST['telefonoResidencia'], $_POST['telefonoMovil']);
             break;
 
         case 'RF6_ELIMINAR_ESTUDIANTE':
